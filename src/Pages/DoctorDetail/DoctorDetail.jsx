@@ -6,11 +6,32 @@ import "./DoctorDetail.css";
 import PrimaryButton from "../../Components/Buttons/PrimaryButton";
 import api from "../../Api/Api";   // your axios instance
 
+
+
+const formatTime12Hour = (time) => {
+  if (!time) return "";
+
+  const [hour, minute] = time.split(":");
+  const date = new Date();
+  date.setHours(hour, minute);
+
+  return date.toLocaleTimeString("en-IN", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  });
+};
+
+
 const DoctorDetail = () => {
   const { slug } = useParams();
   const [doctor, setDoctor] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [slots, setSlots] = useState([]);
+  const [loadingSlots, setLoadingSlots] = useState(false);
+
+
 
   const [formData, setFormData] = useState({
     name: "",
@@ -45,6 +66,44 @@ const DoctorDetail = () => {
     fetchDoctor();
   }, [slug]);
 
+
+  useEffect(() => {
+    if (!formData.date || !doctor?.id) return;
+
+    const fetchSlots = async () => {
+      try {
+        setLoadingSlots(true);
+
+        const res = await api.get(
+          `/api/check-timings/${doctor.id}/${formData.date}/`
+        );
+
+        const merged = [
+          ...res.data.monthly_timings.map(t => ({
+            id: t.uuid,
+            label: `${formatTime12Hour(t.start_time)} - ${formatTime12Hour(t.end_time)}`
+          })),
+          ...res.data.weekly_timings.map(t => ({
+            id: t.uuid,
+            label: `${formatTime12Hour(t.start_time)} - ${formatTime12Hour(t.end_time)}`
+          }))
+        ];
+
+        setSlots(merged);
+
+      } catch (err) {
+        console.error(err);
+        setSlots([]);
+      } finally {
+        setLoadingSlots(false);
+      }
+    };
+
+    fetchSlots();
+  }, [formData.date, doctor]);
+
+
+
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData((prev) => ({ ...prev, [id]: value }));
@@ -56,25 +115,7 @@ const DoctorDetail = () => {
   };
 
   const confirmAppointment = () => {
-    if (formData.paymentMode === "Pay Now") {
-      // Simulate redirect to payment gateway
-      alert("Redirecting to Payment Gateway... (Payment integration placeholder)");
-      // In real app: window.location.href = "/payment?doctor=" + slug + "&fee=" + doctor.fee;
-    } else {
-      alert("Appointment Booked Successfully! You will receive confirmation via WhatsApp/SMS.");
-    }
-    setShowSummary(false);
-    // Reset form
-    setFormData({
-      name: "",
-      phone: "",
-      email: "",
-      gender: "",
-      date: "",
-      time: "",
-      message: "",
-      paymentMode: "Pay at Hospital",
-    });
+    
   };
 
   if (loading) {
@@ -251,18 +292,32 @@ const DoctorDetail = () => {
 
                 <div className="form-group">
                   <label htmlFor="time">Preferred Time</label>
+
                   <select
                     id="time"
                     value={formData.time}
                     onChange={handleChange}
                     required
                     className="modern-select"
+                    disabled={!formData.date}
                   >
-                    <option value="">Select time slot</option>
-                    <option>09:00 AM - 10:00 AM</option>
-                    <option>10:00 AM - 11:00 AM</option>
-                    <option>02:00 PM - 03:00 PM</option>
-                    <option>04:00 PM - 05:00 PM</option>
+                    {!formData.date && (
+                      <option value="">Select date first</option>
+                    )}
+
+                    {formData.date && loadingSlots && (
+                      <option value="">Loading available slots...</option>
+                    )}
+
+                    {formData.date && !loadingSlots && slots.length === 0 && (
+                      <option value="">No slots available</option>
+                    )}
+
+                    {slots.map(slot => (
+                      <option key={slot.id} value={slot.id}>
+                        {slot.label}
+                      </option>
+                    ))}
                   </select>
                 </div>
 
