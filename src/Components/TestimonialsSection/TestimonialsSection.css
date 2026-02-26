@@ -42,7 +42,7 @@ display: inline-flex;
 .testi-title {
   font-size: 38px;
   font-weight: 800;
-  color: #0f172a;
+  color: #1e295a !important;
   margin: 0;
 }
 

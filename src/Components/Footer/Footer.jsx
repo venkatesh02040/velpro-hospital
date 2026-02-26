@@ -7,7 +7,7 @@ import {
   FaFacebookF,
   FaInstagram,
   FaLinkedinIn,
-  FaTwitter,
+  FaYoutube,
 } from "react-icons/fa";
 
 import "./Footer.css";
@@ -55,17 +55,17 @@ const Footer = () => {
             Velpro Hospital is a trusted multi-speciality healthcare center committed to delivering advanced medical care with compassion, clinical excellence, and patient-focused treatment for better health outcomes.
           </p>
           <div className="social-icons">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <a href="https://www.facebook.com/people/Velpro-Hospital/61588577412301/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
               <FaFacebookF />
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <a href="https://www.instagram.com/velprohospital/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <FaInstagram />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/company/velpro-hospitals/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
               <FaLinkedinIn />
             </a>
-            <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
-              <FaTwitter />
+            <a href="https://www.youtube.com/channel/UCgNFuoaEsAzc02B1W9g3DEQ" target="_blank" rel="noopener noreferrer" aria-label="Youtube">
+              <FaYoutube />
             </a>
           </div>
         </div>

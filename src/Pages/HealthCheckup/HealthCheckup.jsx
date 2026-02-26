@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
 import api from "../../Api/Api";
+import { Link } from "react-router-dom"; // ← added
 import "./HealthCheckup.css";
 
 const HealthCheckup = () => {
   const [banner] = useState({
     image:
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "/health-checkup-banner.jpg",
   });
 
   const [packages, setPackages] = useState([]);
@@ -22,7 +23,7 @@ const HealthCheckup = () => {
     phone: "",
     message: "",
   });
-  const [bookingStatus, setBookingStatus] = useState(""); // success/error message
+  const [bookingStatus, setBookingStatus] = useState("");
 
   // Fetch health checkup packages
   useEffect(() => {
@@ -33,7 +34,6 @@ const HealthCheckup = () => {
 
         const response = await api.get("/api/health-checkups/");
 
-        // Sort by priority (lower number = higher priority)
         const sortedPackages = response.data.sort(
           (a, b) => parseFloat(a.priority) - parseFloat(b.priority)
         );
@@ -52,7 +52,7 @@ const HealthCheckup = () => {
 
   const openModal = (pkg) => {
     setSelectedPackage(pkg);
-    setBookingStatus(""); // reset status
+    setBookingStatus("");
     setModalOpen(true);
   };
 
@@ -78,7 +78,7 @@ const HealthCheckup = () => {
       setBookingStatus("Booking in progress...");
 
       const payload = {
-        plan_id: selectedPackage.id,   // send slug to identify package
+        plan_id: selectedPackage.id,
         name: formData.name,
         email: formData.email,
         phone_number: formData.phone,
@@ -87,7 +87,6 @@ const HealthCheckup = () => {
 
       const response = await api.post("/api/health-checkup/book/", payload);
 
-      // Success
       setBookingStatus("Booking successful! You will receive confirmation soon.");
       alert("Booking confirmed! Check your email/SMS for details.");
       closeModal();
@@ -104,11 +103,14 @@ const HealthCheckup = () => {
     return (
       <>
         <Navbar />
-        <section
-          className="healthcheckup-banner"
-          style={{ backgroundImage: `url(${banner.image})` }}
-        >
+        <section className="healthcheckup-banner">
           <div className="banner-overlay"></div>
+          <div className="banner-content">
+            <h1>Health Checkups</h1>
+            <div className="breadcrumb">
+              <Link to="/">Home</Link> <span>/</span> <span>Health Checkups</span>
+            </div>
+          </div>
         </section>
         <div style={{ textAlign: "center", padding: "100px 20px" }}>
           Loading health checkup packages...
@@ -122,11 +124,14 @@ const HealthCheckup = () => {
     return (
       <>
         <Navbar />
-        <section
-          className="healthcheckup-banner"
-          style={{ backgroundImage: `url(${banner.image})` }}
-        >
+        <section className="healthcheckup-banner">
           <div className="banner-overlay"></div>
+          <div className="banner-content">
+            <h1>Health Checkups</h1>
+            <div className="breadcrumb">
+              <Link to="/">Home</Link> <span>/</span> <span>Health Checkups</span>
+            </div>
+          </div>
         </section>
         <div style={{ textAlign: "center", padding: "100px 20px", color: "red" }}>
           {error}
@@ -140,11 +145,14 @@ const HealthCheckup = () => {
     <>
       <Navbar />
 
-      <section
-        className="healthcheckup-banner"
-        style={{ backgroundImage: `url(${banner.image})` }}
-      >
+      <section className="healthcheckup-banner">
         <div className="banner-overlay"></div>
+        <div className="banner-content">
+          <h1>Health Checkups</h1>
+          <div className="breadcrumb">
+            <Link to="/">Home</Link> <span>/</span> <span>Health Checkups</span>
+          </div>
+        </div>
       </section>
 
       <section className="healthcheckup-section">
@@ -167,7 +175,6 @@ const HealthCheckup = () => {
                 <div className="package-content">
                   <h3 className="package-title">{pkg.title}</h3>
 
-                  {/* Scrollable Tests */}
                   <div className="tests-container">
                     <ul className="tests-list">
                       {pkg.tests.map((test, i) => (
@@ -176,7 +183,6 @@ const HealthCheckup = () => {
                     </ul>
                   </div>
 
-                  {/* Footer pinned at bottom */}
                   <div className="package-footer">
                     <p className="package-price">
                       ₹{parseFloat(pkg.price).toLocaleString()}

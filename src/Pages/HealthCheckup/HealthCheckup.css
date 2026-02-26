@@ -1,8 +1,12 @@
 .healthcheckup-banner {
+  background: url("/health-checkup-banner.jpg") no-repeat center/cover;
   position: relative;
   height: 300px;
   background-size: cover;
   background-position: center;
+  display: flex;
+  align-items: center;
+  padding-left: 8%;
 }
 
 .banner-overlay {
@@ -10,6 +14,42 @@
   inset: 0;
   background: rgba(29, 41, 89, 0.65);
 }
+
+.banner-content {
+  position: relative;
+  color: white;
+  z-index: 2;
+}
+
+.banner-content h1 {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  text-shadow: 0 3px 10px rgba(0,0,0,0.5);
+}
+
+.banner-content .breadcrumb {
+  font-size: 17px;
+}
+
+.banner-content .breadcrumb a,
+.banner-content .breadcrumb span {
+  color: white;
+  text-decoration: none;
+}
+
+.banner-content .breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.banner-content .breadcrumb span {
+  margin: 0 8px;
+  opacity: 0.85;
+}
+
+/* ──────────────────────────────────────────────── */
+/* Everything below this line is unchanged          */
+/* ──────────────────────────────────────────────── */
 
 .healthcheckup-section {
   padding: 80px 0;
@@ -84,12 +124,10 @@
 .tests-container {
   flex: 1;
   max-height: 140px;
-  /* fixed scroll area */
   overflow-y: auto;
   margin-bottom: 12px;
   padding-right: 6px;
 }
-
 
 .tests-container::-webkit-scrollbar {
   width: 5px;
@@ -144,7 +182,6 @@
   border-radius: 8px;
   cursor: pointer;
 }
-
 
 /* ================= MODAL & FORM STYLINGS ================= */
 
@@ -265,7 +302,7 @@
   transform: translateY(0);
 }
 
-/* ── Form validation hint (optional – add when you implement real validation) ── */
+/* ── Form validation hint ── */
 .booking-form input:invalid:not(:placeholder-shown),
 .booking-form textarea:invalid:not(:placeholder-shown) {
   border-color: #ef4444;
@@ -277,7 +314,6 @@
 }
 
 @media (max-width: 768px) {
-
   .package-card {
     margin: 0 auto;
   }
