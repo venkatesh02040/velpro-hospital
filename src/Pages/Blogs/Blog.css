@@ -1,0 +1,177 @@
+/* ================= BLOG BANNER ================= */
+
+.blog-banner {
+  background: url("/blogs-banner.jpeg") no-repeat center/cover;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  padding-left: 8%;
+  position: relative;
+}
+
+.blog-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(29, 41, 89, 0.65);
+}
+
+.blog-banner-content {
+  position: relative;
+  color: white;
+  z-index: 2;
+}
+
+.blog-banner-content h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.blog-banner-content a{
+    text-decoration: none;
+    color: white;
+}
+
+.breadcrumb span {
+  margin: 0 8px;
+  color: rgba(255,255,255,0.7);
+}
+
+/* ================= BLOG SECTION ================= */
+
+.blog-section {
+  background: #f4f6fb;
+  padding: 80px 8%;
+}
+
+.blog-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+/* ================= BLOG CARD ================= */
+
+.blog-card {
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  transition: 0.3s ease;
+  border: 1px solid rgb(218, 232, 255) ;
+}
+
+/* IMAGE WRAPPER */
+.blog-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+/* THIS FIXES ANY IMAGE SIZE ISSUE */
+.blog-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* always fills nicely */
+  object-position: center;
+  display: block;
+}
+
+/* DATE BADGE */
+.blog-date-badge {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  background: #1d2959;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 10px;
+  text-align: center;
+  width: 112px;
+}
+
+.blog-date-badge h3 {
+font-size: 35px;
+    /* padding-right: 10px; */
+    margin: 0;
+}
+
+.blog-date-badge span {
+  font-size: 14px;
+}
+
+/* CONTENT */
+.blog-content {
+  padding: 25px;
+}
+
+.blog-meta {
+  display: flex;
+  gap: 25px;
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 15px;
+  align-items: center;
+}
+
+.blog-meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.meta-icon {
+  color: #1d2959;
+  font-size: 14px;
+}
+
+.blog-content h3 {
+  font-size: 20px;
+  color: #1d2959;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.blog-read-btn {
+  background: #e9eefb;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-weight: 500;
+}
+
+.blog-read-btn:hover {
+  background: #1d2959;
+  color: white;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1024px) {
+  .blog-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .blog-container {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-banner-content h1 {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 350px) {
+.blog-meta {
+    display: flex;
+    gap: 12px;
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 15px;
+    align-items: center;
+}
+}

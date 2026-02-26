@@ -1,0 +1,302 @@
+/* ================= BANNER ================= */
+
+.doctors-banner {
+    background: url("/DOCTORS-BANNER.jpeg") no-repeat center/cover;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    padding-left: 8%;
+    position: relative;
+}
+
+.doctors-banner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(29, 41, 89, 0.65);
+}
+
+.doctors-banner-content {
+    position: relative;
+    color: white;
+    z-index: 2;
+}
+
+.doctors-banner-content h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.doctors-banner-content a {
+    text-decoration: none;
+    color: white;
+}
+
+.breadcrumb span {
+    margin: 0 8px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* ================= MAIN SECTION ================= */
+
+.doctors-main-section {
+    padding: 80px 0;
+    background: white;
+}
+
+.doctors-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* ================= CONTROLS (FILTERS + SEARCH) ================= */
+
+.doctors-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 50px;
+    gap: 20px;
+}
+
+.doctors-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.doctors-filter-btn {
+    background: #eff6ff;
+    color: #1e295a;
+    border: 1px solid rgb(218, 232, 255);
+    padding: 10px 24px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.doctors-filter-btn.active,
+.doctors-filter-btn:hover {
+    background: #1e295a;
+    color: white;
+}
+
+.doctors-search {
+    position: relative;
+    min-width: 250px;
+}
+
+.doctors-search input {
+    width: 100%;
+    padding: 12px 40px 12px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 999px;
+    font-size: 15px;
+    outline: none;
+    transition: border 0.3s;
+}
+
+.doctors-search input:focus {
+    border-color: #1e295a;
+}
+
+.search-icon {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    color: #9ca3af;
+    font-size: 18px;
+}
+
+/* ================= GRID ================= */
+
+.doctors-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+/* ================= CARD ================= */
+
+.doctors-card {
+    background: white;
+    border-radius: 12px;
+    padding: 32px;
+    text-align: center;
+    border: 1px solid rgb(218, 232, 255);
+    transition: all 0.3s ease;
+}
+
+.doctors-avatar-wrapper {
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(59, 130, 246, 0.2);
+}
+
+.doctors-avatar-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.doctors-name {
+    font-size: 19px;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0 0 8px;
+}
+
+.doctors-spec-badge {
+    display: inline-block;
+    border: 1.5px solid rgb(218, 232, 255);
+    color: #1e295a;
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: lowercase;
+    margin-bottom: 16px;
+    width: fit-content;
+}
+
+.doctor-main-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.doctors-book-btn {
+    background: #dbeafe;
+    color: #1e295a;
+    border-radius: 5px;
+    border: none;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 12px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.doctors-book-btn:hover {
+    background: #1e295a;
+    color: white;
+}
+
+.doctors-no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #6b7280;
+    font-size: 18px;
+}
+
+/* ───────────────────────────────────────────────
+   Additional styles for department dropdown & qualification
+──────────────────────────────────────────────── */
+
+.doctors-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+}
+
+.doctors-dept-dropdown {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1e295a;
+    background-color: #eff6ff;
+    border: 1px solid rgb(218, 232, 255);
+    cursor: pointer;
+    min-width: 220px;
+    outline: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%231e295a' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px;
+}
+
+.doctors-qualification {
+    font-size: 14px;
+    color: #4b5563;
+    font-weight: 500;
+    margin: 8px 0 16px;
+    line-height: 1.4;
+    text-align: center;
+    padding: 0 12px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1280px) {
+    .doctors-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 1024px) {
+    .doctors-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 800px) {
+
+        .doctors-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .doctors-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .doctors-filters {
+        justify-content: left;
+    }
+
+    .doctors-search {
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 640px) {
+    .doctors-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .doctors-main-section {
+        padding: 60px 0;
+    }
+
+    .doctors-banner h1 {
+        font-size: 36px;
+    }
+
+    .doctors-card {
+        padding: 24px;
+    }
+
+    .doctors-avatar-wrapper {
+        width: 120px;
+        height: 120px;
+    }
+
+    .doctors-dept-dropdown {
+        min-width: 100%;
+        margin-top: 10px;
+    }
+
+    .doctors-qualification {
+        font-size: 13px;
+        margin: 6px 0 14px;
+    }
+}

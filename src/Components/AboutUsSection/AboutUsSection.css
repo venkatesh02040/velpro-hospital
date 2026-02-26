@@ -1,0 +1,235 @@
+/* AboutUsSection.css */
+
+/* ============================================= */
+/* ABOUT US SECTION - FULLY RESPONSIVE */
+/* ============================================= */
+
+.about-us-section {
+  padding: 80px 5%;
+  background: #ffffff;
+  overflow: hidden;
+  position: relative;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Main Wrapper - Desktop Layout */
+.about-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr 0.75fr;
+  gap: 60px;
+  align-items: center;
+}
+
+/* Left Image */
+.left-panel {
+  position: relative;
+}
+
+.left-image {
+  width: 100%;
+  height: auto;
+  border-radius: 24px;
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.18);
+  object-fit: cover;
+  aspect-ratio: 5 / 6;
+}
+
+/* Content */
+.content-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about-badge {
+  display: inline-flex;
+  align-items: center;
+  background: #fff;
+  border: 2px solid #1d2959;
+  color: #1d2959;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding: 10px 28px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  width: 170px;
+}
+
+.main-heading {
+  font-size: 42px;
+  line-height: 1.15;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 28px;
+  letter-spacing: -0.02em;
+}
+
+.highlight {
+  color: #1d2959;
+}
+
+.description {
+  color: #64748b;
+  font-size: 17.5px;
+  line-height: 1.75;
+  margin-bottom: 48px;
+}
+
+/* Stats */
+.stats {
+  display: flex;
+  gap: 72px;
+  margin-bottom: 52px;
+}
+
+.stat {
+  position: relative;
+}
+
+.stat-label {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #1d2959;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.stat-value {
+  font-size: 58px;
+  font-weight: 800;
+  line-height: 1;
+  color: #0f172a;
+  font-feature-settings: 'tnum';
+}
+
+.counter-number {
+  font-variant-numeric: tabular-nums;
+}
+
+.arrow {
+  font-size: 22px;
+  transition: transform 0.4s ease;
+}
+
+.discover-button:hover .arrow {
+  transform: translateX(6px);
+}
+
+/* Right Image */
+.right-panel {
+  position: relative;
+  align-self: flex-end;
+  margin-bottom: -40px; /* Pulls it down to match original design */
+}
+
+.right-image {
+  width: 100%;
+  height: auto;
+  border-radius: 24px;
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.18);
+  object-fit: cover;
+  aspect-ratio: 4 / 5;
+}
+
+/* ============================================= */
+/* RESPONSIVE */
+/* ============================================= */
+
+/* Tablet (1024px and below) */
+@media (max-width: 1024px) {
+  .about-wrapper {
+    gap: 40px;
+  }
+  
+  .main-heading {
+    font-size: 36px;
+  }
+  
+  .stats {
+    gap: 48px;
+  }
+  
+  .stat-value {
+    font-size: 50px;
+  }
+}
+
+/* Mobile (768px and below) */
+@media (max-width: 768px) {
+  .about-us-section {
+    padding: 90px 0 70px;
+  }
+  
+  .container {
+    padding: 0 24px;
+  }
+  
+  .about-wrapper {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+  
+  .left-panel,
+  .content-panel,
+  .right-panel {
+    max-width: 100%;
+  }
+  
+  .right-panel {
+    margin-bottom: 0;
+    order: 3; /* Move right image to bottom on mobile */
+  }
+  
+  .stats {
+    /* flex-direction: column; */
+    gap: 32px;
+  }
+  
+  .main-heading {
+    font-size: 32px;
+  }
+  
+  .description {
+    font-size: 16px;
+  }
+  
+  .discover-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 480px) {
+  .about-us-section {
+    padding: 70px 0 60px;
+  }
+  
+  .main-heading {
+    font-size: 28px;
+  }
+  
+  .about-badge {
+    font-size: 12px;
+    padding: 8px 30px;
+  }
+}
+
+@media (max-width: 350px) {
+  .stats{
+    gap: 15px;
+  }
+
+  .counter-number {
+    font-variant-numeric: tabular-nums;
+    font-size: 45px;
+}
+}

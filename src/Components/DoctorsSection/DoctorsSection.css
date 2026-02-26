@@ -1,0 +1,227 @@
+.doc-hero-section {
+  padding: 80px 5%;
+}
+
+.doc-container {
+  max-width: 1400px;
+  width: 92%;
+  margin: 0 auto;
+}
+
+.doc-header {
+  text-align: left;
+  margin-bottom: 60px;
+}
+
+.doc-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  border: 2px solid #1e295a;
+  color: #1e295a;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 18px 28px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.doc-title {
+  font-size: clamp(2.5rem, 6vw, 2.5rem);
+  font-weight: 800;
+  color: #111827;
+  margin: 24px 0 16px;
+}
+
+.doc-subtitle {
+  max-width: 680px;
+  color: #4b5563;
+  font-size: 1.15rem;
+  line-height: 1.6;
+}
+
+/* ────────────────────────────────
+   SLIDER + CARDS
+─────────────────────────────── */
+
+.doc-slider-outer {
+  margin: 0 -20px;
+  padding: 0 20px;
+}
+
+.doc-slide {
+  padding: 14px 12px;
+  outline: none;
+}
+
+.doc-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgb(218, 232, 255) ;
+  transition: all 0.35s ease;
+  height: 100%;
+}
+
+.doc-img-container {
+  width: 100%;
+  aspect-ratio: 1 / 1;           /* square images like your example */
+  overflow: hidden;
+}
+
+.doc-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.doc-card:hover .doc-img {
+  transform: scale(1.08);
+}
+
+.doc-content {
+  padding: 24px 28px 32px;
+  text-align: center;
+}
+
+.doc-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 8px;
+}
+
+.doc-spec {
+  color: #6b7280;
+  font-size: 1.05rem;
+  margin: 0 0 20px;
+}
+
+.doc-book-btn {
+  width: 100%;
+  padding: 14px;
+  background: #1e295a;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+
+/* ────────────────────────────────
+   CUSTOM ARROWS
+─────────────────────────────── */
+
+.doc-arrow {
+  background: white !important;
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 50% !important;
+  border: 1px solid rgb(218, 232, 255) ;
+  color: #1e295a !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.3s ease !important;
+  z-index: 10 !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+
+.doc-arrow:hover:not(.slick-disabled) {
+  background: #1e295a !important;
+  color: white !important;
+  transform: translateY(-50%) scale(1.12) !important;
+}
+
+.doc-arrow-left {
+  left: -30px !important;
+}
+
+.doc-arrow-right {
+  right: -30px !important;
+}
+
+.slick-disabled {
+  opacity: 0.4 !important;
+  cursor: not-allowed !important;
+}
+
+/* ────────────────────────────────
+   RESPONSIVE
+─────────────────────────────── */
+
+@media (max-width: 640px) {
+  .doc-hero-section {
+    padding: 70px 0 90px;
+  }
+
+  .doc-slider-outer {
+    margin: 0 -10px;
+    padding: 0 10px;
+  }
+
+  .doc-slide {
+    padding: 0 10px;
+  }
+
+  /* Hide arrows → pure swipe on mobile */
+  .doc-arrow {
+    display: none !important;
+  }
+
+  .doc-header {
+    margin-bottom: 50px;
+  }
+}
+
+@media (max-width: 900px) {
+  .doc-arrow {
+    width: 52px !important;
+    height: 52px !important;
+  }
+
+  .doc-arrow-left {
+    left: -20px !important;
+  }
+
+  .doc-arrow-right {
+    right: -20px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .doc-arrow {
+    display: none !important;
+  }
+
+  .doc-slider-outer {
+    margin: 0 -10px;
+    padding: 0 10px;
+  }
+
+  .doc-slide {
+    padding: 12px 6px;
+  }
+}
+
+@media (max-width: 350px) {
+  .doc-arrow {
+    display: none !important;
+  }
+
+  .doc-slider-outer {
+    margin: 0 -10px;
+    padding: 0 10px;
+  }
+
+  .doc-book-btn{
+    font-size: 14px;
+  }
+}

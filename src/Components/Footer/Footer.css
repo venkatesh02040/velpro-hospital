@@ -1,0 +1,225 @@
+.footer {
+  background: #0f1629; /* very dark navy - matches your mockup */
+  color: #d1d5db;
+  font-family: 'Myriad Pro', Arial, sans-serif;
+  padding-top: 80px;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Logo - image instead of text */
+.footer-logo-img {
+  height: 60px;
+  width: auto;
+  display: block;
+}
+
+/* Social icons - circular white background + brand color icon */
+.social-icons {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.social-icons a {
+  width: 40px;
+  height: 40px;
+  background: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1e295a;           /* brand color */
+  font-size: 18px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+.social-icons a:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(30, 41, 90, 0.25);
+  background: #f8f9ff;
+}
+
+/* Contact links - make whole row clickable */
+.contact-link {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: #d1d5db;
+  text-decoration: none;
+  font-size: 15px;
+  line-height: 1.6;
+  transition: color 0.25s ease;
+}
+
+/* .contact-link:hover {
+  color: #60a5fa;
+} */
+
+.contact-link .contact-icon {
+  font-size: 18px;
+  margin-top: 4px;
+  flex-shrink: 0;
+  color: #d1d5db;
+}
+
+/* Make sure description text is readable */
+.footer-description {
+  line-height: 1.7;
+  font-size: 15px;
+  opacity: 0.9;
+  margin-top: 12px;
+}
+
+.footer-description {
+  line-height: 1.7;
+  font-size: 15px;
+  opacity: 0.9;
+  margin-top: 8px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.social-icons a {
+  color: #1e295a;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  transform: translateY(-3px);
+}
+
+/* Links & Headings */
+.footer-column h4 {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.footer-column h4::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 2px;
+  background: #1e295a;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-links li a {
+  color: #d1d5db;
+  text-decoration: none;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  display: block;
+}
+
+.footer-links li a:hover {
+  color: #60a5fa;
+  padding-left: 6px;
+}
+
+/* Contact */
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contact-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.contact-icon {
+  color: #1e295a;
+  font-size: 18px;
+  margin-top: 4px;
+}
+
+/* Bottom Bar */
+.footer-bottom {
+  background: rgba(0, 0, 0, 0.3);
+  margin-top: 60px;
+  padding: 24px 5%;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-bottom-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.thinkb-link {
+  color: #60a5fa;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.thinkb-link:hover {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .footer-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .footer-bottom-content {
+    flex-direction: column;
+    text-align: center;
+  }
+}

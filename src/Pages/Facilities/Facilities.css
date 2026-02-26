@@ -1,0 +1,250 @@
+.f-banner {
+    background: url("/facilities-banner.jpg") no-repeat center/cover;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.f-banner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(29, 41, 89, 0.72);
+}
+
+.f-banner-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    padding-left: 8%;
+}
+
+.f-banner-content h1 {
+    font-size: 52px;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.breadcrumb {
+    font-size: 16px;
+}
+
+.breadcrumb a {
+    color: white;
+    text-decoration: none;
+}
+
+.breadcrumb span {
+    margin: 0 8px;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+/* ================= NEW PREMIUM FACILITIES DESIGN ================= */
+.facilities-premium {
+    padding: 120px 0 140px;
+    background: #f9fafb;
+}
+
+.facilities-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+.intro-section {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 100px;
+}
+
+.intro-title {
+    font-size: clamp(3rem, 7vw, 3rem);
+    font-weight: 900;
+    color: #1d2959;
+    margin-bottom: 24px;
+    line-height: 1.15;
+}
+
+.intro-subtitle {
+    font-size: 1.35rem;
+    color: #475569;
+    line-height: 1.7;
+}
+
+/* Showcase */
+.facilities-showcase {
+    display: flex;
+    flex-direction: column;
+    gap: 140px;
+}
+
+.facility-premium-card {
+    display: flex;
+    align-items: stretch;
+    gap: 80px;
+    flex-wrap: wrap;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeInUp 1s forwards;
+}
+
+.facility-premium-card:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.facility-hero-image {
+    flex: 1;
+    min-width: 45%;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+}
+
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.facility-premium-card:hover .hero-img {
+    transform: scale(1.08);
+}
+
+.hero-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(29, 41, 89, 0.65), transparent 60%);
+}
+
+.facility-info-panel {
+    flex: 1;
+    min-width: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.facility-main-title {
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: #1d2959;
+    margin: 0 0 20px;
+}
+
+.facility-tagline {
+    font-size: 1.25rem;
+    color: #475569;
+    line-height: 1.7;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.premium-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.feature-line {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    font-size: 1.08rem;
+    color: #4b5563;
+    line-height: 1.65;
+}
+
+.feature-line span {
+    text-align: left;
+}
+
+.f-check-icon {
+    color: #1d2959;
+    font-size: 1.5rem;
+    margin-right: 16px;
+    flex-shrink: 0;
+    margin-top: -5px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .facility-premium-card {
+        gap: 50px;
+    }
+
+    .facility-main-title {
+        font-size: 2.1rem;
+        text-align: left;
+    }
+}
+
+@media (max-width: 900px) {
+    .facilities-premium {
+        padding: 80px 0 100px;
+    }
+
+    .facility-premium-card,
+    .facility-premium-card:nth-child(even) {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .facilities-showcase {
+    gap: 80px;
+}
+
+    .facility-hero-image,
+    .facility-info-panel {
+        min-width: 100%;
+    }
+
+    .main-title {
+        font-size: 3rem;
+    }
+
+    .facility-image {
+        height: 260px;
+    }
+}
+
+@media (max-width: 480px) {
+    .facilities-container {
+        padding: 0 16px;
+    }
+
+    .facilities-showcase {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    .facility-tagline {
+        font-size: 1.25rem;
+        color: #475569;
+        line-height: 1.7;
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    .main-title {
+        font-size: 2.4rem;
+    }
+
+    .facility-main-title {
+        font-size: 1.8rem;
+    }
+
+    .feature-line {
+        font-size: 1rem;
+    }
+}

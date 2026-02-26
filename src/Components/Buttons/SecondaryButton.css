@@ -1,0 +1,34 @@
+.main-secondary-btn-wrapper {
+    display: inline-block;
+}
+
+.main-secondary-btn {
+    background: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    padding: 14px 30px;
+    font-size: 14px;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.main-secondary-btn .arrow {
+  font-size: 20px;
+  transition: transform 0.3s ease;
+  width: 20px;
+  height: 20px;
+}
+
+/* Hover Effect */
+.main-secondary-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 18px rgba(0, 0, 0, 0.2);
+}
+
+.main-secondary-btn:hover .arrow {
+    transform: translateX(5px);
+}

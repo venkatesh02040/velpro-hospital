@@ -1,0 +1,128 @@
+/* Careers.css */
+
+.careers-hero {
+  background: linear-gradient(rgba(29, 41, 89, 0.72), rgba(29, 41, 89, 0.72)),
+    url("https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1470&auto=format&fit=crop") center/cover no-repeat;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.careers-hero-content {
+  padding-left: 8%;
+}
+
+.careers-hero h1 {
+  font-size: 52px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.breadcrumb {
+  font-size: 16px;
+}
+
+.breadcrumb a {
+  color: white;
+  text-decoration: none;
+}
+
+.breadcrumb span {
+  margin: 0 8px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.careers-main {
+  padding: 80px 0;
+  background: #f9faff;
+}
+
+.careers-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5%;
+  text-align: center;
+}
+
+.careers-title {
+  font-size: 42px;
+  color: #1e295a;
+  font-weight: 900;
+  margin-bottom: 16px;
+}
+
+.careers-subtitle {
+  font-size: 18px;
+  color: #475569;
+  margin-bottom: 60px;
+}
+
+.positions-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+}
+
+.position-card {
+  background: white;
+  border: 1px solid rgb(218, 232, 255) ;
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: left;
+}
+
+.position-name {
+  font-size: 24px;
+  color: #1e295a;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.position-dept,
+.position-exp {
+  font-size: 16px;
+  color: #475569;
+  margin-bottom: 8px;
+}
+
+.view-btn {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 12px 24px;
+  background: #1e295a;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.view-btn:hover {
+  background: #0f173d;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .careers-hero h1 {
+    font-size: 42px;
+  }
+
+  .careers-title {
+    font-size: 34px;
+  }
+
+  .positions-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+}
+
+@media (max-width: 480px) {
+.positions-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+}

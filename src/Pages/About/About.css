@@ -1,0 +1,483 @@
+/* ================= BANNER (same as Doctors page) ================= */
+
+.about-banner {
+    background: url("/ABOUT-BANNER.png") no-repeat center/cover;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    padding-left: 8%;
+    position: relative;
+}
+
+.about-banner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(29, 41, 89, 0.65);
+}
+
+.about-banner-content {
+    position: relative;
+    color: white;
+    z-index: 2;
+}
+
+.about-banner-content h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.about-banner-content a {
+    text-decoration: none;
+    color: white;
+}
+
+.breadcrumb span {
+    margin: 0 8px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* ================= HERO SECTION ================= */
+
+.about-hero {
+    padding: 80px 0;
+    background: #f9fafb;
+}
+
+.about-hero-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    gap: 60px;
+    align-items: center;
+}
+
+.about-hero-image {
+    flex: 1;
+}
+
+.about-hero-image img {
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    object-fit: cover;
+}
+
+.about-hero-content {
+    flex: 1;
+}
+
+.about-hero-subtitle {
+    color: #1e295a !important;
+    font-size: 45px !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0px !important;
+}
+
+.about-hero-content h2 {
+    font-size: 38px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: #1f2937;
+}
+
+.about-hero-content>p {
+    color: #4b5563;
+    font-size: 17px;
+    line-height: 1.7;
+    margin-bottom: 32px;
+}
+
+.about-hero-checks ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 24px;
+}
+
+.about-hero-checks li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #1e295a;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.about-hero-checks svg {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    color: #60a5fa;
+}
+
+.about-hero-phone {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1e295a;
+    margin-bottom: 24px;
+    display: block;
+}
+
+.about-hero-btn {
+    background: #1e295a;
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.about-hero-btn:hover {
+    background: #0f173d;
+    transform: translateY(-2px);
+}
+
+/* ================= STATS SECTION ================= */
+
+.about-stats {
+    padding: 60px 0;
+    background: #1e295a;
+    color: white;
+}
+
+.about-stats-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 32px;
+    text-align: center;
+}
+
+.about-stat-item{
+    text-align: left;
+}
+
+.about-stat-item h3 {
+    font-size: 68px;
+    font-weight: 800;
+    margin: 0 0 8px;
+    line-height: 1;
+}
+
+.about-stat-item p {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 12px;
+}
+
+.about-stat-item span {
+    font-size: 15px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.78);
+    display: block;
+}
+
+/* ================= PROCESS SECTION ================= */
+
+.about-process {
+    padding: 80px 0;
+    background: #f4f6fb;
+}
+
+.about-process-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 24px;
+    text-align: center;
+}
+
+.about-process-subtitle {
+    color: #1d2959;
+    font-size: 38px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+.about-process-container h2 {
+    font-size: 24px;
+    margin-bottom: 48px;
+    color: #1f2937;
+}
+
+.about-process-timeline {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 60px;
+}
+
+.about-process-line {
+    position: absolute;
+    top: 60px;
+    left: 75px;
+    right: 75px;
+    height: 3px;
+    background: linear-gradient(#d1d5db, #1d2959);
+    z-index: 1;
+}
+
+.about-process-step {
+    flex: 1;
+    max-width: 260px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.about-process-step-circle {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 24px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid white;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    background: white;
+    padding: 20px;
+}
+
+.about-process-step-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.about-process-step h4 {
+    font-size: 20px;
+    margin-bottom: 12px;
+    color: #1e295a;
+}
+
+.about-process-step p {
+    color: #6b7280;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* ================= FOUNDERS SECTION (big layout) ================= */
+
+.about-founders {
+    padding: 80px 0 80px;
+    background: white;
+}
+
+.about-founders-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.about-founders-container h2 {
+    text-align: center;
+    font-size: 42px;
+    margin-bottom: 80px;
+    color: #1f2937;
+}
+
+.about-founder-block {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    margin-bottom: 80px;
+}
+
+.about-founder-block:last-child {
+    margin-bottom: 0;
+}
+
+.about-founder-block:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.about-founder-image {
+    flex: 0 0 48%;
+    max-width: 48%;
+        height: 400px;
+    overflow: hidden;
+}
+
+.about-founder-image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+    object-fit: cover;
+}
+
+.about-founder-message {
+    flex: 1;
+}
+
+.about-founder-message h3 {
+    font-size: 36px;
+    margin: 0 0 8px;
+    color: #1e295a;
+}
+
+.founder-title {
+    font-size: 20px;
+    color: #60a5fa;
+    font-weight: 600;
+    margin-bottom: 28px;
+}
+
+.founder-text {
+    font-size: 17.5px;
+    line-height: 1.8;
+    color: #374151;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1100px) {
+
+    .about-hero-container,
+    .about-founder-block,
+    .about-founder-block:nth-child(even) {
+        flex-direction: column;
+        gap: 48px;
+    }
+
+    .about-hero-image,
+    .about-founder-image {
+        max-width: 100%;
+    }
+
+    .about-process-timeline {
+        flex-wrap: wrap;
+        gap: 40px;
+    }
+
+
+}
+
+@media (max-width: 768px) {
+    .about-banner {
+        height: 240px;
+        padding-left: 5%;
+    }
+
+    .about-banner-content h1 {
+        font-size: 38px;
+    }
+
+    .about-hero,
+    .about-process,
+    .about-founders {
+        padding: 60px 0;
+    }
+
+    .about-hero-content h2,
+    .about-process-container h2,
+    .about-founders-container h2 {
+        font-size: 32px;
+    }
+
+    .about-stats-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .about-stat-item h3 {
+        font-size: 42px;
+    }
+
+    .about-founder-message h3 {
+        font-size: 30px;
+    }
+
+    .founder-title {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-hero-container {
+        padding: 0 16px;
+    }
+
+    .about-hero-content h2,
+    .about-process-container h2,
+    .about-founders-container h2 {
+        font-size: 28px;
+    }
+
+    .about-stats-container {
+        grid-template-columns: 1fr;
+    }
+
+    .about-hero-checks ul {
+    grid-template-columns: 1fr;
+}
+
+    .about-founder-block {
+        gap: 26px !important;
+        margin-bottom: 45px !important;
+    }
+
+    .about-stat-item h3 {
+        font-size: 48px;
+    }
+
+    .about-founder-message h3 {
+        font-size: 26px;
+    }
+
+        .about-process-timeline {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+
+        .about-process-line {
+        display: none;
+    }
+
+    .founder-text {
+        font-size: 16px;
+    }
+
+    .founder-title {
+        margin-bottom: 15px;
+    }
+
+    .about-founders-container h2 {
+        margin-bottom: 50px;
+    }
+
+    .about-process-btn,
+    .about-hero-btn {
+        padding: 14px 28px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 360px) {
+    .about-banner-content h1 {
+        font-size: 32px;
+    }
+
+    .about-hero-subtitle,
+    .about-process-subtitle {
+        font-size: 13px;
+    }
+
+    .about-founder-message h3 {
+        font-size: 24px;
+    }
+}

@@ -1,0 +1,165 @@
+/* CareerDetail.css */
+
+.detail-hero {
+  background: linear-gradient(rgba(29, 41, 89, 0.72), rgba(29, 41, 89, 0.72)),
+    url("https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1470&auto=format&fit=crop") center/cover no-repeat;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.detail-hero-content {
+  padding-left: 8%;
+}
+
+.detail-hero h1 {
+  font-size: 52px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.breadcrumb {
+  font-size: 16px;
+}
+
+.breadcrumb a {
+  color: white;
+  text-decoration: none;
+}
+
+.breadcrumb span {
+  margin: 0 8px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.detail-main {
+  padding: 80px 0;
+  background: #f9faff;
+}
+
+.detail-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+.detail-title {
+  font-size: 42px;
+  color: #1e295a;
+  font-weight: 900;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.detail-info {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 48px;
+  border: 1px solid rgb(218, 232, 255) ;
+}
+
+.detail-info p {
+  font-size: 18px;
+  margin-bottom: 16px;
+  color: #475569;
+}
+
+.detail-info strong {
+  color: #1e295a;
+  min-width: 180px;
+  display: inline-block;
+}
+
+.rich-section {
+  margin-bottom: 48px;
+}
+
+.rich-section h3 {
+  font-size: 28px;
+  color: #1e295a;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.rich-section div {
+  font-size: 17px;
+  line-height: 1.7;
+  color: #475569;
+}
+
+.apply-form {
+  background: white;
+  border-radius: 16px;
+  padding: 40px;
+  border: 1px solid rgb(218, 232, 255) ;
+}
+
+.apply-form h2 {
+  font-size: 36px;
+  color: #1e295a;
+  font-weight: 900;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.apply-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 16px;
+  color: #1e295a;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 14px 20px !important;
+  border: 1px solid #d1d9ff !important;
+  border-radius: 8px !important;
+  font-size: 16px !important;
+  background: #f9faff !important;
+  transition: border 0.3s !important;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #1e295a;
+  outline: none;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-group input[type="file"] {
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .detail-hero h1 {
+    font-size: 42px;
+  }
+
+  .detail-title {
+    font-size: 34px;
+  }
+
+  .apply-form {
+    padding: 32px 24px;
+  }
+}

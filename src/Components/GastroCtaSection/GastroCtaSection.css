@@ -1,0 +1,251 @@
+.gastro-cta-full-bg {
+    position: relative;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    color: white;
+    overflow: hidden;
+}
+
+.bg-video-wrapper {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.bg-video,
+.bg-fallback {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.bg-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+            rgba(30, 58, 138, 0.82) 0%,
+            rgba(30, 64, 175, 0.68) 50%,
+            rgba(37, 99, 235, 0.55) 100%);
+    z-index: 2;
+}
+
+.cta-content-container {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+}
+
+.left-content {
+    max-width: 55%;
+}
+
+.tag-btn {
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    border: 2px solid white;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    padding: 18px 28px;
+    border-radius: 9999px;
+    text-transform: uppercase;
+    width: 200px;
+}
+
+.cta-content-container .main-heading {
+    font-size: clamp(2.6rem, 6.5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.15;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    color: white;
+}
+
+.cta-content-container .description {
+    font-size: 1.15rem;
+    line-height: 1.65;
+    opacity: 0.92;
+    margin-bottom: 40px;
+    max-width: 620px;
+    color: white;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-appointment,
+.btn-explore {
+    padding: 14px 32px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-appointment {
+    background: white;
+    color: #1e295a;
+    border: none;
+}
+
+.btn-appointment:hover {
+    background: #f1f5f9;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.btn-explore {
+    background: transparent;
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.65);
+}
+
+.btn-explore:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-3px);
+}
+
+/* Right side video area */
+.right-video-area {
+    max-width: 48%;
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.right-video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.video-placeholder {
+    position: relative;
+}
+
+.placeholder-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.play-btn-large {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.92);
+    color: #1e40af;
+    border: none;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    cursor: pointer;
+    transition: all 0.35s ease;
+    z-index: 4;
+}
+
+.play-btn-large:hover {
+    background: white;
+    transform: translate(-50%, -50%) scale(1.12);
+}
+
+/* ──────────────────────────────────────
+   Responsive Design
+─────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+    .cta-content-container {
+        padding: 0 30px;
+        gap: 40px;
+    }
+
+    .cta-content-container .main-heading {
+        font-size: clamp(2.4rem, 7vw, 3rem);
+    }
+}
+
+@media (max-width: 900px) {
+    .cta-content-container {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .left-content {
+        max-width: 100%;
+        margin-bottom: 40px;
+    }
+
+    .right-video-area {
+        max-width: 100%;
+    }
+
+    .action-buttons {
+        justify-content: left;
+    }
+
+    .tag-btn {
+        margin: 0 auto 24px;
+    }
+}
+
+@media (max-width: 640px) {
+    .gastro-cta-full-bg {
+        min-height: 100vh;
+    }
+
+    .cta-content-container{
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    .cta-content-container .main-heading {
+        font-size: 2rem;
+        margin-top: 0px;
+    }
+
+    .cta-content-container .description {
+        font-size: 1rem;
+    }
+
+    .btn-appointment,
+    .btn-explore {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .play-btn-large {
+        width: 80px;
+        height: 80px;
+        font-size: 28px;
+    }
+
+
+}

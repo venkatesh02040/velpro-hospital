@@ -1,0 +1,237 @@
+/* src/Components/ThreeCard/ThreeCard.css */
+
+.three-cards-section {
+  padding: 80px 5%;
+  background: #f8f9fa;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+  align-items: stretch;
+  /* makes all cards same height in a row */
+}
+
+/* ────────────────────────────────────────────────
+   Base card styles
+───────────────────────────────────────────────── */
+.info-card {
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.4s cubic-bezier(0.34, 0.16, 0.3, 1), box-shadow 0.4s ease;
+  position: relative;
+  height: 100%;
+  will-change: transform, box-shadow;
+  /* helps GPU rendering */
+  background: inherit;
+}
+
+.info-card::after {
+  content: "";
+  position: absolute;
+  inset: -150% -150% auto auto;
+  /* start far top-left */
+  width: 450%;
+  height: 450%;
+  background: radial-gradient(circle at 12% 12%,
+      rgba(255, 255, 255, 0.38) 0%,
+      rgba(255, 255, 255, 0.16) 18%,
+      rgba(255, 255, 255, 0.05) 36%,
+      transparent 60%);
+  opacity: 0;
+  transform: translate3d(-100%, -100%, 0) rotate(-38deg);
+  transition:
+    opacity 1.1s ease-out,
+    transform 2.8s cubic-bezier(0.215, 0.61, 0.355, 1.0);
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+}
+
+.info-card:hover::after {
+  opacity: 1;
+  transform: translate3d(130%, 130%, 0) rotate(-38deg);
+}
+
+.info-card:hover {
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.16);
+}
+
+/* ────────────────────────────────────────────────
+   Header (icon + title)
+───────────────────────────────────────────────── */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 32px 28px 20px;
+}
+
+.icon-circle {
+  width: 64px;
+  height: 64px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.card-header h3 {
+  color: white;
+  font-size: 1.6rem;
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* ────────────────────────────────────────────────
+   Common content area
+───────────────────────────────────────────────── */
+.card-content {
+  padding: 0 28px 36px;
+  color: white;
+}
+
+/* ────────────────────────────────────────────────
+   Hours card specific
+───────────────────────────────────────────────── */
+.hours-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  font-size: 1.05rem;
+}
+
+.hours-row.highlight {
+  font-weight: 700;
+  font-size: 1.15rem;
+  padding-top: 22px;
+  border-bottom: none;
+  color: #ffffff;
+}
+
+/* ────────────────────────────────────────────────
+   Button (GET DIRECTIONS etc.)
+───────────────────────────────────────────────── */
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 28px;
+  padding: 14px 32px;
+  background: rgba(255, 255, 255, 0.18);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: translateY(-2px);
+}
+
+/* ────────────────────────────────────────────────
+   Color themes
+───────────────────────────────────────────────── */
+.blue {
+  background:
+    linear-gradient(rgba(30, 41, 90, 0.48),
+      rgba(30, 41, 90, 0.62)),
+    url('https://images.unsplash.com/37/tEREUy1vSfuSu8LzTop3_IMG_2538.jpg?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center / cover no-repeat;
+
+  background-blend-mode: darken;
+}
+
+.dark {
+  background:
+    linear-gradient(rgba(30, 41, 90, 0.48),
+      rgba(30, 41, 90, 0.62)),
+    url('https://images.unsplash.com/photo-1619468129361-605ebea04b44?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center / cover no-repeat;
+
+  background-blend-mode: darken;
+}
+
+/* ────────────────────────────────────────────────
+   IMAGE CARD (Emergency Cases)
+───────────────────────────────────────────────── */
+
+.card-image-wrapper {
+  width: 100%;
+  height: 100%;
+  min-height: 350px;
+}
+
+.image-content h3 {
+  margin: 12px 0 14px;
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.image-content p {
+  margin-bottom: 20px;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  opacity: 0.92;
+}
+
+.emergency {
+  background:
+    linear-gradient(rgba(30, 41, 90, 0.48),
+      rgba(30, 41, 90, 0.62)),
+    url('https://images.unsplash.com/photo-1640876777002-badf6aee5bcc?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center / cover no-repeat;
+
+  background-blend-mode: darken;
+}
+
+/* .emergency .emergency-phone {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 24px 0 16px;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  letter-spacing: 0.8px;
+} */
+
+
+/* ────────────────────────────────────────────────
+   Responsive adjustments
+───────────────────────────────────────────────── */
+@media (max-width: 992px) {
+  .cards-container {
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .three-cards-section {
+    padding: 50px 16px;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .icon-circle {
+    width: 56px;
+    height: 56px;
+  }
+
+  .card-header h3 {
+    font-size: 1.45rem;
+  }
+
+  .cards-container {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}

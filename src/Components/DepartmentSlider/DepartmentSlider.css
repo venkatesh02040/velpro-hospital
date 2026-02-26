@@ -1,0 +1,311 @@
+.department-slider-section {
+  padding: 80px 5%;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.ds-section-header {
+  text-align: left;
+  margin-bottom: 50px;
+}
+
+.ds-section-header h2 {
+  color: #1e295a;
+  font-size: 18px;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.ds-section-header h3 {
+  font-size: 40px;
+  color: #111827;
+  margin-bottom: 16px;
+}
+
+.ds-section-header p {
+  color: #64748b;
+  font-size: 18px;
+  max-width: 680px;
+}
+
+.slider-wrapper {
+  position: relative;
+  padding: 0 20px 90px 20px;
+}
+
+.dep-badge{
+      display: inline-flex;
+    align-items: center;
+    background: #fff;
+    border: 2px solid #1d2959;
+    color: #1d2959;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    padding: 10px 28px;
+    border-radius: 9999px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    width: 250px;
+}
+
+/* Card wrapper */
+.slider-card-wrapper {
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+.service-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+
+.service-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgb(218, 232, 255);
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Only subtle feedback — no movement */
+/* .service-card:hover {
+  border-color: rgba(30, 41, 90, 0.5);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+} */
+
+.service-image-container {
+  height: 200px;
+  overflow: hidden;
+}
+
+.service-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.service-card:hover .service-image {
+  transform: scale(1.08);
+}
+
+/* Floating icon */
+.service-icon-wrapper {
+  width: 80px;
+  height: 80px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 160px;
+  border: 4px solid #f8f9ff;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-icon-wrapper {
+  transform: scale(1.1);
+}
+
+.service-icon {
+  width: 55%;
+  height: 55%;
+  object-fit: contain;
+}
+
+/* Content */
+.service-content {
+  padding: 65px 20px 24px;
+  text-align: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.service-description {
+  font-size: 0.95rem;
+  color: #64748b;
+  line-height: 1.65;
+  margin: 0 0 20px;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Know More + underline */
+.learn-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #1e295a;
+  font-weight: 600;
+  padding: 8px 0;
+  margin-top: auto;
+  position: relative;
+}
+
+.learn-more::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2.5px;
+  bottom: 3px;
+  left: 0;
+  background-color: #1e295a;
+  transition: width 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.service-card:hover .learn-more::after {
+  width: 100%;
+}
+
+/* ── Custom arrows ──────────────────────────────────────── */
+.slick-prev,
+.slick-next {
+  top: auto;
+  bottom: -130px;
+  width: 48px;
+  height: 48px;
+  background: #1e295a !important;
+  border-radius: 50%;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.25s ease;
+}
+
+.slick-prev {
+  left: calc(50% - 86px);
+}
+
+.slick-next {
+  right: calc(50% - 86px);
+}
+
+.slick-prev:before,
+.slick-next:before {
+  display: none;
+}
+
+.custom-prev-arrow span,
+.custom-next-arrow span {
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
+}
+
+.custom-prev-arrow .prev {
+  position: relative;
+  top: 13px;
+  left: 13px;
+  font-size: 24px;
+}
+
+.custom-next-arrow .next {
+  position: relative;
+  top: 13px;
+  left: 13px;
+  font-size: 24px;
+}
+
+/* Heart decoration */
+.slider-wrapper::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 52px;
+  height: 52px;
+  background: url('/heartLifeline.png') center/contain no-repeat;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ── Mobile adjustments ────────────────────────────────── */
+@media (max-width: 1024px) {
+  .department-slider-section {
+    padding: 60px 5%;
+  }
+}
+
+@media (max-width: 600px) {
+  .slider-wrapper {
+    padding: 0 12px 50px 12px;
+  }
+
+  .slick-prev {
+    left: calc(48% - 70px) !important;
+  }
+
+  .slick-next {
+    right: calc(48% - 70px) !important;
+  }
+
+  .slick-prev,
+  .slick-next {
+    width: 44px;
+    height: 44px;
+    bottom: -98px;
+  }
+
+  .custom-prev-arrow .prev,
+  .custom-next-arrow .next {
+    position: relative;
+    top: 10px;
+    left: 10px;
+    font-size: 24px;
+  }
+
+  .slider-wrapper::after {
+    bottom: -30px;
+  }
+
+  .service-image-container {
+    height: 180px;
+  }
+
+  .service-icon-wrapper {
+    top: 140px;
+  }
+
+  .service-content {
+    padding: 55px 16px 20px;
+  }
+
+  .service-title {
+    font-size: 1.25rem;
+  }
+
+  .service-description {
+    font-size: 0.9rem;
+  }
+
+  .learn-more {
+    font-size: 0.95rem;
+  }
+}

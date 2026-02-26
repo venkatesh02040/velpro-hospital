@@ -1,0 +1,272 @@
+.testi-section {
+  padding: 80px 5%;
+  background: #f8fafc;
+}
+
+.testi-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Header with title + arrows */
+.testi-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.testi-left {
+  flex: 1;
+}
+
+.testi-label {
+display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    border: 2px solid #1e295a;
+    color: #1e295a;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 18px 28px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.testi-title {
+  font-size: 38px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+}
+
+/* Arrows – close together, right-aligned with title */
+.testi-arrows {
+  display: flex;
+  gap: 10px; /* ← distance between arrows – adjust if needed (8px–12px) */
+}
+
+.testi-arrow-btn {
+  background: white;
+  border: 1px solid #d1d9ff;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.testi-arrow-btn:hover:not(:disabled) {
+  background: #1e295a;
+  color: white;
+}
+
+.testi-arrow-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Slider */
+.testi-slider-wrapper {
+  position: relative;
+}
+
+/* Card */
+.testi-slide {
+  padding: 0 12px;
+  height: 100%;
+}
+
+.testi-card {
+  background: white;
+  border-radius: 16px;
+  padding: 32px 28px 28px;
+  border: 1px solid rgb(218, 232, 255) ;
+  height: 300px; /* fixed equal height */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.quote-top-right {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  font-size: 60px;
+  font-weight: bold;
+  color: #1e295a;
+  line-height: 1;
+  opacity: 0.15;
+}
+
+.stars-row {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.star {
+  color: #d1d9ff;
+}
+
+.star.filled {
+  color: #1e295a;
+}
+
+/* Half star container */
+.half-star-wrapper {
+  position: relative;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+}
+
+.half-star-wrapper .half {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.half-star-wrapper .half.filled {
+  clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+}
+
+.half-star-wrapper .half.empty {
+  clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+}
+
+/* Scrollable text area */
+.testi-text-wrapper {
+  flex: 1;
+  overflow: hidden;
+  margin: 16px 0 20px;
+}
+
+.testi-text {
+  height: 100%;
+  overflow-y: auto;
+  padding-right: 8px;
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: #475569;
+  margin: 0;
+}
+
+/* Optional: nicer scrollbar */
+.testi-text::-webkit-scrollbar {
+  width: 5px;
+}
+.testi-text::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+.testi-text::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.testi-footer {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: auto;
+}
+
+.testi-avatar {
+  font-size: 48px;
+  color: #cbd5e1;
+  flex-shrink: 0;
+}
+
+.testi-user-info {
+  flex: 1;
+}
+
+.testi-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: #1e295a;
+  margin: 0 0 4px;
+}
+
+.testi-status {
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.testi-container .slick-list {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    margin: 0;
+    padding: 30px 0px ;
+}
+
+/* ──────────────────────────────────────
+   Responsive
+─────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  .testi-title {
+    font-size: 32px;
+  }
+  .testi-card {
+    height: 300px;
+  }
+  .testi-text {
+    max-height: 180px;
+  }
+}
+
+@media (max-width: 768px) {
+  .testi-section {
+    padding: 70px 0;
+  }
+  .testi-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .testi-arrows {
+    align-self: flex-end;
+  }
+  .testi-card {
+    height: 300px;
+  }
+}
+
+@media (max-width: 640px) {
+  .testi-section {
+    padding: 60px 0;
+  }
+  .testi-container {
+    padding: 0 16px;
+  }
+  .testi-card {
+    padding: 28px 20px 24px;
+    height: 300px;
+  }
+  .quote-top-right {
+    top: 16px;
+    right: 20px;
+    font-size: 50px;
+  }
+  .testi-text {
+    font-size: 15px;
+  }
+  .testi-arrows {
+    display: none; /* hide arrows on mobile – swipe only */
+  }
+}
