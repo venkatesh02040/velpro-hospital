@@ -113,7 +113,7 @@ const DoctorDetail = () => {
       <section
         className="doctor-hero"
         style={{
-          backgroundImage: `url("https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1600&auto=format&fit=crop")`,
+          backgroundImage: `url("/DOCTORS-BANNER.jpeg")`,
         }}
       >
         <div className="dd-hero-overlay"></div>

@@ -48,7 +48,7 @@ const Footer = () => {
         <div className="footer-column footer-brand">
           <div className="footer-logo">
             <Link to="/">
-              <img className="footer-logo-img" src="/velpro.jpg" alt="Hospital Logo" />
+              <img className="footer-logo-img" src="/velpro_white_logo.png" alt="Hospital Logo" />
             </Link>
           </div>
           <p className="footer-description">

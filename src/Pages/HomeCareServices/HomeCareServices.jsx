@@ -10,7 +10,7 @@ const HomeCareServices = () => {
     {
       title: "Blood Sample Collection at Home",
       image:
-        "https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=1470&auto=format&fit=crop",
+        "/blood-collections-at-home.jpg",
       shortDesc:
         "Safe, convenient, and hygienic blood sample collection right at your doorstep.",
       points: [
@@ -25,7 +25,7 @@ const HomeCareServices = () => {
     {
       title: "Home Visits by Doctors",
       image:
-        "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1470&auto=format&fit=crop",
+        "/home-visits-by-doctor-banner.jpg",
       shortDesc:
         "Expert medical consultation and care delivered directly to your home.",
       points: [
@@ -40,7 +40,7 @@ const HomeCareServices = () => {
     {
       title: "Home Nursing Care",
       image:
-        "https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=1470&auto=format&fit=crop",
+        "/home-nursing-care-banner.jpeg",
       shortDesc:
         "Skilled nursing support bringing hospital-level care to your home.",
       points: [

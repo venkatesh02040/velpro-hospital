@@ -20,21 +20,21 @@ const processImages = [
 
 const founderData = [
     {
-        name: "Dr. Elena Vasquez",
+        name: "Dr. Srinivasa Rao",
         title: "Co-Founder & Chief Executive Officer",
         message:
             "With more than two decades of experience in advanced surgical and multi-specialty care, I founded this hospital with a clear vision: to combine world-class medical expertise with genuine human compassion. Every department from General & Laparoscopic Surgery to Neurosciences and Paediatrics is built around one core belief: patients deserve both precision and empathy.",
-        image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1200&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=1200&auto=format&fit=crop",
     },
     {
-        name: "Dr. Marcus Chen",
+        name: "Dr. Mahesh Gupta",
         title: "Co-Founder & Chief Medical Officer",
         message:
             "My journey has been focused on pushing the boundaries of minimally invasive techniques from Laser & Laparoscopic Surgery to Joint Replacements, Spine Surgery, and Arthroscopy. I believe the future of medicine lies in procedures that heal faster, hurt less, and restore life more completely. That philosophy guides every clinical decision we make.",
         image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=1200&auto=format&fit=crop",
     },
     {
-        name: "Sarah Thompson",
+        name: "Arjun Matre",
         title: "Co-Founder & Chief Technology Officer",
         message:
             "Technology should never replace the doctor-patient relationship it should enhance it. From intelligent appointment systems and digital patient records to telemedicine support for our Obstetrics & Gynaecology, Paediatrics, and Pain & Palliative Care departments, we are building infrastructure that makes high-quality care more accessible and seamless for every family we serve.",

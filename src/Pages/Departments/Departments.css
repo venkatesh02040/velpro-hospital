@@ -4,7 +4,7 @@
 
 /* Banner */
 .departments-main-banner {
-  background: url("https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1470&auto=format&fit=crop") no-repeat center/cover;
+  background: url("/departments-banner.jpg") no-repeat center/cover;
   height: 300px;
   display: flex;
   align-items: center;
