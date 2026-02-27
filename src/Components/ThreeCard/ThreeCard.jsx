@@ -45,7 +45,7 @@ const ThreeCard = () => {
             <h3>Our Location</h3>
           </div>
           <a
-            href="https://maps.app.goo.gl/1BVnUQKupncmNidJ6" style={{textDecoration:"none"}}>
+            href="https://maps.app.goo.gl/1BVnUQKupncmNidJ6" target='blank' style={{textDecoration:"none"}}>
             <div className="card-content">
               <p style={{ marginBottom: "8px" }}>
                 Visit our centrally located Bengaluru hospital for quick access. Experience trusted care delivered with precision and compassion.
