@@ -2,6 +2,7 @@
 import { Routes, Route } from 'react-router-dom';
 import ScrollToTop from './ScrollToTop';   // 👈 add this
 import './App.css';
+import { Toaster } from "react-hot-toast";
 
 import Home from './Pages/Home/Home';
 import Blog from './Pages/Blogs/Blogs';
@@ -18,10 +19,12 @@ import HomeCareServices from './Pages/HomeCareServices/HomeCareServices';
 import DoctorDetail from './Pages/DoctorDetail/DoctorDetail';
 import Careers from './Pages/Careers/Careers';
 import CareerDetail from './Pages/CareerDetail/CareerDetail';
+import BookingSuccess from './Pages/Success/BookingSuccess';
 
 function App() {
   return (
     <>
+      <Toaster position="top-right" />
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -38,6 +41,7 @@ function App() {
         <Route path="/health-checkup" element={<HealthCheckup />} />
         <Route path="/homecare-services" element={<HomeCareServices />} />
         <Route path="/careers" element={<Careers />} />
+        <Route path="/success/:id" element={<BookingSuccess />} />
         <Route path="/careers/:slug" element={<CareerDetail />} />
 
 
