@@ -5,7 +5,8 @@ import Footer from "../../Components/Footer/Footer";
 import "./DoctorDetail.css";
 import PrimaryButton from "../../Components/Buttons/PrimaryButton";
 import api from "../../Api/Api";   // your axios instance
-
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 
 const formatTime12Hour = (time) => {
@@ -30,21 +31,23 @@ const DoctorDetail = () => {
   const [error, setError] = useState(null);
   const [slots, setSlots] = useState([]);
   const [loadingSlots, setLoadingSlots] = useState(false);
-
-
+  const [bookingLoading, setBookingLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     name: "",
-    phone: "",
+    phone_number: "",
     email: "",
-    gender: "",
+    disease: "",
     date: "",
-    time: "",
     message: "",
-    paymentMode: "Pay at Hospital",
+    department_id: "",
+    doctor_id: "",
+    payment_method: "",
+    schedule_id: "",
+    gender: "",
   });
   const [showSummary, setShowSummary] = useState(false);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchDoctor = async () => {
       try {
@@ -80,11 +83,11 @@ const DoctorDetail = () => {
 
         const merged = [
           ...res.data.monthly_timings.map(t => ({
-            id: t.uuid,
+            id: t.uuid || t.id,   // ✅ fallback
             label: `${formatTime12Hour(t.start_time)} - ${formatTime12Hour(t.end_time)}`
           })),
           ...res.data.weekly_timings.map(t => ({
-            id: t.uuid,
+            id: t.uuid || t.id,   // ✅ fallback
             label: `${formatTime12Hour(t.start_time)} - ${formatTime12Hour(t.end_time)}`
           }))
         ];
@@ -109,14 +112,88 @@ const DoctorDetail = () => {
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
 
-  const handleSubmit = (e) => {
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setShowSummary(true); // Show summary popup
+
+    const name = formData.name?.trim();
+    const email = formData.email?.trim();
+    const phone_number = formData.phone_number?.trim();
+    const gender = formData.gender;
+    const disease = formData.disease?.trim(); // using message as symptoms
+    const message = formData.message?.trim(); // using message as symptoms
+    const date = formData.date;
+    const scheduleId = formData.time;
+    const department = doctor?.department;
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[0-9]{10}$/;
+
+    // ✅ VALIDATION
+    if (!name) return toast.error("Name is required");
+    if (!email) return toast.error("Email is required");
+    if (!emailRegex.test(email)) return toast.error("Invalid email");
+
+    if (!phone_number) return toast.error("Phone number is required");
+    if (!phoneRegex.test(phone_number))
+      return toast.error("Phone number must be 10 digits");
+
+    if (!gender) return toast.error("Gender is required");
+    if (!disease) return toast.error("Symptoms / disease is required");
+    if (!date) return toast.error("Date is required");
+    if (!scheduleId) return toast.error("Please select a time slot");
+    if (!department) return toast.error("Doctor department missing");
+
+    const payload = {
+      name,
+      email,
+      phone_number: phone_number,
+      gender,
+      disease,
+      date,
+      message: formData.message,
+      department,
+      selected_doctor: doctor.id,
+      schedule_id: scheduleId,
+      payment_method:
+        formData.paymentMode === "Pay Now"
+          ? "online"
+          : "pay_at_hospital",
+      registration_fee: "off",
+    };
+
+
+
+    try {
+      setBookingLoading(true);
+
+      const res = await api.post("/api/create-appointment/", payload);
+
+      const appointmentId = res.data.appointment_id;
+
+      toast.success("Appointment booked successfully 🎉");
+
+      // ✅ Redirect to success page
+      navigate(`/success/${appointmentId}`);
+
+    } catch (err) {
+      console.error(err);
+
+      if (err.response?.data?.error) {
+        toast.error(err.response.data.error);
+      } else {
+        toast.error("Failed to book appointment");
+      }
+
+    } finally {
+      setBookingLoading(false);
+    }
+
+
+
   };
 
-  const confirmAppointment = () => {
-    
-  };
 
   if (loading) {
     return (
@@ -218,6 +295,7 @@ const DoctorDetail = () => {
             </div>
           </div>
 
+
           {/* Right - Appointment Form */}
           <div className="doctor-appointment">
             <div className="appointment-card">
@@ -232,6 +310,7 @@ const DoctorDetail = () => {
                   <input
                     type="text"
                     id="name"
+                    name="name"
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Enter your name"
@@ -243,10 +322,11 @@ const DoctorDetail = () => {
                   <label htmlFor="phone">Phone Number</label>
                   <input
                     type="tel"
-                    id="phone"
-                    value={formData.phone}
+                    id="phone_number"
+                    name="phone_number"
+                    value={formData.phone_number}
                     onChange={handleChange}
-                    placeholder="+91"
+                    placeholder="Phone Number"
                     required
                   />
                 </div>
@@ -256,6 +336,7 @@ const DoctorDetail = () => {
                   <input
                     type="email"
                     id="email"
+                    name="email"
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="your@email.com"
@@ -267,6 +348,7 @@ const DoctorDetail = () => {
                   <label htmlFor="gender">Gender</label>
                   <select
                     id="gender"
+                    name="gender"
                     value={formData.gender}
                     onChange={handleChange}
                     required
@@ -279,10 +361,24 @@ const DoctorDetail = () => {
                 </div>
 
                 <div className="form-group">
+                  <label htmlFor="disease">Disease / Concern</label>
+                  <input
+                    type="text"
+                    id="disease"
+                    name="disease"
+                    value={formData.disease}
+                    onChange={handleChange}
+                    placeholder="Enter disease or concern"
+                    required
+                  />
+                </div>
+
+                <div className="form-group">
                   <label htmlFor="date">Preferred Date</label>
                   <input
                     type="date"
                     id="date"
+                    name="date"
                     value={formData.date}
                     onChange={handleChange}
                     required
@@ -295,15 +391,14 @@ const DoctorDetail = () => {
 
                   <select
                     id="time"
+                    name="time"
                     value={formData.time}
                     onChange={handleChange}
                     required
                     className="modern-select"
                     disabled={!formData.date}
                   >
-                    {!formData.date && (
-                      <option value="">Select date first</option>
-                    )}
+                    {!formData.date && <option value="">Select date first</option>}
 
                     {formData.date && loadingSlots && (
                       <option value="">Loading available slots...</option>
@@ -313,7 +408,7 @@ const DoctorDetail = () => {
                       <option value="">No slots available</option>
                     )}
 
-                    {slots.map(slot => (
+                    {slots.map((slot) => (
                       <option key={slot.id} value={slot.id}>
                         {slot.label}
                       </option>
@@ -325,11 +420,13 @@ const DoctorDetail = () => {
                   <label htmlFor="paymentMode">Payment Mode</label>
                   <select
                     id="paymentMode"
+                    name="paymentMode"
                     value={formData.paymentMode}
                     onChange={handleChange}
                     required
                     className="modern-select"
                   >
+                    <option value="">Select Payment Mode</option>
                     <option value="Pay at Hospital">Pay at Hospital</option>
                     <option value="Pay Now">Pay Now (Online)</option>
                   </select>
@@ -339,6 +436,7 @@ const DoctorDetail = () => {
                   <label htmlFor="message">Reason / Symptoms (optional)</label>
                   <textarea
                     id="message"
+                    name="message"
                     rows="4"
                     value={formData.message}
                     onChange={handleChange}
@@ -353,48 +451,7 @@ const DoctorDetail = () => {
         </div>
       </section>
 
-      {/* Summary Popup Modal */}
-      {showSummary && (
-        <div className="summary-modal-overlay">
-          <div className="summary-modal">
-            <h2>Appointment Summary</h2>
-            <div className="summary-details">
-              <p><strong>Doctor:</strong> {doctor.name}</p>
-              <p><strong>Specialization:</strong> {doctor.department_name}</p>
-              <p><strong>Fee:</strong> ₹{parseFloat(doctor.fee).toLocaleString()}</p>
-              <p><strong>Patient Name:</strong> {formData.name}</p>
-              <p><strong>Gender:</strong> {formData.gender.charAt(0).toUpperCase() + formData.gender.slice(1)}</p>
-              <p><strong>Phone:</strong> {formData.phone}</p>
-              <p><strong>Email:</strong> {formData.email}</p>
-              <p><strong>Date:</strong> {formData.date || "Not selected"}</p>
-              <p><strong>Time:</strong> {formData.time || "Not selected"}</p>
-              <p><strong>Payment Mode:</strong> {formData.paymentMode}</p>
-              {formData.message && (
-                <p><strong>Reason:</strong> {formData.message}</p>
-              )}
-            </div>
 
-            <div className="modal-actions">
-              {formData.paymentMode === "Pay Now" ? (
-                <PrimaryButton
-                  text="Proceed to Payment"
-                  onClick={confirmAppointment}
-                  fullWidth
-                />
-              ) : (
-                <PrimaryButton
-                  text="Confirm & Book Appointment"
-                  onClick={confirmAppointment}
-                  fullWidth
-                />
-              )}
-              <button className="cancel-btn" onClick={() => setShowSummary(false)}>
-                Edit Details
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
 
       <Footer />
     </>
