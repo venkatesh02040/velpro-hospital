@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import api from "../../Api/Api";   // ← adjust path to your axios instance
+import api from "../../Api/Api";   // ← your axios instance
+import Loader from "../../Components/Loader/Loader"; 
 
 import "./DepartmentSlider.css";
 
@@ -109,7 +110,15 @@ const DepartmentSlider = () => {
         <div className="ds-section-header">
           <h2>OUR DEPARTMENTS</h2>
           <h3>Specialties We Excel In</h3>
-          <p>Loading departments...</p>
+        </div>
+        <div className="loader-container" style={{
+          minHeight: "300px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "40px 0"
+        }}>
+          <Loader />
         </div>
       </div>
     );
@@ -171,7 +180,6 @@ const DepartmentSlider = () => {
 
                     <div
                       className="service-description"
-                      // title={dept.description || ""}
                       dangerouslySetInnerHTML={{
                         __html: dept.description
                           ? dept.description.length > 110

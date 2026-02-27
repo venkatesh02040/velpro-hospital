@@ -1,11 +1,15 @@
+// src/components/TestimonialsSection/TestimonialsSection.jsx
 import React, { useRef, useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { FaStar, FaUserCircle, FaComments } from "react-icons/fa";
-import api from "../../Api/Api";   // ← adjust path to your axios instance
+import api from "../../Api/Api";
 import "./TestimonialsSection.css";
+
+// Import your custom Loader component
+import Loader from "../../Components/Loader/Loader";  // adjust path if needed
 
 const TestimonialsSection = () => {
   const sliderRef = useRef(null);
@@ -150,8 +154,17 @@ const TestimonialsSection = () => {
               <h2 className="testi-title">Our happy clients say</h2>
             </div>
           </div>
-          <div style={{ textAlign: "center", padding: "40px 0" }}>
-            Loading testimonials...
+
+          <div 
+            style={{
+              minHeight: "400px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "60px 0",
+            }}
+          >
+            <Loader />
           </div>
         </div>
       </section>

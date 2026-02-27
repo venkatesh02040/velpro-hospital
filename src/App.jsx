@@ -43,12 +43,6 @@ function App() {
         <Route path="/careers" element={<Careers />} />
         <Route path="/success/:id" element={<BookingSuccess />} />
         <Route path="/careers/:slug" element={<CareerDetail />} />
-
-
-
-
-        
-
       </Routes>
     </>
   );

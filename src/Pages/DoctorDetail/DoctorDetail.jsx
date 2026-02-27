@@ -1,12 +1,15 @@
+// src/pages/DoctorDetail.jsx (or wherever it lives)
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
 import "./DoctorDetail.css";
 import PrimaryButton from "../../Components/Buttons/PrimaryButton";
 import api from "../../Api/Api";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+
+// Import your custom animated Loader
+import Loader from "../../Components/Loader/Loader";  // adjust path if needed
 
 const formatTime12Hour = (time) => {
   if (!time) return "";
@@ -47,8 +50,8 @@ const DoctorDetail = () => {
     payment_method: "",
     schedule_id: "",
     gender: "",
-    time: "",           // controls <select> value
-    paymentMode: "",    // added missing field
+    time: "",
+    paymentMode: "",
   });
 
   useEffect(() => {
@@ -70,11 +73,8 @@ const DoctorDetail = () => {
     fetchDoctor();
   }, [slug]);
 
-  // ────────────────────────────────────────────────
-  // Fetch slots + auto-select first slot
-  // ────────────────────────────────────────────────
+  // Fetch slots when date or doctor changes
   useEffect(() => {
-    // Reset when date or doctor changes / clears
     if (!formData.date || !doctor?.id) {
       setSlots([]);
       setFormData((prev) => ({ ...prev, time: "", schedule_id: "" }));
@@ -152,7 +152,7 @@ const DoctorDetail = () => {
     const disease = formData.disease?.trim();
     const message = formData.message?.trim();
     const date = formData.date;
-    const scheduleId = formData.schedule_id;   // ← use schedule_id
+    const scheduleId = formData.schedule_id;
     const department = doctor?.department;
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -203,8 +203,8 @@ const DoctorDetail = () => {
     return (
       <>
         <Navbar />
-        <div className="doctor-not-found">
-          <h2>Loading Doctor Profile...</h2>
+        <div className="doctor-detail-loading">
+          <Loader />
         </div>
         <Footer />
       </>

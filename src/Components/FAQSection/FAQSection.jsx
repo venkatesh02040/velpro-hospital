@@ -1,8 +1,12 @@
+// src/components/FAQSection/FAQSection.jsx
 import React, { useState, useEffect } from "react";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { FaQuestionCircle } from "react-icons/fa";
-import api from "../../Api/Api";   // ← adjust path to your axios instance
+import api from "../../Api/Api";
 import "./FAQSection.css";
+
+// Import your custom Loader component
+import Loader from "../../Components/Loader/Loader";  // adjust path if needed
 
 const FAQSection = () => {
   const [faqs, setFaqs] = useState([]);
@@ -43,7 +47,7 @@ const FAQSection = () => {
   return (
     <section className="faq_section">
       <div className="faq_container">
-        {/* LEFT SIDE */}
+        {/* LEFT SIDE - always visible */}
         <div className="faq_left">
           <span className="faq_badge">
             <FaQuestionCircle size={30} /> FAQ's
@@ -66,10 +70,12 @@ const FAQSection = () => {
           </div>
         </div>
 
-        {/* RIGHT SIDE - FAQs */}
+        {/* RIGHT SIDE - FAQs or Loader */}
         <div className="faq_right">
           {loading ? (
-            <div className="faq-loading">Loading FAQs...</div>
+            <div className="faq-loading-wrapper">
+              <Loader />
+            </div>
           ) : error ? (
             <div className="faq-error">{error}</div>
           ) : faqs.length === 0 ? (

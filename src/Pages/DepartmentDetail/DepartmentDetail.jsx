@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from "react";
+// src/pages/DepartmentDetail.jsx (or wherever it lives)
+import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
 import "./DepartmentDetail.css";
 import PrimaryButton from "../../Components/Buttons/PrimaryButton";
-import api from "../../Api/Api";   // your axios instance
+import api from "../../Api/Api";
+
+// Import your custom animated Loader
+import Loader from "../../Components/Loader/Loader";  // adjust path if needed
 
 const DepartmentDetail = () => {
   const { slug } = useParams();
@@ -19,7 +23,7 @@ const DepartmentDetail = () => {
         setLoading(true);
         setError(null);
 
-        // Fetch current department detail (now includes doctors array)
+        // Fetch current department detail (includes doctors array)
         const deptResponse = await api.get(`/api/departments/${slug}/`);
         setDepartment(deptResponse.data);
 
@@ -43,7 +47,9 @@ const DepartmentDetail = () => {
     return (
       <>
         <Navbar />
-        <div className="dept-loading">Loading department details...</div>
+        <div className="department-detail-loading">
+          <Loader />
+        </div>
         <Footer />
       </>
     );
@@ -53,9 +59,9 @@ const DepartmentDetail = () => {
     return (
       <>
         <Navbar />
-        <div className="dept-not-found">
+        <div className="department-detail-error">
           <h2>Department Not Found</h2>
-          <p>The requested department could not be located.</p>
+          <p>{error || "The requested department could not be located."}</p>
           <Link to="/departments" className="back-link">
             ← Back to Departments
           </Link>
@@ -65,7 +71,7 @@ const DepartmentDetail = () => {
     );
   }
 
-  // Real doctors are now inside department.doctors
+  // Real doctors from API response
   const relatedDoctors = department.doctors || [];
 
   return (
@@ -73,14 +79,13 @@ const DepartmentDetail = () => {
       <Navbar />
 
       {/* Hero Banner */}
-      {/* Hero Banner */}
       <section
         className="dept-hero"
         style={{
           backgroundImage: department.breadcamp
             ? `url(${department.breadcamp})`
             : "none",
-          backgroundColor: "#6d9cca", // fallback color – also used on mobile
+          backgroundColor: "#6d9cca", // fallback
         }}
       >
         <div className="d-hero-overlay"></div>
@@ -119,7 +124,7 @@ const DepartmentDetail = () => {
               dangerouslySetInnerHTML={{ __html: department.description || "<p>No description available.</p>" }}
             />
 
-            {/* Related Doctors Section – now using real data from API */}
+            {/* Related Doctors */}
             <div className="dept-doctors-section">
               <h2 className="section-heading">
                 Our Specialists in {department.title}
@@ -134,7 +139,7 @@ const DepartmentDetail = () => {
                         alt={doctor.name}
                         className="doctor-image"
                         onError={(e) => {
-                          e.target.src = "/fallback-doctor.jpg"; // optional fallback
+                          e.target.src = "/fallback-doctor.jpg";
                         }}
                       />
                       <h3 className="doctor-name">{doctor.name}</h3>
@@ -164,7 +169,7 @@ const DepartmentDetail = () => {
             </div>
           </div>
 
-          {/* Sidebar – unchanged */}
+          {/* Sidebar */}
           <aside className="dept-sidebar">
             <div className="sidebar-card">
               <h3>Other Departments</h3>

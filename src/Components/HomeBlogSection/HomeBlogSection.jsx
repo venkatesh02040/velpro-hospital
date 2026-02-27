@@ -1,10 +1,14 @@
+// src/components/HomeBlogSection/HomeBlogSection.jsx
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaUserAlt } from "react-icons/fa";
 import { BiCommentDetail } from "react-icons/bi";
 import "./HomeBlogSection.css";
 import PrimaryButton from "../Buttons/PrimaryButton";
-import api from "../../Api/Api";   // ← your axios instance (adjust path if needed)
+import api from "../../Api/Api";
+
+// Import your custom Loader component
+import Loader from "../../Components/Loader/Loader";  // adjust path if needed
 
 const HomeBlogSection = () => {
   const navigate = useNavigate();
@@ -54,7 +58,27 @@ const HomeBlogSection = () => {
         <div className="home-blog-container">
           <div className="home-blog-header">
             <h2 className="home-blog-title">Latest Healthcare Insights</h2>
-            <p className="home-blog-subtitle">Loading latest blogs...</p>
+            <p className="home-blog-subtitle">
+              Stay updated with tips, trends, and expert advice from our blog.
+            </p>
+          </div>
+
+          <div 
+            className="blog-loader-wrapper"
+            style={{
+              minHeight: "450px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "60px 0",
+            }}
+          >
+            <Loader />
+          </div>
+
+          {/* Keep the "View All Blogs" button area (optional) */}
+          <div className="home-blog-footer">
+            <PrimaryButton text="View All Blogs" disabled />
           </div>
         </div>
       </section>

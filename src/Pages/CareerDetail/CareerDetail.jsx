@@ -1,10 +1,20 @@
+// src/pages/CareerDetail.jsx (or wherever it lives)
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import Navbar from "../../Components/Navbar/Navbar";
-import Footer from "../../Components/Footer/Footer";
-import "./CareerDetail.css";
-import PrimaryButton from "../../Components/Buttons/PrimaryButton";
+import {
+  FiUser,
+  FiCalendar,
+  FiMessageCircle,
+  FiArrowRight,
+} from "react-icons/fi";
 import api from "../../Api/Api";
+import "./CareerDetail.css";
+import Navbar from "../../Components/Navbar/Navbar";
+import PrimaryButton from "../../Components/Buttons/PrimaryButton";
+import Footer from "../../Components/Footer/Footer";
+
+// Import your custom animated Loader
+import Loader from "../../Components/Loader/Loader";  // adjust path if needed
 
 const CareerDetail = () => {
   const { slug } = useParams();
@@ -20,7 +30,7 @@ const CareerDetail = () => {
     cv: null,
   });
 
-  const [submitStatus, setSubmitStatus] = useState(""); // success/error message
+  const [submitStatus, setSubmitStatus] = useState("");
 
   useEffect(() => {
     const fetchJob = async () => {
@@ -67,10 +77,10 @@ const CareerDetail = () => {
       formPayload.append("name", formData.name);
       formPayload.append("number", formData.number);
       formPayload.append("email", formData.email);
-      formPayload.append("job", job.id);           // ← sends job ID
+      formPayload.append("job", job.id);
       formPayload.append("cover_letter", formData.cover_letter);
       if (formData.cv) {
-        formPayload.append("cv", formData.cv);     // ← file field name matches backend
+        formPayload.append("cv", formData.cv);
       }
 
       const response = await api.post("/api/career/apply/", formPayload, {
@@ -104,8 +114,8 @@ const CareerDetail = () => {
     return (
       <>
         <Navbar />
-        <div className="not-found">
-          <h2>Loading Job Details...</h2>
+        <div className="career-detail-loading">
+          <Loader />
         </div>
         <Footer />
       </>
@@ -116,9 +126,9 @@ const CareerDetail = () => {
     return (
       <>
         <Navbar />
-        <div className="not-found">
+        <div className="career-detail-error">
           <h2>Job Not Found</h2>
-          <p>The requested position could not be located.</p>
+          <p>{error || "The requested position could not be located."}</p>
           <Link to="/careers" className="back-link">
             ← Back to Careers
           </Link>
@@ -225,7 +235,7 @@ const CareerDetail = () => {
                 <input
                   type="tel"
                   id="phone"
-                  name="number"           // ← changed to match backend
+                  name="number"
                   value={formData.number}
                   onChange={handleInputChange}
                   placeholder="Enter your phone number"
@@ -237,7 +247,7 @@ const CareerDetail = () => {
                 <label htmlFor="coverLetter">Cover Letter</label>
                 <textarea
                   id="coverLetter"
-                  name="cover_letter"     // ← changed to match backend
+                  name="cover_letter"
                   value={formData.cover_letter}
                   onChange={handleInputChange}
                   placeholder="Write your cover letter here"
@@ -251,7 +261,7 @@ const CareerDetail = () => {
                 <input
                   type="file"
                   id="cv"
-                  name="cv"               // ← changed to match backend
+                  name="cv"
                   accept="application/pdf"
                   onChange={handleFileChange}
                   required

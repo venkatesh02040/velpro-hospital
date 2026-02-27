@@ -1,11 +1,15 @@
+// src/pages/Gallery.jsx (or wherever it lives)
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
-import api from "../../Api/Api";   // your axios instance
+import api from "../../Api/Api";
 import "./Gallery.css";
 import HomeBlogSection from "../../Components/HomeBlogSection/HomeBlogSection";
 import CtaSection from "../../Components/CtaSection/CtaSection";
+
+// Import your custom animated Loader
+import Loader from "../../Components/Loader/Loader";  // adjust path if needed
 
 const Gallery = () => {
   const [galleryImages, setGalleryImages] = useState([]);
@@ -55,20 +59,26 @@ const Gallery = () => {
         </div>
       </section>
 
-      {/* GALLERY GRID */}
+      {/* GALLERY GRID or Loader */}
       <section className="gallery-section">
         <div className="gallery-container">
           {loading ? (
-            <div style={{ textAlign: "center", padding: "80px 20px" }}>
-              Loading gallery...
+            <div className="gallery-loading-wrapper">
+              <Loader />
             </div>
           ) : error ? (
-            <div style={{ textAlign: "center", padding: "80px 20px", color: "red" }}>
-              {error}
+            <div className="gallery-error-wrapper">
+              <p className="error-message">{error}</p>
+              <button 
+                className="retry-btn"
+                onClick={() => window.location.reload()}
+              >
+                Retry
+              </button>
             </div>
           ) : galleryImages.length === 0 ? (
-            <div style={{ textAlign: "center", padding: "80px 20px" }}>
-              No gallery images available.
+            <div className="gallery-empty-message">
+              No gallery images available at the moment.
             </div>
           ) : (
             <div className="gallery-grid">

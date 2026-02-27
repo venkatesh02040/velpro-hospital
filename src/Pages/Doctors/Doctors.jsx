@@ -1,16 +1,20 @@
+// src/pages/Doctors.jsx (or wherever it lives)
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
 import { FiSearch } from "react-icons/fi";
-import api from "../../Api/Api";   // your axios instance (baseURL = http://192.168.0.130:8000/)
+import api from "../../Api/Api";
 import "./Doctors.css";
+
+// Import your custom animated Loader
+import Loader from "../../Components/Loader/Loader";  // adjust path if needed
 
 const Doctors = () => {
   const navigate = useNavigate();
 
   const [doctors, setDoctors] = useState([]);
-  const [departments, setDepartments] = useState([]); // real departments
+  const [departments, setDepartments] = useState([]);
   const [filteredDoctors, setFilteredDoctors] = useState([]);
   const [selectedDept, setSelectedDept] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
@@ -42,7 +46,7 @@ const Doctors = () => {
     fetchData();
   }, []);
 
-  // Filter logic (same as your original)
+  // Filter logic
   useEffect(() => {
     let results = [...doctors];
 
@@ -78,9 +82,11 @@ const Doctors = () => {
             </div>
           </div>
         </section>
-        <div style={{ textAlign: "center", padding: "100px 20px" }}>
-          Loading doctors...
+
+        <div className="doctors-loading-wrapper">
+          <Loader />
         </div>
+
         <Footer />
       </>
     );
@@ -151,10 +157,6 @@ const Doctors = () => {
                     <div className="doctors-qualification">
                       {doctor.education}
                     </div>
-
-                    {/* <span className="doctors-spec-badge">
-                      {doctor.department_name.toUpperCase()}
-                    </span> */}
 
                     <button
                       className="doctors-book-btn"

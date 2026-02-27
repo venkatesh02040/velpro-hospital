@@ -1,3 +1,4 @@
+// src/pages/BlogDetail.jsx (or wherever it lives)
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import {
@@ -6,11 +7,14 @@ import {
   FiMessageCircle,
   FiArrowRight,
 } from "react-icons/fi";
-import api from "../../Api/Api";   // your axios instance
+import api from "../../Api/Api";
 import "./BlogDetails.css";
 import Navbar from "../../Components/Navbar/Navbar";
 import PrimaryButton from "../../Components/Buttons/PrimaryButton";
 import Footer from "../../Components/Footer/Footer";
+
+// Import your custom Loader
+import Loader from "../../Components/Loader/Loader";  // adjust path if needed
 
 /* -------- DATE FORMATTER -------- */
 const formatDate = (dateString) => {
@@ -29,7 +33,7 @@ const BlogDetail = () => {
   const [comments, setComments] = useState([]);
   const [recentPosts, setRecentPosts] = useState([]);
   const [tags, setTags] = useState([]);
-  const [departments, setDepartments] = useState([]); // ← real departments
+  const [departments, setDepartments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -39,7 +43,7 @@ const BlogDetail = () => {
         setLoading(true);
         setError(null);
 
-        // 1. Fetch current blog
+        // 1. Fetch current blog + embedded data
         const blogRes = await api.get(`/api/blogs/${slug}/`);
         const data = blogRes.data;
 
@@ -58,14 +62,13 @@ const BlogDetail = () => {
 
         // 2. Fetch departments for sidebar (top 5)
         const deptsRes = await api.get("/api/departments/");
-        // Optional: sort by priority if you want consistent order
         const sorted = deptsRes.data.sort(
           (a, b) => parseFloat(a.priority) - parseFloat(b.priority)
         );
-        setDepartments(sorted.slice(0, 5)); // keep only top 5 like your original
+        setDepartments(sorted.slice(0, 5));
       } catch (err) {
         console.error("Failed to load blog or departments:", err);
-        setError("Unable to load blog details.");
+        setError("Unable to load blog details. Please try again later.");
       } finally {
         setLoading(false);
       }
@@ -78,10 +81,8 @@ const BlogDetail = () => {
     return (
       <>
         <Navbar />
-        <div className="blog-detail-page">
-          <div style={{ textAlign: "center", padding: "100px 20px" }}>
-            Loading blog...
-          </div>
+        <div className="blog-detail-loading">
+          <Loader />
         </div>
         <Footer />
       </>
@@ -92,12 +93,12 @@ const BlogDetail = () => {
     return (
       <>
         <Navbar />
-        <div className="blog-detail-page">
-          <div style={{ textAlign: "center", padding: "100px 20px" }}>
-            <h2>Blog Not Found</h2>
-            <p>{error || "The requested blog could not be loaded."}</p>
-            <Link to="/blogs">← Back to Blogs</Link>
-          </div>
+        <div className="blog-detail-error">
+          <h2>Blog Not Found</h2>
+          <p>{error || "The requested blog could not be loaded."}</p>
+          <Link to="/blogs" className="back-link">
+            ← Back to Blogs
+          </Link>
         </div>
         <Footer />
       </>
@@ -109,7 +110,7 @@ const BlogDetail = () => {
       <Navbar />
 
       <div className="blog-detail-page">
-        {/* ===== Banner ===== */}
+        {/* Banner */}
         <div className="blog-banner">
           <div className="blog-banner-content">
             <h1>Blogs</h1>
@@ -122,9 +123,9 @@ const BlogDetail = () => {
           </div>
         </div>
 
-        {/* ===== Main Section ===== */}
+        {/* Main Content */}
         <div className="blog-detail-container">
-          {/* ===== LEFT 70% – Blog Content ===== */}
+          {/* Left – Blog Content */}
           <div className="blog-detail-main">
             <img
               src={blog.image}
@@ -146,13 +147,12 @@ const BlogDetail = () => {
 
             <h2 className="blog-detail-title">{blog.title}</h2>
 
-            {/* Render full content as HTML */}
             <div
               dangerouslySetInnerHTML={{ __html: blog.content }}
               className="blog-detail-content"
             />
 
-            {/* ===== COMMENTS DISPLAY ===== */}
+            {/* Comments */}
             <div className="comments-section">
               <h3>
                 {blog.comment_count < 10
@@ -188,7 +188,7 @@ const BlogDetail = () => {
               ))}
             </div>
 
-            {/* ===== COMMENT FORM ===== */}
+            {/* Comment Form */}
             <div className="comment-form">
               <h3 style={{ marginBottom: "10px" }}>Leave A Comment</h3>
               <p>Your email address will not be published.</p>
@@ -206,9 +206,9 @@ const BlogDetail = () => {
             </div>
           </div>
 
-          {/* ===== RIGHT 30% SIDEBAR ===== */}
+          {/* Sidebar */}
           <div className="blog-detail-sidebar">
-            {/* Departments – now real from API (top 5) */}
+            {/* Departments */}
             <div className="sidebar-card">
               <h4>Departments</h4>
               {departments.map((dept) => (
@@ -223,7 +223,7 @@ const BlogDetail = () => {
               ))}
             </div>
 
-            {/* Recent Posts – from latest_blogs */}
+            {/* Recent Posts */}
             <div className="sidebar-card">
               <h4>Recent Posts</h4>
               {recentPosts.map((post) => (

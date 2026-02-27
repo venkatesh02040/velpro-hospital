@@ -1,10 +1,15 @@
+// src/components/HeroBanner/HeroBanner.jsx
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import "./HeroBanner.css";
 import PrimaryButton from "../Buttons/PrimaryButton";
 import SecondaryButton from "../Buttons/SecondaryButton";
-import api from "../../Api/Api";   // your axios instance
+import api from "../../Api/Api";
+
+// Import your custom Loader component
+// Adjust path if your folder structure is different
+import Loader from "../../Components/Loader/Loader";   // ← most common path based on your previous components
 
 const HeroBanner = () => {
   const [slides, setSlides] = useState([]);
@@ -23,8 +28,8 @@ const HeroBanner = () => {
         // Map API response to expected format
         const formatted = response.data.map((banner) => ({
           id: banner.id,
-          image: banner.image_for_desktop,          // desktop default
-          mobileImage: banner.image_for_mobile,    // mobile override
+          image: banner.image_for_desktop,
+          mobileImage: banner.image_for_mobile,
           heading: banner.heading,
           description: banner.description,
           btn1Text: banner.button_text,
@@ -36,7 +41,7 @@ const HeroBanner = () => {
         setSlides(formatted);
       } catch (err) {
         console.error("Failed to load banners:", err);
-        // Optional: keep empty or static fallback
+        // You can keep slides empty or add fallback static slides here if desired
       } finally {
         setLoading(false);
       }
@@ -75,21 +80,24 @@ const HeroBanner = () => {
   if (loading) {
     return (
       <section className="hero-banner">
-        <div style={{ 
-          height: "90vh", 
-          display: "flex", 
-          alignItems: "center", 
-          justifyContent: "center", 
-          color: "white",
-          fontSize: "1.5rem"
-        }}>
-          Loading banners...
+        <div 
+          style={{ 
+            height: "90vh", 
+            display: "flex", 
+            alignItems: "center", 
+            justifyContent: "center",
+            background: "rgba(0, 0, 0, 0.4)", // optional subtle overlay for better contrast
+          }}
+        >
+          <Loader />
         </div>
       </section>
     );
   }
 
-  if (slides.length === 0) return null;
+  if (slides.length === 0) {
+    return null; // or show a fallback static banner if preferred
+  }
 
   return (
     <section
@@ -118,9 +126,11 @@ const HeroBanner = () => {
                   <PrimaryButton text={slide.btn1Text} />
                 </Link>
 
-                <Link to={slide.btn2Link} style={{ textDecoration: 'none' }}>
-                  <SecondaryButton text={slide.btn2Text} />
-                </Link>
+                {slide.btn2Text && slide.btn2Link && (
+                  <Link to={slide.btn2Link} style={{ textDecoration: 'none' }}>
+                    <SecondaryButton text={slide.btn2Text} />
+                  </Link>
+                )}
               </div>
             </div>
           </div>

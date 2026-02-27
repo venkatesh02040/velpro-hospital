@@ -1,3 +1,4 @@
+// src/pages/Blog.jsx (or wherever it lives)
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUserAlt } from "react-icons/fa";
@@ -5,7 +6,10 @@ import { BiCommentDetail } from "react-icons/bi";
 import "./Blog.css";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
-import api from "../../Api/Api";   // ← your axios instance with baseURL & token handling
+import api from "../../Api/Api";
+
+// Import your custom Loader
+import Loader from "../../Components/Loader/Loader";  // adjust path if needed
 
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
@@ -20,7 +24,7 @@ const Blog = () => {
         setLoading(true);
         setError(null);
 
-        const response = await api.get("/api/blogs/");  // uses baseURL from api.js
+        const response = await api.get("/api/blogs/");
 
         setBlogs(response.data || []);
       } catch (err) {
@@ -38,9 +42,7 @@ const Blog = () => {
     if (!dateString) return { day: "??", monthYear: "" };
 
     const dateObj = new Date(dateString);
-
     const day = dateObj.getDate().toString().padStart(2, "0");
-
     const monthYear = dateObj.toLocaleDateString("en-US", {
       month: "long",
       year: "2-digit",
@@ -61,9 +63,11 @@ const Blog = () => {
             </div>
           </div>
         </section>
-        <div style={{ textAlign: "center", padding: "60px 20px" }}>
-          Loading blogs...
+
+        <div className="blog-loading-wrapper">
+          <Loader />
         </div>
+
         <Footer />
       </>
     );
@@ -81,9 +85,17 @@ const Blog = () => {
             </div>
           </div>
         </section>
-        <div style={{ textAlign: "center", padding: "60px 20px", color: "red" }}>
-          {error}
+
+        <div className="blog-error-wrapper">
+          <p className="error-message">{error}</p>
+          <button 
+            className="retry-btn"
+            onClick={() => window.location.reload()}
+          >
+            Retry
+          </button>
         </div>
+
         <Footer />
       </>
     );
@@ -106,7 +118,7 @@ const Blog = () => {
       <section className="blog-section">
         <div className="blog-container">
           {blogs.length === 0 ? (
-            <div style={{ textAlign: "center", padding: "40px 20px" }}>
+            <div className="no-blogs-message">
               No blogs available at the moment.
             </div>
           ) : (

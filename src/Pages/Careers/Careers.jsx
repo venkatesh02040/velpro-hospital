@@ -1,9 +1,13 @@
+// src/pages/Careers.jsx (or wherever it lives)
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
 import api from "../../Api/Api";
 import "./Careers.css";
+
+// Import your custom animated Loader
+import Loader from "../../Components/Loader/Loader";  // adjust path if needed
 
 const Careers = () => {
   const [jobs, setJobs] = useState([]);
@@ -18,7 +22,7 @@ const Careers = () => {
 
         const response = await api.get("/api/careers/");
 
-        // Sort by priority (lower number = higher priority) – optional
+        // Sort by priority (lower number = higher priority)
         const sorted = response.data.sort(
           (a, b) => parseFloat(a.priority || 999) - parseFloat(b.priority || 999)
         );
@@ -47,9 +51,11 @@ const Careers = () => {
             </div>
           </div>
         </section>
-        <div style={{ textAlign: "center", padding: "100px 20px" }}>
-          Loading job openings...
+
+        <div className="careers-loading-wrapper">
+          <Loader />
         </div>
+
         <Footer />
       </>
     );
@@ -67,9 +73,17 @@ const Careers = () => {
             </div>
           </div>
         </section>
-        <div style={{ textAlign: "center", padding: "100px 20px", color: "red" }}>
-          {error}
+
+        <div className="careers-error-wrapper">
+          <p className="error-message">{error}</p>
+          <button 
+            className="retry-btn"
+            onClick={() => window.location.reload()}
+          >
+            Retry
+          </button>
         </div>
+
         <Footer />
       </>
     );
@@ -94,7 +108,7 @@ const Careers = () => {
 
           <div className="positions-list">
             {jobs.length === 0 ? (
-              <p style={{ textAlign: "center", padding: "40px 0" }}>
+              <p className="no-jobs-message">
                 No job openings available at the moment.
               </p>
             ) : (

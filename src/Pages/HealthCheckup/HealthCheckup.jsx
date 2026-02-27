@@ -1,16 +1,18 @@
+// src/pages/HealthCheckup.jsx (or wherever it lives)
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
 import api from "../../Api/Api";
-import { Link } from "react-router-dom"; // ← added
 import "./HealthCheckup.css";
 
-const HealthCheckup = () => {
-  const [banner] = useState({
-    image:
-      "/health-checkup-banner.jpg",
-  });
+// Import your custom animated Loader
+import Loader from "../../Components/Loader/Loader";  // adjust path if needed
 
+import HomeBlogSection from "../../Components/HomeBlogSection/HomeBlogSection";
+import CtaSection from "../../Components/CtaSection/CtaSection";
+
+const HealthCheckup = () => {
   const [packages, setPackages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -112,9 +114,11 @@ const HealthCheckup = () => {
             </div>
           </div>
         </section>
-        <div style={{ textAlign: "center", padding: "100px 20px" }}>
-          Loading health checkup packages...
+
+        <div className="healthcheckup-loading-wrapper">
+          <Loader />
         </div>
+
         <Footer />
       </>
     );
@@ -133,9 +137,17 @@ const HealthCheckup = () => {
             </div>
           </div>
         </section>
-        <div style={{ textAlign: "center", padding: "100px 20px", color: "red" }}>
-          {error}
+
+        <div className="healthcheckup-error-wrapper">
+          <p className="error-message">{error}</p>
+          <button 
+            className="retry-btn"
+            onClick={() => window.location.reload()}
+          >
+            Retry
+          </button>
         </div>
+
         <Footer />
       </>
     );
@@ -201,6 +213,7 @@ const HealthCheckup = () => {
         </div>
       </section>
 
+      {/* Booking Modal */}
       {modalOpen && (
         <div className="modal-overlay" onClick={closeModal}>
           <div

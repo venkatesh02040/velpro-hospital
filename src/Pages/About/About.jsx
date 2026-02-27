@@ -11,13 +11,6 @@ import PrimaryButton from "../../Components/Buttons/PrimaryButton";
 
 // Placeholder images – replace with real hospital/founder photos
 const heroImage = "https://content3.jdmagicbox.com/v2/comp/bangalore/k7/080pxx80.xx80.250805175233.x3k7/catalogue/velpro-hospital-kalyan-nagar-bangalore-general-physician-doctors-djcmmkr0wr.jpg";
-const processImages = [
-    "https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=800&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=800&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=800&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=800&auto=format&fit=crop",
-];
-
 const founderData = [
     {
         name: "Dr. Srinivasa Rao",

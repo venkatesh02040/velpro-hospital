@@ -1,10 +1,13 @@
+// src/pages/Departments.jsx (or wherever it lives)
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
-import api from "../../Api/Api";   // ← your axios instance with baseURL & token handling
-
+import api from "../../Api/Api";
 import "./Departments.css";
+
+// Import your custom animated Loader
+import Loader from "../../Components/Loader/Loader";  // adjust path if needed
 
 const Departments = () => {
   const [departments, setDepartments] = useState([]);
@@ -19,7 +22,7 @@ const Departments = () => {
 
         const response = await api.get("/api/departments/");
 
-        // Optional: filter only departments where show_on_homepage === true
+        // Optional: filter only visible ones
         // const visibleDepts = response.data.filter(d => d.show_on_homepage);
         setDepartments(response.data || []);
       } catch (err) {
@@ -37,19 +40,19 @@ const Departments = () => {
     return (
       <>
         <Navbar />
-        <div className="departments-main-page">
-          <div className="departments-main-banner">
-            <div className="banner-content">
-              <h1>Departments</h1>
-              <div className="breadcrumb">
-                <Link to="/">Home</Link> <span>/</span><span>Departments</span>
-              </div>
+        <section className="departments-main-banner">
+          <div className="banner-content">
+            <h1>Departments</h1>
+            <div className="breadcrumb">
+              <Link to="/">Home</Link> <span>/</span><span>Departments</span>
             </div>
           </div>
-          <div style={{ textAlign: "center", padding: "80px 20px" }}>
-            Loading departments...
-          </div>
+        </section>
+
+        <div className="departments-loading-wrapper">
+          <Loader />
         </div>
+
         <Footer />
       </>
     );
@@ -59,19 +62,25 @@ const Departments = () => {
     return (
       <>
         <Navbar />
-        <div className="departments-main-page">
-          <div className="departments-main-banner">
-            <div className="banner-content">
-              <h1>Departments</h1>
-              <div className="breadcrumb">
-                <Link to="/">Home</Link> <span>/</span><span>Departments</span>
-              </div>
+        <section className="departments-main-banner">
+          <div className="banner-content">
+            <h1>Departments</h1>
+            <div className="breadcrumb">
+              <Link to="/">Home</Link> <span>/</span><span>Departments</span>
             </div>
           </div>
-          <div style={{ textAlign: "center", padding: "80px 20px", color: "#d32f2f" }}>
-            {error}
-          </div>
+        </section>
+
+        <div className="departments-error-wrapper">
+          <p className="error-message">{error}</p>
+          <button 
+            className="retry-btn"
+            onClick={() => window.location.reload()}
+          >
+            Retry
+          </button>
         </div>
+
         <Footer />
       </>
     );
@@ -102,17 +111,16 @@ const Departments = () => {
 
           <div className="departments-main-grid">
             {departments.length === 0 ? (
-              <div style={{ textAlign: "center", padding: "40px 20px", gridColumn: "1 / -1" }}>
+              <div className="no-departments-message">
                 No departments available at the moment.
               </div>
             ) : (
               departments.map((dept) => (
-
                 <div key={dept.slug} className="service-card">
                   <Link to={`/departments/${dept.slug}`} style={{ textDecoration: "none" }}>
                     <div className="service-image-container">
                       <img
-                        src={dept.banner}                    // ← using banner as main card image
+                        src={dept.banner}
                         alt={dept.title}
                         className="service-image"
                       />
@@ -120,7 +128,7 @@ const Departments = () => {
                     <div className="service-content">
                       <div className="service-icon-wrapper">
                         <img
-                          src={dept.icon}                     // ← using icon as small icon
+                          src={dept.icon}
                           alt={`${dept.title} icon`}
                           className="service-icon"
                         />

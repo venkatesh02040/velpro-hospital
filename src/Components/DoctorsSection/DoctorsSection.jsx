@@ -1,3 +1,4 @@
+// src/components/DoctorsSection/DoctorsSection.jsx
 import React, { useRef, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
@@ -7,6 +8,9 @@ import { FaShieldAlt } from "react-icons/fa";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import "./DoctorsSection.css";
 import api from "../../Api/Api";
+
+// Import your custom Loader
+import Loader from "../../Components/Loader/Loader";  // adjust if path differs
 
 const DoctorsSection = () => {
   const navigate = useNavigate();
@@ -142,7 +146,18 @@ const DoctorsSection = () => {
               <FaShieldAlt size={24} /> OUR EXPERT DOCTORS
             </span>
             <h2 className="doc-title">Meet Our Specialists</h2>
-            <p className="doc-subtitle">Loading our expert doctors...</p>
+          </div>
+
+          <div 
+            style={{
+              minHeight: "400px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "60px 0",
+            }}
+          >
+            <Loader />
           </div>
         </div>
       </section>
