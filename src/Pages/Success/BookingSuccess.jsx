@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import { FiCheck } from "react-icons/fi";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
 import api from "../../Api/Api";
@@ -56,7 +57,7 @@ const BookingSuccess = () => {
 
       <div className="success-wrapper">
         <div className="success-card">
-          <div className="success-icon">✓</div>
+          <div className="success-icon"><FiCheck size={42} color="green" /></div>
 
           <h1 className="success-title">Appointment Confirmed</h1>
           <p className="success-subtitle">
@@ -82,7 +83,7 @@ const BookingSuccess = () => {
             <div className="detail-row">
               <span>Date & Time</span>
               <strong>
-                {new Date(appointment.appointment_datetime).toLocaleString()}
+                {appointment.appointment_date} , {appointment.appointment_time}
               </strong>
             </div>
 

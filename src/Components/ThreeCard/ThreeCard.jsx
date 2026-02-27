@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { BsClock, BsGeoAlt, BsTelephone } from 'react-icons/bs';
-import { FiArrowRight} from "react-icons/fi";
+import { FiArrowRight } from "react-icons/fi";
 import './ThreeCard.css';
 
 const ThreeCard = () => {
@@ -44,22 +44,25 @@ const ThreeCard = () => {
             </div>
             <h3>Our Location</h3>
           </div>
-          <div className="card-content">
-            <p style={{ marginBottom: "8px" }}>
-              Visit our centrally located Bengaluru hospital for quick access. Experience trusted care delivered with precision and compassion.
-            </p>
-            <p>
-              Reach our well-connected Bengaluru facility near major roads. Receive reliable healthcare backed by expertise you can count on.
-            </p>
-            <a
-              href="https://maps.app.goo.gl/1BVnUQKupncmNidJ6"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="action-btn"
-            >
-              GET DIRECTIONS <span style={{width:"20px",height:"20px",marginTop:"5px"}}><FiArrowRight /></span>
-            </a>
-          </div>
+          <a
+            href="https://maps.app.goo.gl/1BVnUQKupncmNidJ6" style={{textDecoration:"none"}}>
+            <div className="card-content">
+              <p style={{ marginBottom: "8px" }}>
+                Visit our centrally located Bengaluru hospital for quick access. Experience trusted care delivered with precision and compassion.
+              </p>
+              <p>
+                Reach our well-connected Bengaluru facility near major roads. Receive reliable healthcare backed by expertise you can count on.
+              </p>
+              <a
+                href="https://maps.app.goo.gl/1BVnUQKupncmNidJ6"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="action-btn"
+              >
+                GET DIRECTIONS <span style={{ width: "20px", height: "20px", marginTop: "5px" }}><FiArrowRight /></span>
+              </a>
+            </div>
+          </a>
         </div>
 
         {/* Card 3 - Emergency Cases (now consistent style) */}
@@ -70,17 +73,19 @@ const ThreeCard = () => {
             </div>
             <h3>Emergency Cases</h3>
           </div>
-          <div className="card-content">
-            <p style={{ marginBottom: "8px" }}>
-              Our 24/7 Emergency Department is ready for urgent and critical cases. Fast response and expert care you can rely on day or night.
-            </p>
-            <p>
-              Call anytime for immediate emergency help from professionals. Rapid assessment and advanced treatment when every second counts.
-            </p>
-            <div className="emergency-phone">
-              <a href="tel:080-49994000" className="action-btn">Call Now <span style={{width:"20px",height:"20px",marginTop:"5px"}}><FiArrowRight /></span></a>
+          <a href="tel:080-49994000" style={{ textDecoration: "none" }}>
+            <div className="card-content">
+              <p style={{ marginBottom: "8px" }}>
+                Our 24/7 Emergency Department is ready for urgent and critical cases. Fast response and expert care you can rely on day or night.
+              </p>
+              <p>
+                Call anytime for immediate emergency help from professionals. Rapid assessment and advanced treatment when every second counts.
+              </p>
+              <div className="emergency-phone">
+                <a href="tel:080-49994000" className="action-btn">Call Now <span style={{ width: "20px", height: "20px", marginTop: "5px" }}><FiArrowRight /></span></a>
+              </div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </section>

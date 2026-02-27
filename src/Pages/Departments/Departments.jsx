@@ -107,34 +107,36 @@ const Departments = () => {
               </div>
             ) : (
               departments.map((dept) => (
-                <div key={dept.slug} className="service-card">
-                  <div className="service-image-container">
-                    <img
-                      src={dept.banner}                    // ← using banner as main card image
-                      alt={dept.title}
-                      className="service-image"
-                    />
-                  </div>
 
-                  <div className="service-content">
-                    <div className="service-icon-wrapper">
+                <div key={dept.slug} className="service-card">
+                  <Link to={`/departments/${dept.slug}`} style={{ textDecoration: "none" }}>
+                    <div className="service-image-container">
                       <img
-                        src={dept.icon}                     // ← using icon as small icon
-                        alt={`${dept.title} icon`}
-                        className="service-icon"
+                        src={dept.banner}                    // ← using banner as main card image
+                        alt={dept.title}
+                        className="service-image"
                       />
                     </div>
+                    <div className="service-content">
+                      <div className="service-icon-wrapper">
+                        <img
+                          src={dept.icon}                     // ← using icon as small icon
+                          alt={`${dept.title} icon`}
+                          className="service-icon"
+                        />
+                      </div>
 
-                    <h3 className="service-title">{dept.title}</h3>
-                    <div
-                      className="service-description"
-                      dangerouslySetInnerHTML={{ __html: dept.description || "<p>No description available.</p>" }}
-                    />
+                      <h3 className="service-title">{dept.title}</h3>
+                      <div
+                        className="service-description"
+                        dangerouslySetInnerHTML={{ __html: dept.description || "<p>No description available.</p>" }}
+                      />
 
-                    <Link to={`/departments/${dept.slug}`} className="learn-more-link">
-                      Know More →
-                    </Link>
-                  </div>
+                      <Link to={`/departments/${dept.slug}`} className="learn-more-link">
+                        Know More →
+                      </Link>
+                    </div>
+                  </Link>
                 </div>
               ))
             )}

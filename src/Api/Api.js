@@ -7,7 +7,7 @@ import axios from 'axios';
 // ================================
 // CONFIGURATION - Velpro Hospitals
 // ================================
-const API_BASE_URL = 'http://192.168.0.109:8000/';           // ← CHANGE THIS to your real backend API base URL
+const API_BASE_URL = 'http://139.59.83.57/';           // ← CHANGE THIS to your real backend API base URL
 const REFRESH_TOKEN_URL = `${API_BASE_URL}token/refresh/`;        // Usually /token/refresh/ or /api/token/refresh/
 
 // Create reusable Axios instance with base URL

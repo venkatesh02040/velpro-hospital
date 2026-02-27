@@ -35,7 +35,7 @@
   font-size: 40px;
   font-weight: 700;
   margin: 20px 0;
-  color: #1a1a1a;
+  color: #1e295a;
   line-height: 1.2;
 }
 
@@ -47,7 +47,7 @@
 
 .faq_image img {
   width: 100%;
-  height: 200px;
+  height: 250px;
   border-radius: 20px;
   object-fit: cover;
 }

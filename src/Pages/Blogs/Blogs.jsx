@@ -124,7 +124,7 @@ const Blog = () => {
               };
 
               return (
-                <div key={blog.id} className="blog-card">
+                <div key={blog.id} className="blog-card" onClick={() => navigate(`/blogs/${blog.slug}`)}>
                   {/* IMAGE */}
                   <div className="blog-image-wrapper">
                     <img src={mappedBlog.image} alt={mappedBlog.title} />

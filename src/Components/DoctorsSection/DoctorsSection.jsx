@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { FaShieldAlt } from "react-icons/fa";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import "./DoctorsSection.css";
-import api from "../../Api/Api";   // ← your axios instance (adjust path if needed)
+import api from "../../Api/Api";
 
 const DoctorsSection = () => {
   const navigate = useNavigate();
@@ -20,14 +20,12 @@ const DoctorsSection = () => {
     centerPadding: "80px",
   });
 
-  // Fetch real doctors from API
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
         setLoading(true);
         const response = await api.get("/api/doctors/");
 
-        // Sort by priority descending (highest first) and take first 6
         const sortedDoctors = response.data
           .sort((a, b) => parseFloat(b.priority || 0) - parseFloat(a.priority || 0))
           .slice(0, 6);
@@ -35,7 +33,7 @@ const DoctorsSection = () => {
         setDoctors(sortedDoctors);
       } catch (error) {
         console.error("Failed to load doctors for homepage:", error);
-        setDoctors([]); // fallback to empty
+        setDoctors([]);
       } finally {
         setLoading(false);
       }
@@ -44,7 +42,6 @@ const DoctorsSection = () => {
     fetchDoctors();
   }, []);
 
-  // Responsive config
   useEffect(() => {
     const updateConfig = () => {
       const width = window.innerWidth;
@@ -53,7 +50,7 @@ const DoctorsSection = () => {
       } else if (width <= 900) {
         setSlidesConfig({ slidesToShow: 2, centerPadding: "50px" });
       } else if (width <= 1100) {
-        setSlidesConfig({ slidesToShow: 3, centerPadding: "60px" });
+        setSlidesConfig({ slidesToShow: 2, centerPadding: "60px" });
       } else {
         setSlidesConfig({ slidesToShow: 3, centerPadding: "80px" });
       }
@@ -88,7 +85,7 @@ const DoctorsSection = () => {
     autoplaySpeed: 4000,
     pauseOnHover: false,
     responsive: [
-      { breakpoint: 1100, settings: { slidesToShow: 3, centerPadding: "60px" } },
+      { breakpoint: 1100, settings: { slidesToShow: 2, centerPadding: "60px" } },
       { breakpoint: 900, settings: { slidesToShow: 2, centerPadding: "50px" } },
       {
         breakpoint: 640,
@@ -97,7 +94,6 @@ const DoctorsSection = () => {
     ],
   };
 
-  // Touch handling to pause/resume autoplay
   useEffect(() => {
     const slider = sliderRef.current;
     if (!slider) return;
@@ -107,16 +103,12 @@ const DoctorsSection = () => {
     const resumeAutoplay = () => {
       if (timeoutId) clearTimeout(timeoutId);
       timeoutId = setTimeout(() => {
-        if (slider && slider.innerSlider) {
-          slider.slickPlay();
-        }
+        if (slider && slider.innerSlider) slider.slickPlay();
       }, 800);
     };
 
     const handleTouchStart = () => {
-      if (slider && slider.innerSlider) {
-        slider.slickPause();
-      }
+      if (slider && slider.innerSlider) slider.slickPause();
     };
 
     const handleTouchEnd = () => resumeAutoplay();
@@ -127,10 +119,6 @@ const DoctorsSection = () => {
       sliderElement.addEventListener("touchstart", handleTouchStart);
       sliderElement.addEventListener("touchend", handleTouchEnd);
       sliderElement.addEventListener("touchcancel", handleTouchEnd);
-    }
-
-    if (window.innerWidth <= 640 && slider?.innerSlider) {
-      slider.slickPlay();
     }
 
     return () => {
@@ -194,21 +182,26 @@ const DoctorsSection = () => {
           <Slider ref={sliderRef} {...settings}>
             {doctors.map((doctor) => (
               <div key={doctor.id} className="doc-slide">
-                <div className="doc-card">
-                  <div className="doc-img-container">
+                <div className="doc-card" onClick={() => handleNavigate(doctor.slug)}>
+                  <div className="doc-avatar-wrapper">
                     <img
                       src={doctor.photo}
                       alt={doctor.name}
-                      className="doc-img"
-                      loading="lazy"
-                      onError={(e) => {
-                        e.target.src = "/fallback-doctor.jpg";
-                      }}
+                      onError={(e) => (e.target.src = "/fallback-doctor.jpg")}
                     />
                   </div>
-                  <div className="doc-content">
+
+                  <div className="doc-main-details">
                     <h3 className="doc-name">{doctor.name}</h3>
-                    <p className="doc-spec">{doctor.department_name}</p>
+
+                    <div className="doc-qualification">
+                      {doctor.education || "Specialist"}
+                    </div>
+
+                    <span className="doc-spec-badge">
+                      {doctor.department_name}
+                    </span>
+
                     <button
                       className="doc-book-btn"
                       onClick={() => handleNavigate(doctor.slug)}

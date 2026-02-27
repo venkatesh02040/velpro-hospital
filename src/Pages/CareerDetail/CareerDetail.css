@@ -2,7 +2,7 @@
 
 .detail-hero {
   background: linear-gradient(rgba(29, 41, 89, 0.72), rgba(29, 41, 89, 0.72)),
-    url("https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1470&auto=format&fit=crop") center/cover no-repeat;
+    url("/careers-banner.jpg") center/cover no-repeat;
   height: 300px;
   display: flex;
   align-items: center;
@@ -57,7 +57,7 @@
   border-radius: 16px;
   padding: 32px;
   margin-bottom: 48px;
-  border: 1px solid rgb(218, 232, 255) ;
+  border: 1px solid rgb(218, 232, 255);
 }
 
 .detail-info p {
@@ -93,7 +93,7 @@
   background: white;
   border-radius: 16px;
   padding: 40px;
-  border: 1px solid rgb(218, 232, 255) ;
+  border: 1px solid rgb(218, 232, 255);
 }
 
 .apply-form h2 {
@@ -124,12 +124,13 @@
 
 .form-group input,
 .form-group textarea {
-  padding: 14px 20px !important;
+  padding: 14px 16px !important;
   border: 1px solid #d1d9ff !important;
   border-radius: 8px !important;
   font-size: 16px !important;
   background: #f9faff !important;
   transition: border 0.3s !important;
+  color: black;
 }
 
 .form-group input:focus,

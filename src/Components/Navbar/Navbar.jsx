@@ -213,9 +213,9 @@ const Navbar = () => {
           </button>
 
           <ul className={`dropdown__menu ${dropdownOpen ? "show" : ""}`}>
-            <li onClick={() => { navigate("/appointments"); closeMenu(); }}>
+            {/* <li onClick={() => { navigate("/appointments"); closeMenu(); }}>
               View Your Appointments
-            </li>
+            </li> */}
             <li onClick={() => { navigate("/health-checkup"); closeMenu(); }}>
               Health Checkup
             </li>
@@ -228,9 +228,9 @@ const Navbar = () => {
             <li onClick={() => { navigate("/gallery"); closeMenu(); }}>
               Gallery
             </li>
-            <li onClick={() => { navigate("/newsletter"); closeMenu(); }}>
+            {/* <li onClick={() => { navigate("/newsletter"); closeMenu(); }}>
               View Newsletter
-            </li>
+            </li> */}
             <li onClick={() => { navigate("/careers"); closeMenu(); }}>
               Careers
             </li>

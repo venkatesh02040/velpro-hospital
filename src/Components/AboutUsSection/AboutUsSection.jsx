@@ -59,7 +59,7 @@ const AboutUsSection = () => {
                     {/* Left Image Panel */}
                     <div className="left-panel">
                         <img
-                            src="https://picsum.photos/id/1015/800/920"
+                            src="/ah1.png"
                             alt="Cardiologist examining patient"
                             className="left-image"
                         />
@@ -105,7 +105,7 @@ const AboutUsSection = () => {
                     {/* Right Image Panel */}
                     <div className="right-panel">
                         <img
-                            src="https://picsum.photos/id/669/520/620"
+                            src="/ah2.jpg"
                             alt="Senior patient consultation"
                             className="right-image"
                         />

@@ -4,17 +4,16 @@ import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
 import "./DoctorDetail.css";
 import PrimaryButton from "../../Components/Buttons/PrimaryButton";
-import api from "../../Api/Api";   // your axios instance
+import api from "../../Api/Api";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-
 
 const formatTime12Hour = (time) => {
   if (!time) return "";
 
   const [hour, minute] = time.split(":");
   const date = new Date();
-  date.setHours(hour, minute);
+  date.setHours(Number(hour), Number(minute), 0);
 
   return date.toLocaleTimeString("en-IN", {
     hour: "2-digit",
@@ -23,14 +22,17 @@ const formatTime12Hour = (time) => {
   });
 };
 
-
 const DoctorDetail = () => {
   const { slug } = useParams();
+  const navigate = useNavigate();
+
   const [doctor, setDoctor] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
   const [slots, setSlots] = useState([]);
   const [loadingSlots, setLoadingSlots] = useState(false);
+
   const [bookingLoading, setBookingLoading] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -45,17 +47,16 @@ const DoctorDetail = () => {
     payment_method: "",
     schedule_id: "",
     gender: "",
+    time: "",           // controls <select> value
+    paymentMode: "",    // added missing field
   });
-  const [showSummary, setShowSummary] = useState(false);
-  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchDoctor = async () => {
       try {
         setLoading(true);
         setError(null);
-
         const response = await api.get(`/api/doctors/${slug}/`);
-
         setDoctor(response.data);
       } catch (err) {
         console.error("Failed to load doctor:", err);
@@ -69,50 +70,77 @@ const DoctorDetail = () => {
     fetchDoctor();
   }, [slug]);
 
-
+  // ────────────────────────────────────────────────
+  // Fetch slots + auto-select first slot
+  // ────────────────────────────────────────────────
   useEffect(() => {
-    if (!formData.date || !doctor?.id) return;
+    // Reset when date or doctor changes / clears
+    if (!formData.date || !doctor?.id) {
+      setSlots([]);
+      setFormData((prev) => ({ ...prev, time: "", schedule_id: "" }));
+      return;
+    }
+
+    let isCurrent = true;
 
     const fetchSlots = async () => {
       try {
         setLoadingSlots(true);
 
-        const res = await api.get(
-          `/api/check-timings/${doctor.id}/${formData.date}/`
-        );
+        const res = await api.get(`/api/check-timings/${doctor.id}/${formData.date}/`);
 
         const merged = [
-          ...res.data.monthly_timings.map(t => ({
-            id: t.uuid || t.id,   // ✅ fallback
-            label: `${formatTime12Hour(t.start_time)} - ${formatTime12Hour(t.end_time)}`
+          ...res.data.monthly_timings.map((t) => ({
+            id: t.uuid || t.id,
+            label: `${formatTime12Hour(t.start_time)} - ${formatTime12Hour(t.end_time)}`,
           })),
-          ...res.data.weekly_timings.map(t => ({
-            id: t.uuid || t.id,   // ✅ fallback
-            label: `${formatTime12Hour(t.start_time)} - ${formatTime12Hour(t.end_time)}`
-          }))
+          ...res.data.weekly_timings.map((t) => ({
+            id: t.uuid || t.id,
+            label: `${formatTime12Hour(t.start_time)} - ${formatTime12Hour(t.end_time)}`,
+          })),
         ];
+
+        if (!isCurrent) return;
 
         setSlots(merged);
 
+        // Auto-select first available slot
+        if (merged.length > 0) {
+          const firstSlot = merged[0];
+          setFormData((prev) => ({
+            ...prev,
+            time: firstSlot.id,
+            schedule_id: firstSlot.id,
+          }));
+        } else {
+          setFormData((prev) => ({
+            ...prev,
+            time: "",
+            schedule_id: "",
+          }));
+        }
       } catch (err) {
-        console.error(err);
-        setSlots([]);
+        console.error("Error fetching slots:", err);
+        if (isCurrent) {
+          setSlots([]);
+          setFormData((prev) => ({ ...prev, time: "", schedule_id: "" }));
+        }
       } finally {
-        setLoadingSlots(false);
+        if (isCurrent) setLoadingSlots(false);
       }
     };
 
     fetchSlots();
-  }, [formData.date, doctor]);
 
-
+    return () => {
+      isCurrent = false;
+    };
+  }, [formData.date, doctor?.id]);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
-
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -121,24 +149,20 @@ const DoctorDetail = () => {
     const email = formData.email?.trim();
     const phone_number = formData.phone_number?.trim();
     const gender = formData.gender;
-    const disease = formData.disease?.trim(); // using message as symptoms
-    const message = formData.message?.trim(); // using message as symptoms
+    const disease = formData.disease?.trim();
+    const message = formData.message?.trim();
     const date = formData.date;
-    const scheduleId = formData.time;
+    const scheduleId = formData.schedule_id;   // ← use schedule_id
     const department = doctor?.department;
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phoneRegex = /^[0-9]{10}$/;
 
-    // ✅ VALIDATION
     if (!name) return toast.error("Name is required");
     if (!email) return toast.error("Email is required");
     if (!emailRegex.test(email)) return toast.error("Invalid email");
-
     if (!phone_number) return toast.error("Phone number is required");
-    if (!phoneRegex.test(phone_number))
-      return toast.error("Phone number must be 10 digits");
-
+    if (!phoneRegex.test(phone_number)) return toast.error("Phone number must be 10 digits");
     if (!gender) return toast.error("Gender is required");
     if (!disease) return toast.error("Symptoms / disease is required");
     if (!date) return toast.error("Date is required");
@@ -148,52 +172,32 @@ const DoctorDetail = () => {
     const payload = {
       name,
       email,
-      phone_number: phone_number,
+      phone_number,
       gender,
       disease,
       date,
-      message: formData.message,
+      message,
       department,
       selected_doctor: doctor.id,
       schedule_id: scheduleId,
-      payment_method:
-        formData.paymentMode === "Pay Now"
-          ? "online"
-          : "pay_at_hospital",
+      payment_method: formData.paymentMode === "Pay Now" ? "online" : "pay_at_hospital",
       registration_fee: "off",
     };
 
-
-
     try {
       setBookingLoading(true);
-
       const res = await api.post("/api/create-appointment/", payload);
-
       const appointmentId = res.data.appointment_id;
-
-      toast.success("Appointment booked successfully 🎉");
-
-      // ✅ Redirect to success page
+      toast.success("Appointment booked successfully");
       navigate(`/success/${appointmentId}`);
-
     } catch (err) {
       console.error(err);
-
-      if (err.response?.data?.error) {
-        toast.error(err.response.data.error);
-      } else {
-        toast.error("Failed to book appointment");
-      }
-
+      const msg = err.response?.data?.error || "Failed to book appointment";
+      toast.error(msg);
     } finally {
       setBookingLoading(false);
     }
-
-
-
   };
-
 
   if (loading) {
     return (
@@ -227,19 +231,13 @@ const DoctorDetail = () => {
     <>
       <Navbar />
 
-      {/* Hero Banner */}
-      <section
-        className="doctor-hero"
-        style={{
-          backgroundImage: `url("/DOCTORS-BANNER.jpeg")`,
-        }}
-      >
+      <section className="doctor-hero" style={{ backgroundImage: `url("/DOCTORS-BANNER.jpeg")` }}>
         <div className="dd-hero-overlay"></div>
         <div className="dd-hero-content">
           <div className="doctor-avatar-large">
-            <img 
-              src={doctor.photo} 
-              alt={doctor.name} 
+            <img
+              src={doctor.photo}
+              alt={doctor.name}
               className="avatar-img"
               onError={(e) => { e.target.src = "/fallback-doctor.jpg"; }}
             />
@@ -254,7 +252,6 @@ const DoctorDetail = () => {
         </div>
       </section>
 
-      {/* Main Content */}
       <section className="doctor-main">
         <div className="doctor-container">
           {/* Left - Profile Info */}
@@ -295,7 +292,6 @@ const DoctorDetail = () => {
             </div>
           </div>
 
-
           {/* Right - Appointment Form */}
           <div className="doctor-appointment">
             <div className="appointment-card">
@@ -310,7 +306,6 @@ const DoctorDetail = () => {
                   <input
                     type="text"
                     id="name"
-                    name="name"
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Enter your name"
@@ -319,11 +314,10 @@ const DoctorDetail = () => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="phone">Phone Number</label>
+                  <label htmlFor="phone_number">Phone Number</label>
                   <input
                     type="tel"
                     id="phone_number"
-                    name="phone_number"
                     value={formData.phone_number}
                     onChange={handleChange}
                     placeholder="Phone Number"
@@ -336,7 +330,6 @@ const DoctorDetail = () => {
                   <input
                     type="email"
                     id="email"
-                    name="email"
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="your@email.com"
@@ -346,13 +339,7 @@ const DoctorDetail = () => {
 
                 <div className="form-group">
                   <label htmlFor="gender">Gender</label>
-                  <select
-                    id="gender"
-                    name="gender"
-                    value={formData.gender}
-                    onChange={handleChange}
-                    required
-                  >
+                  <select id="gender" value={formData.gender} onChange={handleChange} required>
                     <option value="">Select Gender</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
@@ -365,7 +352,6 @@ const DoctorDetail = () => {
                   <input
                     type="text"
                     id="disease"
-                    name="disease"
                     value={formData.disease}
                     onChange={handleChange}
                     placeholder="Enter disease or concern"
@@ -378,7 +364,6 @@ const DoctorDetail = () => {
                   <input
                     type="date"
                     id="date"
-                    name="date"
                     value={formData.date}
                     onChange={handleChange}
                     required
@@ -388,25 +373,23 @@ const DoctorDetail = () => {
 
                 <div className="form-group">
                   <label htmlFor="time">Preferred Time</label>
-
                   <select
                     id="time"
-                    name="time"
-                    value={formData.time}
+                    value={formData.time || ""}
                     onChange={handleChange}
                     required
+                    disabled={loadingSlots || !formData.date}
                     className="modern-select"
-                    disabled={!formData.date}
                   >
-                    {!formData.date && <option value="">Select date first</option>}
-
-                    {formData.date && loadingSlots && (
-                      <option value="">Loading available slots...</option>
-                    )}
-
-                    {formData.date && !loadingSlots && slots.length === 0 && (
-                      <option value="">No slots available</option>
-                    )}
+                    <option value="" disabled>
+                      {loadingSlots
+                        ? "Loading available slots..."
+                        : !formData.date
+                        ? "Select a date first"
+                        : slots.length === 0
+                        ? "No slots available"
+                        : "Select a time slot"}
+                    </option>
 
                     {slots.map((slot) => (
                       <option key={slot.id} value={slot.id}>
@@ -420,7 +403,6 @@ const DoctorDetail = () => {
                   <label htmlFor="paymentMode">Payment Mode</label>
                   <select
                     id="paymentMode"
-                    name="paymentMode"
                     value={formData.paymentMode}
                     onChange={handleChange}
                     required
@@ -428,7 +410,7 @@ const DoctorDetail = () => {
                   >
                     <option value="">Select Payment Mode</option>
                     <option value="Pay at Hospital">Pay at Hospital</option>
-                    <option value="Pay Now">Pay Now (Online)</option>
+                    <option value="Pay Now" disabled>Pay Now (Online)</option>
                   </select>
                 </div>
 
@@ -436,22 +418,24 @@ const DoctorDetail = () => {
                   <label htmlFor="message">Reason / Symptoms (optional)</label>
                   <textarea
                     id="message"
-                    name="message"
-                    rows="4"
                     value={formData.message}
                     onChange={handleChange}
+                    rows="4"
                     placeholder="Describe your concern..."
-                  ></textarea>
+                  />
                 </div>
 
-                <PrimaryButton text="Confirm Appointment" type="submit" fullWidth />
+                <PrimaryButton
+                  text={bookingLoading ? "Booking..." : "Confirm Appointment"}
+                  type="submit"
+                  fullWidth
+                  disabled={bookingLoading}
+                />
               </form>
             </div>
           </div>
         </div>
       </section>
-
-
 
       <Footer />
     </>

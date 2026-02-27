@@ -2,7 +2,7 @@
 
 .careers-hero {
   background: linear-gradient(rgba(29, 41, 89, 0.72), rgba(29, 41, 89, 0.72)),
-    url("https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1470&auto=format&fit=crop") center/cover no-repeat;
+    url("/careers-banner.jpg") center/cover no-repeat;
   height: 300px;
   display: flex;
   align-items: center;

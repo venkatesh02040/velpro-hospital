@@ -9,7 +9,7 @@ const Facilities = () => {
     {
       title: "Deluxe & Semi-Deluxe Wards",
       image:
-        "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=1470&auto=format&fit=crop",
+        "/f1.jpg",
       shortDesc: "Luxurious private rooms designed for comfort, privacy, and faster recovery.",
       points: [
         "Spacious, well-ventilated rooms with premium furnishings",
@@ -22,7 +22,7 @@ const Facilities = () => {
     {
       title: "24×7 Four-Bed Intensive Care Unit",
       image:
-        "https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=1470&auto=format&fit=crop",
+        "/f2.jpg",
       shortDesc: "Advanced critical care with continuous monitoring and rapid response.",
       points: [
         "Multi-parameter monitors, ventilators & life-support systems",
@@ -35,7 +35,7 @@ const Facilities = () => {
     {
       title: "Laminar Flow Operation Theatre",
       image:
-        "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=1470&auto=format&fit=crop",
+        "/f3.jpg",
       shortDesc: "Ultra-sterile surgical suites ensuring maximum safety and precision.",
       points: [
         "Class 100 laminar airflow & advanced HEPA filtration",
@@ -48,7 +48,7 @@ const Facilities = () => {
     {
       title: "Diagnostic Laboratory Centre",
       image:
-        "https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=1470&auto=format&fit=crop",
+        "/f4.jpg",
       shortDesc: "Fast, reliable, NABL-accredited diagnostic testing with rapid reporting.",
       points: [
         "Fully automated high-throughput analyzers",
@@ -61,7 +61,7 @@ const Facilities = () => {
     {
       title: "Endoscopy & Colonoscopy Suite",
       image:
-        "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=1470&auto=format&fit=crop",
+        "/f5.jpg",
       shortDesc: "Advanced minimally invasive diagnostics with high-definition imaging.",
       points: [
         "High-resolution scopes with narrow-band imaging technology",
@@ -74,7 +74,7 @@ const Facilities = () => {
     {
       title: "Radiology & Ultrasound Diagnostics",
       image:
-        "https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=1470&auto=format&fit=crop",
+        "/f6.jpg",
       shortDesc: "Cutting-edge imaging with fast, accurate reports and patient safety focus.",
       points: [
         "Digital X-ray, 4D ultrasound & Doppler studies",
@@ -87,7 +87,7 @@ const Facilities = () => {
     {
       title: "Day Care Treatment Services",
       image:
-        "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=1470&auto=format&fit=crop",
+        "/f7.jpg",
       shortDesc: "Efficient same-day medical procedures — recover at home.",
       points: [
         "Chemotherapy, minor surgeries, dialysis & infusions",
@@ -100,7 +100,7 @@ const Facilities = () => {
     {
       title: "Integrated In-House Pharmacy",
       image:
-        "https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=1470&auto=format&fit=crop",
+        "/f8.jpg",
       shortDesc: "24×7 access to genuine, quality medicines within the hospital.",
       points: [
         "100% authentic & properly stored medicines",

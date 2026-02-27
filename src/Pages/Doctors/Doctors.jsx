@@ -140,7 +140,7 @@ const Doctors = () => {
           <div className="doctors-grid">
             {filteredDoctors.length > 0 ? (
               filteredDoctors.map((doctor) => (
-                <div key={doctor.id} className="doctors-card">
+                <div key={doctor.id} className="doctors-card" onClick={() => navigate(`/doctors/${doctor.slug}`)}>
                   <div className="doctors-avatar-wrapper">
                     <img src={doctor.photo} alt={doctor.name} />
                   </div>

@@ -91,14 +91,14 @@ const HomeBlogSection = () => {
             const { day, monthYear } = formatDate(blog.createdAt);
 
             return (
-              <div key={blog.id} className="home-blog-card">
+              <div key={blog.id} className="home-blog-card" onClick={() => navigate(`/blogs/${blog.slug}`)}>
                 {/* Image + Date Badge */}
                 <div className="home-blog-image-wrapper">
                   <img 
                     src={blog.image} 
                     alt={blog.heading} 
                     loading="lazy" 
-                    onError={(e) => { e.target.src = "/fallback-blog.jpg"; }} // optional
+                    onError={(e) => { e.target.src = "/fallback-blog.jpg"; }}
                   />
 
                   <div className="home-blog-date-badge">
