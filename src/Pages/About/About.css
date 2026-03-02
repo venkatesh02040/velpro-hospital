@@ -200,7 +200,7 @@
 }
 
 .about-process-subtitle {
-    color: #1d2959;
+    color: #1e295a;
     font-size: 38px;
     font-weight: 600;
     letter-spacing: 1px;
@@ -226,7 +226,7 @@
     left: 75px;
     right: 75px;
     height: 3px;
-    background: linear-gradient(#d1d5db, #1d2959);
+    background: linear-gradient(#d1d5db, #1e295a);
     z-index: 1;
 }
 

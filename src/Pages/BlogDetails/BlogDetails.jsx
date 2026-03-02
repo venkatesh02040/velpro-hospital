@@ -170,7 +170,7 @@ const BlogDetail = () => {
                         height: "30px",
                         backgroundColor: "#f4f6fb",
                         padding: "5px",
-                        border: "1px solid #1d2959",
+                        border: "1px solid #1e295a",
                         borderRadius: "50%",
                       }}
                       size={25}

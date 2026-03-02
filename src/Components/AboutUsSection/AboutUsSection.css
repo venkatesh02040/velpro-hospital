@@ -49,8 +49,8 @@
   display: inline-flex;
   align-items: center;
   background: #fff;
-  border: 2px solid #1d2959;
-  color: #1d2959;
+  border: 2px solid #1e295a;
+  color: #1e295a;
   font-size: 18px;
   font-weight: 700;
   letter-spacing: 1.5px;
@@ -71,11 +71,11 @@
 }
 
 .highlight {
-  color: #1d2959;
+  color: #1e295a;
 }
 
 .description {
-  color: #64748b;
+  color: #475569;
   font-size: 17.5px;
   line-height: 1.75;
   margin-bottom: 48px;
@@ -95,7 +95,7 @@
 .stat-label {
   font-size: 13.5px;
   font-weight: 600;
-  color: #1d2959;
+  color: #1e295a;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 6px;

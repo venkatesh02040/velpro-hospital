@@ -114,6 +114,10 @@
   color: #475569;
 }
 
+.dept-rich-text h2,.dept-rich-text h3{
+  color: #1e295a;
+}
+
 .dept-rich-text p {
   margin-bottom: 24px;
 }
@@ -220,7 +224,7 @@
 
 .doctor-qual {
   font-size: 15px;
-  color: #64748b;
+  color: #475569;
   margin-bottom: 16px;
   line-height: 1.4;
 }
@@ -242,7 +246,7 @@
 
 .no-doctors {
   font-size: 17px;
-  color: #64748b;
+  color: #475569;
   text-align: center;
   padding: 60px 20px;
   background: #f8f9ff;

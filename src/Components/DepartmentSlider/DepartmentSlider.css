@@ -24,7 +24,7 @@
 }
 
 .ds-section-header p {
-  color: #64748b;
+  color: #475569;
   font-size: 18px;
   max-width: 680px;
 }
@@ -38,8 +38,8 @@
   display: inline-flex;
   align-items: center;
   background: #fff;
-  border: 2px solid #1d2959;
-  color: #1d2959;
+  border: 2px solid #1e295a;
+  color: #1e295a;
   font-size: 18px;
   font-weight: 700;
   letter-spacing: 1.5px;
@@ -146,7 +146,7 @@
 
 .service-description {
   font-size: 0.95rem;
-  color: #64748b;
+  color: #475569;
   line-height: 1.65;
   margin: 0 0 20px;
   flex: 1;

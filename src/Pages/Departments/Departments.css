@@ -62,7 +62,7 @@
 }
 
 .section-header p {
-  color: #64748b;
+  color: #475569;
   font-size: 18px;
   max-width: 680px;
   margin: 0 auto;
@@ -157,7 +157,7 @@ width: 100%;
 
 .service-description {
     font-size: 1rem;
-    color: #64748b;
+    color: #475569;
     line-height: 1.65;
     margin: 0 0 6px;
     flex: 1;

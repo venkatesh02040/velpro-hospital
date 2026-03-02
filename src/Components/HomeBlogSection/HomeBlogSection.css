@@ -70,7 +70,7 @@
   position: absolute;
   bottom: 15px;
   left: 15px;
-  background: #1d2959;
+  background: #1e295a;
   color: white;
   padding: 10px 16px;
   border-radius: 10px;
@@ -108,13 +108,13 @@
 }
 
 .meta-icon {
-  color: #1d2959;
+  color: #1e295a;
 }
 
 .home-blog-card-title {
   font-size: 20px;
   font-weight: 700;
-  color: #1d2959;
+  color: #1e295a;
   margin: 0 0 20px;
   line-height: 1.4;
   display: -webkit-box;
@@ -129,13 +129,13 @@
   padding: 10px 24px;
   border-radius: 50px;
   font-weight: 600;
-  color: #1d2959;
+  color: #1e295a;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .home-blog-read-btn:hover {
-  background: #1d2959;
+  background: #1e295a;
   color: white;
 }
 

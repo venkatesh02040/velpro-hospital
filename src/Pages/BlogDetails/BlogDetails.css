@@ -77,19 +77,19 @@
 
 .blog-detail-meta svg {
   margin-right: 6px;
-  color: #1d2959;
+  color: #1e295a;
 }
 
 .blog-detail-title {
   font-size: 28px;
-  color: #1d2959;
+  color: #1e295a;
   margin-bottom: 24px;
   line-height: 1.3;
 }
 
 .blog-detail-section h3 {
   margin: 40px 0 16px;
-  color: #1d2959;
+  color: #1e295a;
   font-size: 22px;
 }
 
@@ -321,7 +321,7 @@
 .blog-detail-content h4,
 .blog-detail-content h5,
 .blog-detail-content h6 {
-  color: #1d2959; /* your primary dark color */
+  color: #1e295a; /* your primary dark color */
   margin: 2.5rem 0 1.25rem;
   font-weight: 700;
   line-height: 1.3;
@@ -391,13 +391,13 @@
 /* Strong / Bold */
 .blog-detail-content strong,
 .blog-detail-content b {
-  color: #1d2959;
+  color: #1e295a;
   font-weight: 700;
 }
 
 /* Links inside content (if any) */
 .blog-detail-content a {
-  color: #1d2959;
+  color: #1e295a;
   text-decoration: underline;
   transition: color 0.2s;
 }
