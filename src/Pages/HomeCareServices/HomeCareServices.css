@@ -67,7 +67,7 @@
 }
 
 .intro-title {
-  font-size: clamp(3rem, 7vw, 3rem);
+  font-size: clamp(3rem, 7vw, 2.85rem);
   font-weight: 900;
   color: #1e295a;
   margin-bottom: 24px;

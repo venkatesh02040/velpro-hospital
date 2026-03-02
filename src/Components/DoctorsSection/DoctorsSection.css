@@ -30,7 +30,7 @@
 }
 
 .doc-title {
-  font-size: clamp(2.4rem, 5.5vw, 3.2rem);
+  font-size: clamp(2.4rem, 5.5vw, 2.85rem);
   font-weight: 800;
   color: #1e295a;
   margin: 24px 0 16px;

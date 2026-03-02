@@ -77,9 +77,9 @@
 }
 
 .about-hero-content h2 {
-    font-size: 38px;
+    font-size: 34px;
     line-height: 1.2;
-    margin-bottom: 20px;
+    margin-bottom: 8px;
     color: #1f2937;
 }
 
@@ -201,14 +201,14 @@
 
 .about-process-subtitle {
     color: #1e295a;
-    font-size: 38px;
+    font-size: 45px;
     font-weight: 600;
     letter-spacing: 1px;
     margin-bottom: 12px;
 }
 
 .about-process-container h2 {
-    font-size: 24px;
+    font-size: 28px;
     margin-bottom: 48px;
     color: #1f2937;
 }

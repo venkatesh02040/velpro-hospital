@@ -87,7 +87,7 @@
 }
 
 .profile-title {
-    font-size: 42px;
+    font-size: 45px;
     color: #1e295a;
     font-weight: 900;
     margin-bottom: 32px;
@@ -99,8 +99,10 @@
     color: #475569;
 }
 
-.doctor-description.rich-text h2,.doctor-description.rich-text h3{
+.doctor-description.rich-text h2,
+.doctor-description.rich-text h3 {
     color: #1e295a;
+    font-size: 28px;
 }
 
 .doctor-description p {
@@ -270,7 +272,7 @@
 
 .modern-date::-webkit-calendar-picker-indicator {
     opacity: 1;
-    filter: brightness(0.8); 
+    filter: brightness(0.8);
     cursor: pointer;
 }
 

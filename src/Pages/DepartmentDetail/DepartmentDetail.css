@@ -102,7 +102,7 @@
 }
 
 .dept-heading {
-  font-size: 40px;
+  font-size: 45px;
   color: #1e295a;
   margin-bottom: 36px;
   font-weight: 700;
@@ -116,6 +116,7 @@
 
 .dept-rich-text h2,.dept-rich-text h3{
   color: #1e295a;
+  font-size: 28px;
 }
 
 .dept-rich-text p {
