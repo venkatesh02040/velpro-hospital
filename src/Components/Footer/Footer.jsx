@@ -99,7 +99,7 @@ const Footer = () => {
             <li><Link to="/departments">Departments</Link></li>
             <li><Link to="/doctors">Doctors</Link></li>
             <li><Link to="/blogs">Latest Blogs</Link></li>
-            <li><Link to="/appointments">Appointments</Link></li>
+            {/* <li><Link to="/appointments">Appointments</Link></li> */}
             <li><Link to="/contact">Contact</Link></li>
           </ul>
         </div>
