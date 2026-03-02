@@ -139,7 +139,7 @@ const DepartmentSlider = () => {
   return (
     <div className="department-slider-section">
       <div className="ds-section-header">
-        <h2 className="dep-badge">OUR DEPARTMENTS</h2>
+        <h2 className="dep-badge"> <img src="/departments.png" width={"35px"} style={{paddingRight:"10px"}} alt="" /> OUR DEPARTMENTS</h2>
         <h3>Leading the Way in Specialized Healthcare</h3>
         <p>Experience advanced diagnostics, innovative treatments, and expert care across multiple disciplines.</p>
       </div>

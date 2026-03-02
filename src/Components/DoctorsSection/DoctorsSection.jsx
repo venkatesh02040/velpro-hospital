@@ -213,9 +213,9 @@ const DoctorsSection = () => {
                       {doctor.education || "Specialist"}
                     </div>
 
-                    <span className="doc-spec-badge">
+                    {/* <span className="doc-spec-badge">
                       {doctor.department_name}
-                    </span>
+                    </span> */}
 
                     <button
                       className="doc-book-btn"

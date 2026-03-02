@@ -59,7 +59,7 @@ const ThreeCard = () => {
                 rel="noopener noreferrer"
                 className="action-btn"
               >
-                GET DIRECTIONS <span style={{ width: "20px", height: "20px", marginTop: "5px" }}><FiArrowRight /></span>
+                Get Directions <span style={{ width: "20px", height: "20px", marginTop: "5px" }}><FiArrowRight /></span>
               </a>
             </div>
           </a>

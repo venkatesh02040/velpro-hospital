@@ -133,7 +133,6 @@
   border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 50px;
   text-decoration: none;
-  font-weight: 600;
   transition: all 0.3s ease;
 }
 
@@ -147,8 +146,8 @@
 ───────────────────────────────────────────────── */
 .blue {
   background:
-    linear-gradient(rgba(30, 41, 90, 0.48),
-      rgba(30, 41, 90, 0.62)),
+    linear-gradient(rgba(30, 41, 90, 0.65),
+      rgba(30, 41, 90, 0.75)),
     url('/h1.jpg') center / cover no-repeat;
 
   background-blend-mode: darken;
@@ -156,8 +155,8 @@
 
 .dark {
   background:
-    linear-gradient(rgba(30, 41, 90, 0.48),
-      rgba(30, 41, 90, 0.62)),
+    linear-gradient(rgba(30, 41, 90, 0.65),
+      rgba(30, 41, 90, 0.75)),
     url('/h2.jpg') center / cover no-repeat;
 
   background-blend-mode: darken;
@@ -188,8 +187,8 @@
 
 .emergency {
   background:
-    linear-gradient(rgba(30, 41, 90, 0.48),
-      rgba(30, 41, 90, 0.62)),
+    linear-gradient(rgba(30, 41, 90, 0.65),
+      rgba(30, 41, 90, 0.75)),
     url('/h3.jpg') center / cover no-repeat;
 
   background-blend-mode: darken;

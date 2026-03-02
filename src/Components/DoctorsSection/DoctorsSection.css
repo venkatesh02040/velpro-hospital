@@ -23,7 +23,7 @@
   color: #1e295a;
   font-size: 14px;
   font-weight: 700;
-  padding: 12px 24px;
+  padding: 16px 28px;
   border-radius: 999px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -65,7 +65,7 @@
   border: 1px solid rgb(218, 232, 255);
   transition: all 0.3s ease;
   height: 100%;
-  min-height: 380px; /* consistent height */
+  min-height: 336px; /* consistent height */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -200,7 +200,7 @@
   }
   .doc-card {
     padding: 24px 16px;
-    min-height: 360px;
+    min-height: 320px;
   }
   .doc-avatar-wrapper {
     width: 120px;

@@ -67,7 +67,7 @@ const AboutUsSection = () => {
 
                     {/* Content Panel */}
                     <div className="content-panel">
-                        <div className="about-badge">About Us</div>
+                        <div className="about-badge"> <img width={"29px"} style={{paddingRight:"10px"}} src="/about.png" alt="about" /> About Us</div>
 
                         <h2 className="main-heading">
                             Advancing Excellence In <span className="highlight">Multi-Speciality Healthcare.</span>
