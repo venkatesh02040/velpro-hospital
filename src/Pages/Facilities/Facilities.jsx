@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
+import { FaCheckCircle } from "react-icons/fa"; // using react-icons for nice checkmarks
 import "./Facilities.css";
 
 const Facilities = () => {
@@ -157,7 +158,7 @@ const Facilities = () => {
                   <ul className="premium-features">
                     {facility.points.map((point, i) => (
                       <li key={i} className="feature-line">
-                        <span className="f-check-icon">✔</span>
+                        <FaCheckCircle className="check-icon" />
                         <span>{point}</span>
                       </li>
                     ))}
