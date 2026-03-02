@@ -81,15 +81,15 @@ const AboutUsSection = () => {
                         {/* Stats */}
                         <div className="stats">
                             <div className="stat">
-                                <div className="stat-label">01. Patients</div>
-                                <div className="stat-value">
+                                <div className="ab-stat-label">01. Patients</div>
+                                <div className="ab-stat-value">
                                     <Counter end={1200} />
                                 </div>
                             </div>
 
                             <div className="stat">
-                                <div className="stat-label">02. Surgeries</div>
-                                <div className="stat-value">
+                                <div className="ab-stat-label">02. Surgeries</div>
+                                <div className="ab-stat-value">
                                     <Counter end={100} />
                                 </div>
                             </div>

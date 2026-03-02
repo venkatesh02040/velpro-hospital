@@ -92,7 +92,7 @@
   position: relative;
 }
 
-.stat-label {
+.ab-stat-label {
   font-size: 13.5px;
   font-weight: 600;
   color: #1e295a;
@@ -102,7 +102,7 @@
   display: block;
 }
 
-.stat-value {
+.ab-stat-value {
   font-size: 58px;
   font-weight: 800;
   line-height: 1;
@@ -157,7 +157,7 @@
     gap: 48px;
   }
   
-  .stat-value {
+  .ab-stat-value {
     font-size: 50px;
   }
 }
