@@ -1,5 +1,4 @@
 // src/pages/Home.jsx
-import AboutUsSection from '../../Components/AboutUsSection/AboutUsSection';
 import DepartmentSlider from '../../Components/DepartmentSlider/DepartmentSlider';
 import HeroBanner from '../../Components/HeroBanner/HeroBanner';
 import Navbar from '../../Components/Navbar/Navbar';
@@ -17,11 +16,10 @@ function Home() {
       <Navbar />
       <HeroBanner />
       <ThreeCard/>
-      <AboutUsSection/>
       <DepartmentSlider/>
-      <FAQSection/>
       <DoctorsSection/>
       <GastroCtaSection/>
+      <FAQSection/>
       <TestimonialsSection/>
       <HomeBlogSection/>
       <Footer/>

@@ -2,7 +2,7 @@
 .loader-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(255, 255, 255, 0.94);
+    background: white;
     backdrop-filter: blur(8px);
     display: flex;
     align-items: center;

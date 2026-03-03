@@ -24,19 +24,19 @@
 }
 
 .testi-label {
-display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: white;
-    border: 2px solid #1e295a;
-    color: #1e295a;
-    font-size: 14px;
-    font-weight: 700;
-    padding: 18px 28px;
-    border-radius: 999px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  border: 2px solid #1e295a;
+  color: #1e295a;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 18px 28px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
 }
 
 .testi-title {
@@ -49,7 +49,8 @@ display: inline-flex;
 /* Arrows – close together, right-aligned with title */
 .testi-arrows {
   display: flex;
-  gap: 10px; /* ← distance between arrows – adjust if needed (8px–12px) */
+  gap: 10px;
+  /* ← distance between arrows – adjust if needed (8px–12px) */
 }
 
 .testi-arrow-btn {
@@ -92,8 +93,9 @@ display: inline-flex;
   background: white;
   border-radius: 16px;
   padding: 32px 28px 28px;
-  border: 1px solid rgb(218, 232, 255) ;
-  height: 300px; /* fixed equal height */
+  border: 1px solid rgb(218, 232, 255);
+  height: 300px;
+  /* fixed equal height */
   display: flex;
   flex-direction: column;
   position: relative;
@@ -168,10 +170,12 @@ display: inline-flex;
 .testi-text::-webkit-scrollbar {
   width: 5px;
 }
+
 .testi-text::-webkit-scrollbar-thumb {
   background: #cbd5e1;
   border-radius: 10px;
 }
+
 .testi-text::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
@@ -207,11 +211,31 @@ display: inline-flex;
 }
 
 .testi-container .slick-list {
-    position: relative;
-    display: block;
-    overflow: hidden;
-    margin: 0;
-    padding: 30px 0px ;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  margin: 0;
+  padding: 30px 0px;
+}
+
+.testi-footer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.testi-avatar-initial {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #1e295a;          /* fixed color */
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 /* ──────────────────────────────────────
@@ -222,9 +246,11 @@ display: inline-flex;
   .testi-title {
     font-size: 32px;
   }
+
   .testi-card {
     height: 300px;
   }
+
   .testi-text {
     max-height: 180px;
   }
@@ -234,14 +260,17 @@ display: inline-flex;
   .testi-section {
     padding: 70px 0;
   }
+
   .testi-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 20px;
   }
+
   .testi-arrows {
     align-self: flex-end;
   }
+
   .testi-card {
     height: 300px;
   }
@@ -251,22 +280,28 @@ display: inline-flex;
   .testi-section {
     padding: 60px 0;
   }
+
   .testi-container {
     padding: 0 16px;
   }
+
   .testi-card {
     padding: 28px 20px 24px;
     height: 300px;
   }
+
   .quote-top-right {
     top: 16px;
     right: 20px;
     font-size: 50px;
   }
+
   .testi-text {
     font-size: 15px;
   }
+
   .testi-arrows {
-    display: none; /* hide arrows on mobile – swipe only */
+    display: none;
+    /* hide arrows on mobile – swipe only */
   }
 }

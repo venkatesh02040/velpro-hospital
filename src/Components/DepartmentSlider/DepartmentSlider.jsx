@@ -6,7 +6,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import api from "../../Api/Api";   // ← your axios instance
-import Loader from "../../Components/Loader/Loader"; 
+import Loader from "../../Components/Loader/Loader";
 
 import "./DepartmentSlider.css";
 
@@ -44,9 +44,9 @@ const DepartmentSlider = () => {
   useEffect(() => {
     const updateSlides = () => {
       const width = window.innerWidth;
-      if (width <= 600)        setSlidesToShow(1);
-      else if (width <= 1024)  setSlidesToShow(2);
-      else                     setSlidesToShow(3);
+      if (width <= 600) setSlidesToShow(1);
+      else if (width <= 1024) setSlidesToShow(2);
+      else setSlidesToShow(3);
     };
 
     let timeout;
@@ -100,7 +100,7 @@ const DepartmentSlider = () => {
     responsive: [
       { breakpoint: 1025, settings: { slidesToShow: 3 } },
       { breakpoint: 1024, settings: { slidesToShow: 2 } },
-      { breakpoint: 601,  settings: { slidesToShow: 1 } },
+      { breakpoint: 601, settings: { slidesToShow: 1 } },
     ],
   };
 
@@ -138,66 +138,68 @@ const DepartmentSlider = () => {
 
   return (
     <div className="department-slider-section">
-      <div className="ds-section-header">
-        <h2 className="dep-badge"> <img src="/departments.png" width={"35px"} style={{paddingRight:"10px"}} alt="" /> OUR DEPARTMENTS</h2>
-        <h3>Leading the Way in Specialized Healthcare</h3>
-        <p>Experience advanced diagnostics, innovative treatments, and expert care across multiple disciplines.</p>
-      </div>
+      <div className="department-slider-container">
+        <div className="ds-section-header">
+          <h2 className="dep-badge"> <img src="/departments.png" width={"35px"} style={{ paddingRight: "10px" }} alt="" /> OUR DEPARTMENTS</h2>
+          <h3>Leading the Way in Specialized Healthcare</h3>
+          <p>Experience advanced diagnostics, innovative treatments, and expert care across multiple disciplines.</p>
+        </div>
 
-      <div className="slider-wrapper">
-        <Slider {...settings}>
-          {departments.map((dept) => (
-            <div key={dept.slug} className="slider-card-wrapper">
-              <Link
-                to={`/departments/${dept.slug}`}
-                className="service-card-link"
-              >
-                <div className="service-card">
-                  <div className="service-image-container">
-                    <img
-                      src={dept.banner}
-                      alt={dept.title}
-                      className="service-image"
-                      onError={(e) => { e.target.src = "/fallback-department.jpg"; }}
-                    />
-                  </div>
-
-                  <div className="service-content">
-                    <div className="service-icon-wrapper">
+        <div className="slider-wrapper">
+          <Slider {...settings}>
+            {departments.map((dept) => (
+              <div key={dept.slug} className="slider-card-wrapper">
+                <Link
+                  to={`/departments/${dept.slug}`}
+                  className="service-card-link"
+                >
+                  <div className="service-card">
+                    <div className="service-image-container">
                       <img
-                        src={dept.icon}
-                        alt={`${dept.title} icon`}
-                        className="service-icon"
-                        onError={(e) => { e.target.src = "/stomach.png"; }}
+                        src={dept.banner}
+                        alt={dept.title}
+                        className="service-image"
+                        onError={(e) => { e.target.src = "/fallback-department.jpg"; }}
                       />
                     </div>
 
-                    <h3 className="service-title">
-                      {dept.title.length > 28
-                        ? dept.title.substring(0, 25) + "..."
-                        : dept.title}
-                    </h3>
+                    <div className="service-content">
+                      <div className="service-icon-wrapper">
+                        <img
+                          src={dept.icon}
+                          alt={`${dept.title} icon`}
+                          className="service-icon"
+                          onError={(e) => { e.target.src = "/stomach.png"; }}
+                        />
+                      </div>
 
-                    <div
-                      className="service-description"
-                      dangerouslySetInnerHTML={{
-                        __html: dept.description
-                          ? dept.description.length > 110
-                            ? dept.description.substring(0, 107) + "..."
-                            : dept.description
-                          : "Specialized care in " + dept.title.toLowerCase() + "."
-                      }}
-                    />
+                      <h3 className="service-title">
+                        {dept.title.length > 28
+                          ? dept.title.substring(0, 25) + "..."
+                          : dept.title}
+                      </h3>
 
-                    <div className="learn-more">
-                      Know More <FiArrowRight />
+                      <div
+                        className="service-description"
+                        dangerouslySetInnerHTML={{
+                          __html: dept.description
+                            ? dept.description.length > 110
+                              ? dept.description.substring(0, 107) + "..."
+                              : dept.description
+                            : "Specialized care in " + dept.title.toLowerCase() + "."
+                        }}
+                      />
+
+                      <div className="learn-more">
+                        Know More <FiArrowRight />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Link>
-            </div>
-          ))}
-        </Slider>
+                </Link>
+              </div>
+            ))}
+          </Slider>
+        </div>
       </div>
     </div>
   );

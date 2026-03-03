@@ -8,14 +8,11 @@ import { FaShieldAlt } from "react-icons/fa";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import "./DoctorsSection.css";
 import api from "../../Api/Api";
-
-// Import your custom Loader
-import Loader from "../../Components/Loader/Loader";  // adjust if path differs
+import Loader from "../../Components/Loader/Loader"; // adjust path if needed
 
 const DoctorsSection = () => {
   const navigate = useNavigate();
   const sliderRef = useRef(null);
-
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -29,11 +26,9 @@ const DoctorsSection = () => {
       try {
         setLoading(true);
         const response = await api.get("/api/doctors/");
-
         const sortedDoctors = response.data
           .sort((a, b) => parseFloat(b.priority || 0) - parseFloat(a.priority || 0))
           .slice(0, 6);
-
         setDoctors(sortedDoctors);
       } catch (error) {
         console.error("Failed to load doctors for homepage:", error);
@@ -87,7 +82,7 @@ const DoctorsSection = () => {
     nextArrow: <NextArrow />,
     autoplay: true,
     autoplaySpeed: 4000,
-    pauseOnHover: false,
+    pauseOnHover: true,          // changed to true (better UX)
     responsive: [
       { breakpoint: 1100, settings: { slidesToShow: 2, centerPadding: "60px" } },
       { breakpoint: 900, settings: { slidesToShow: 2, centerPadding: "50px" } },
@@ -107,12 +102,12 @@ const DoctorsSection = () => {
     const resumeAutoplay = () => {
       if (timeoutId) clearTimeout(timeoutId);
       timeoutId = setTimeout(() => {
-        if (slider && slider.innerSlider) slider.slickPlay();
+        if (slider?.innerSlider) slider.slickPlay();
       }, 800);
     };
 
     const handleTouchStart = () => {
-      if (slider && slider.innerSlider) slider.slickPause();
+      if (slider?.innerSlider) slider.slickPause();
     };
 
     const handleTouchEnd = () => resumeAutoplay();
@@ -147,8 +142,7 @@ const DoctorsSection = () => {
             </span>
             <h2 className="doc-title">Meet Our Specialists</h2>
           </div>
-
-          <div 
+          <div
             style={{
               minHeight: "400px",
               display: "flex",
@@ -197,29 +191,36 @@ const DoctorsSection = () => {
           <Slider ref={sliderRef} {...settings}>
             {doctors.map((doctor) => (
               <div key={doctor.id} className="doc-slide">
-                <div className="doc-card" onClick={() => handleNavigate(doctor.slug)}>
-                  <div className="doc-avatar-wrapper">
+                <div className="doc-card">
+                  <div 
+                    className="doc-avatar-wrapper"
+                    onClick={() => handleNavigate(doctor.slug)}
+                  >
                     <img
                       src={doctor.photo}
-                      alt={doctor.name}
+                      alt={`${doctor.name} - ${doctor.education || "Doctor"}`}
                       onError={(e) => (e.target.src = "/fallback-doctor.jpg")}
                     />
                   </div>
 
                   <div className="doc-main-details">
-                    <h3 className="doc-name">{doctor.name}</h3>
+                    <h3 
+                      className="doc-name"
+                      onClick={() => handleNavigate(doctor.slug)}
+                    >
+                      {doctor.name}
+                    </h3>
 
                     <div className="doc-qualification">
                       {doctor.education || "Specialist"}
                     </div>
 
-                    {/* <span className="doc-spec-badge">
-                      {doctor.department_name}
-                    </span> */}
-
                     <button
                       className="doc-book-btn"
-                      onClick={() => handleNavigate(doctor.slug)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleNavigate(doctor.slug);
+                      }}
                     >
                       Book Appointment
                     </button>

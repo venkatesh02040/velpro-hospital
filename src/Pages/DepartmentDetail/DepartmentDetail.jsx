@@ -1,6 +1,6 @@
 // src/pages/DepartmentDetail.jsx (or wherever it lives)
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
 import "./DepartmentDetail.css";
@@ -11,6 +11,7 @@ import api from "../../Api/Api";
 import Loader from "../../Components/Loader/Loader";  // adjust path if needed
 
 const DepartmentDetail = () => {
+  const navigate = useNavigate();
   const { slug } = useParams();
   const [department, setDepartment] = useState(null);
   const [sidebarDepartments, setSidebarDepartments] = useState([]);
@@ -133,25 +134,44 @@ const DepartmentDetail = () => {
               {relatedDoctors.length > 0 ? (
                 <div className="doctors-grid">
                   {relatedDoctors.map((doctor) => (
-                    <div key={doctor.id} className="doctor-card">
-                      <img
-                        src={doctor.photo}
-                        alt={doctor.name}
-                        className="doctor-image"
-                        onError={(e) => {
-                          e.target.src = "/fallback-doctor.jpg";
-                        }}
-                      />
-                      <h3 className="doctor-name">{doctor.name}</h3>
-                      <p className="doctor-qual">
-                        {doctor.designation} • {doctor.experience_years} Years Exp
-                      </p>
-                      <Link
-                        to={`/doctors/${doctor.slug}`}
-                        className="doctor-link"
+                    <div key={doctor.id} className="doctors-card"
+                      onClick={() => navigate(`/doctors/${doctor.slug}`)}
+                    >
+                      <div
+                        className="doctors-avatar-wrapper"
                       >
-                        View Profile →
-                      </Link>
+                        <img
+                          src={doctor.photo}
+                          alt={doctor.name}
+                          className="doctor-image"
+                          onError={(e) => {
+                            e.target.src = "/fallback-doctor.jpg";
+                          }}
+                        />
+                      </div>
+
+                      <div className="doctor-main-details">
+                        <h3
+                          className="doctors-name"
+                          onClick={() => navigate(`/doctors/${doctor.slug}`)}
+                        >
+                          {doctor.name}
+                        </h3>
+
+                        <div className="doctors-qualification">
+                          {doctor.education || "Specialist"}
+                        </div>
+
+                        <button
+                          className="doctors-book-btn"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            navigate(`/doctors/${doctor.slug}`);
+                          }}
+                        >
+                          Book Appointment
+                        </button>
+                      </div>
                     </div>
                   ))}
                 </div>

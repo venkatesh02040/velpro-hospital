@@ -215,7 +215,7 @@
   background: none;
   border: none;
   font-size: 32px;
-  color: #6b7280;
+  color: #646a76;
   cursor: pointer;
   line-height: 1;
   transition: color 0.2s;
@@ -254,7 +254,7 @@
   border: 1.5px solid #d1d5db;
   border-radius: 10px;
   font-size: 15px;
-  color: #1f2937;
+  color: #646a76;
   background: #f9fafb;
   transition: all 0.25s ease;
   font-family: inherit;

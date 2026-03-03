@@ -1,4 +1,4 @@
-// src/pages/Doctors.jsx (or wherever it lives)
+// src/pages/Doctors.jsx
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../Components/Navbar/Navbar";
@@ -6,8 +6,6 @@ import Footer from "../../Components/Footer/Footer";
 import { FiSearch } from "react-icons/fi";
 import api from "../../Api/Api";
 import "./Doctors.css";
-
-// Import your custom animated Loader
 import Loader from "../../Components/Loader/Loader";  // adjust path if needed
 
 const Doctors = () => {
@@ -20,21 +18,16 @@ const Doctors = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(true);
 
-  // Fetch real data from your backend
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
-
-        // 1. Fetch doctors
         const doctorsRes = await api.get("/api/doctors/");
         setDoctors(doctorsRes.data || []);
 
-        // 2. Fetch departments (for filter buttons + dropdown)
         const deptsRes = await api.get("/api/departments/");
         setDepartments(deptsRes.data || []);
 
-        // Set initial filtered list
         setFilteredDoctors(doctorsRes.data || []);
       } catch (err) {
         console.error("Failed to load data:", err);
@@ -46,7 +39,6 @@ const Doctors = () => {
     fetchData();
   }, []);
 
-  // Filter logic
   useEffect(() => {
     let results = [...doctors];
 
@@ -64,10 +56,7 @@ const Doctors = () => {
     setFilteredDoctors(results);
   }, [selectedDept, searchQuery, doctors]);
 
-  // Top 5 departments for filter buttons (real data)
   const topFiveDepartments = departments.slice(0, 5).map((d) => d.title);
-
-  // All departments + "All" for dropdown
   const allDepartmentsForDropdown = ["All", ...departments.map((d) => d.title)];
 
   if (loading) {
@@ -146,21 +135,36 @@ const Doctors = () => {
           <div className="doctors-grid">
             {filteredDoctors.length > 0 ? (
               filteredDoctors.map((doctor) => (
-                <div key={doctor.id} className="doctors-card" onClick={() => navigate(`/doctors/${doctor.slug}`)}>
-                  <div className="doctors-avatar-wrapper">
-                    <img src={doctor.photo} alt={doctor.name} />
+                <div key={doctor.id} className="doctors-card">
+                  <div 
+                    className="doctors-avatar-wrapper"
+                    onClick={() => navigate(`/doctors/${doctor.slug}`)}
+                  >
+                    <img 
+                      src={doctor.photo} 
+                      alt={`${doctor.name} - ${doctor.education || "Doctor"}`}
+                      onError={(e) => (e.target.src = "/fallback-doctor.jpg")}
+                    />
                   </div>
 
                   <div className="doctor-main-details">
-                    <h3 className="doctors-name">{doctor.name}</h3>
+                    <h3 
+                      className="doctors-name"
+                      onClick={() => navigate(`/doctors/${doctor.slug}`)}
+                    >
+                      {doctor.name}
+                    </h3>
 
                     <div className="doctors-qualification">
-                      {doctor.education}
+                      {doctor.education || "Specialist"}
                     </div>
 
                     <button
                       className="doctors-book-btn"
-                      onClick={() => navigate(`/doctors/${doctor.slug}`)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate(`/doctors/${doctor.slug}`);
+                      }}
                     >
                       Book Appointment
                     </button>

@@ -39,7 +39,7 @@
 
 .navbar__links a,
 .dropdown-toggle {
-  color: #1e293b;               /* slate-900 – calm & professional */
+  color: #1e295a;               /* slate-900 – calm & professional */
   text-decoration: none;
   font-size: 16px;
   font-weight: 500;
@@ -257,7 +257,7 @@
 .hamburger span {
   width: 26px;
   height: 3px;
-  background: #1e293b;
+  background: #1e295a;
   border-radius: 1.5px;
   transition: all 0.4s ease;
 }

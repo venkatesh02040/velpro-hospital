@@ -1,7 +1,11 @@
 .department-slider-section {
   padding: 80px 5%;
-  max-width: 1500px;
-  margin: 0 auto;
+  background-color: #eef3ff;
+}
+
+.department-slider-container {
+  max-width: 1400px;
+  margin: auto;
 }
 
 .ds-section-header {
@@ -37,7 +41,6 @@
 .dep-badge {
   display: inline-flex;
   align-items: center;
-  background: #fff;
   border: 2px solid #1e295a;
   color: #1e295a;
   font-size: 18px;
@@ -115,20 +118,16 @@
   transition: transform 0.3s ease;
 }
 
-.service-card:hover .service-icon-wrapper {
-  transform: scale(1.1);
-}
-
 .service-icon {
-  width: 55%;
-  height: 55%;
+  width: 70%;
+  height: 70%;
   object-fit: contain;
 }
 
 /* Content */
 .service-content {
-  padding: 65px 20px 24px;
-  text-align: center;
+  padding: 46px 20px 24px;
+  text-align: left;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -137,7 +136,7 @@
 .service-title {
   font-size: 1.35rem;
   font-weight: 700;
-  color: #1e293b;
+  color: #1e295a;
   margin: 0 0 16px;
   white-space: nowrap;
   overflow: hidden;
@@ -251,6 +250,10 @@
   .department-slider-section {
     padding: 60px 5%;
   }
+
+  .service-content {
+    padding: 35px 16px 20px;
+  }
 }
 
 @media (max-width: 600px) {
@@ -294,7 +297,7 @@
   }
 
   .service-content {
-    padding: 55px 16px 20px;
+    padding: 35px 16px 20px;
   }
 
   .service-title {

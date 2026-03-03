@@ -229,7 +229,7 @@ const About = () => {
                     </div>
 
                     <div onClick={() => navigate("/doctors")}>
-                        <PrimaryButton text="Schedule a Consultation" />
+                        <PrimaryButton text="Make an Appointment" />
                     </div>
                 </div>
             </section>

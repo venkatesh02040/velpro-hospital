@@ -44,7 +44,7 @@
 }
 
 /* ────────────────────────────────
-   SLIDER + CARDS (matched to Doctors list page)
+   SLIDER + CARDS
 ─────────────────────────────── */
 
 .doc-slider-outer {
@@ -59,77 +59,69 @@
 
 .doc-card {
   background: white;
-  border-radius: 12px;
-  padding: 32px 20px;
-  text-align: center;
-  border: 1px solid rgb(218, 232, 255);
-  transition: all 0.3s ease;
-  height: 100%;
-  min-height: 336px; /* consistent height */
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  transition: all 0.32s ease;
+  height: 500px;                    /* consistent height */
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  cursor: pointer;
+  cursor: default;
+  align-items: center;
 }
 
 .doc-avatar-wrapper {
-  width: 140px;
-  height: 140px;
-  margin: 0 auto 20px;
-  border-radius: 50%;
+  width: 100%;
   overflow: hidden;
-  box-shadow: 0 6px 15px rgba(59, 130, 246, 0.2);
+  background: #f8fafc;
+  cursor: pointer;
 }
 
 .doc-avatar-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top center;
+  transition: transform 0.45s ease;
+}
+
+.doc-main-details {
+  padding: 24px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .doc-name {
-  font-size: 19px;
+  font-size: 1.35rem;
   font-weight: 700;
-  color: #1f2937;
-  margin: 0 0 8px;
+  color: #1e295a;
+  margin: 0 0 6px;
+  line-height: 1.25;
+  cursor: pointer;
+  transition: color 0.2s ease;
 }
 
 .doc-qualification {
-  font-size: 14px;
-  color: #4b5563;
+  font-size: 1rem;
   font-weight: 500;
-  margin: 8px 0 16px;
-  line-height: 1.4;
-}
-
-.doc-spec-badge {
-  display: inline-block;
-  border: 1.5px solid rgb(218, 232, 255);
-  color: #1e295a;
-  padding: 6px 16px;
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 500;
-  text-transform: lowercase;
-  margin-bottom: 24px;
+  color: #475569;
+  margin: 0 0 24px;
+  line-height: 1.45;
 }
 
 .doc-book-btn {
-  background: #dbeafe;
-  color: #1e295a;
-  border: none;
-  border-radius: 5px;
-  font-size: 15px;
-  font-weight: 600;
-  padding: 12px 24px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  width: 100%;
-}
-
-.doc-book-btn:hover {
-  background: #1e295a;
+  background-color: #1e295a;
   color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 14px 0;
+  cursor: pointer;
+  width: 170px;
 }
 
 /* ────────────────────────────────
@@ -141,7 +133,7 @@
   width: 60px !important;
   height: 60px !important;
   border-radius: 50% !important;
-  border: 1px solid rgb(218, 232, 255) !important;
+  border: 1px solid #e2e8f0 !important;
   color: #1e295a !important;
   display: flex !important;
   align-items: center !important;
@@ -155,7 +147,7 @@
 .doc-arrow:hover:not(.slick-disabled) {
   background: #1e295a !important;
   color: white !important;
-  transform: translateY(-50%) scale(1.12) !important;
+  transform: translateY(-50%) scale(1.1) !important;
 }
 
 .doc-arrow-left {
@@ -186,7 +178,7 @@
 
 @media (max-width: 640px) {
   .doc-hero-section {
-    padding: 70px 0 90px;
+    padding: 70px 5% 90px;
   }
   .doc-slider-outer {
     margin: 0 -10px;
@@ -199,11 +191,21 @@
     display: none !important;
   }
   .doc-card {
-    padding: 24px 16px;
-    min-height: 320px;
+    height: 480px;
   }
-  .doc-avatar-wrapper {
-    width: 120px;
-    height: 120px;
+  .doc-main-details {
+    padding: 20px 16px;
+  }
+  .doc-name {
+    font-size: 1.25rem;
   }
 }
+
+@media (max-width: 350px) {
+   .doc-card {
+    height: 430px;
+  } 
+}
+
+
+

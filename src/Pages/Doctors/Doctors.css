@@ -1,5 +1,4 @@
 /* ================= BANNER ================= */
-
 .doctors-banner {
     background: url("/DOCTORS-BANNER.jpeg") no-repeat center/cover;
     height: 300px;
@@ -45,7 +44,7 @@
 }
 
 .doctors-container {
-    max-width: 1300px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 0 24px;
 }
@@ -119,93 +118,55 @@
     gap: 24px;
 }
 
-/* ================= CARD ================= */
+/* ================= CARD (updated to match homepage style) ================= */
 
 .doctors-card {
     background: white;
-    border-radius: 12px;
-    padding: 32px;
-    text-align: center;
-    border: 1px solid rgb(218, 232, 255);
-    transition: all 0.3s ease;
-    cursor: pointer;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    transition: all 0.32s ease;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    cursor: default;
+    align-items: center;
 }
 
 .doctors-avatar-wrapper {
-    width: 140px;
-    height: 140px;
-    margin: 0 auto 20px;
-    border-radius: 50%;
+    width: 100%;
+    height: 278px;
     overflow: hidden;
-    box-shadow: 0 6px 15px rgba(59, 130, 246, 0.2);
+    background: #f8fafc;
+    cursor: pointer;
 }
 
 .doctors-avatar-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-
-.doctors-name {
-    font-size: 19px;
-    font-weight: 700;
-    color: #1f2937;
-    margin: 0 0 8px;
-}
-
-.doctors-spec-badge {
-    display: inline-block;
-    border: 1.5px solid rgb(218, 232, 255);
-    color: #1e295a;
-    padding: 6px 16px;
-    border-radius: 999px;
-    font-size: 13px;
-    font-weight: 500;
-    text-transform: lowercase;
-    margin-bottom: 16px;
-    width: fit-content;
+    object-position: top center;
+    transition: transform 0.45s ease;
 }
 
 .doctor-main-details {
+    padding: 24px 20px;
+    text-align: center;
+    flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
-.doctors-book-btn {
-    background: #dbeafe;
+.doctors-name {
+    font-size: 1.35rem;
+    font-weight: 700;
     color: #1e295a;
-    border-radius: 5px;
-    border: none;
-    font-size: 15px;
-    font-weight: 600;
+    margin: 0 0 6px;
+    line-height: 1.25;
     cursor: pointer;
-    padding: 12px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.doctors-book-btn:hover {
-    background: #1e295a;
-    color: white;
-}
-
-.doctors-no-results {
-    grid-column: 1 / -1;
-    text-align: center;
-    color: #6b7280;
-    font-size: 18px;
-}
-
-/* ───────────────────────────────────────────────
-   Additional styles for department dropdown & qualification
-──────────────────────────────────────────────── */
-
-.doctors-filters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    align-items: center;
+    transition: color 0.2s ease;
 }
 
 .doctors-dept-dropdown {
@@ -226,13 +187,32 @@
 }
 
 .doctors-qualification {
-    font-size: 14px;
-    color: #4b5563;
+    font-size: 1rem;
     font-weight: 500;
-    margin: 8px 0 16px;
-    line-height: 1.4;
+    color: #475569;
+    margin: 0 0 24px;
+    line-height: 1.45;
+}
+
+.doctors-book-btn {
+    background-color: #1e295a;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 14px 0;
+    cursor: pointer;
+    width: 170px;
+}
+
+/* ================= NO RESULTS ================= */
+
+.doctors-no-results {
+    grid-column: 1 / -1;
     text-align: center;
-    padding: 0 12px;
+    color: #646a76;
+    font-size: 18px;
 }
 
 /* ================= RESPONSIVE ================= */
@@ -250,8 +230,7 @@
 }
 
 @media (max-width: 800px) {
-
-        .doctors-grid {
+    .doctors-grid {
         grid-template-columns: repeat(2, 1fr);
     }
     
@@ -283,12 +262,11 @@
     }
 
     .doctors-card {
-        padding: 24px;
+        height: 450px;
     }
 
     .doctors-avatar-wrapper {
-        width: 120px;
-        height: 120px;
+        height: 250px;
     }
 
     .doctors-dept-dropdown {
@@ -297,7 +275,12 @@
     }
 
     .doctors-qualification {
-        font-size: 13px;
-        margin: 6px 0 14px;
+        font-size: 0.95rem;
+        margin: 0 0 20px;
+    }
+
+    .doctors-book-btn {
+        width: 160px;
+        padding: 13px 0;
     }
 }

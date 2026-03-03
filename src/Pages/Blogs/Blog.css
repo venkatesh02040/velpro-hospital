@@ -40,7 +40,7 @@
 /* ================= BLOG SECTION ================= */
 
 .blog-section {
-  background: #f4f6fb;
+  background: #eef3ff;
   padding: 80px 8%;
 }
 
@@ -110,7 +110,7 @@ font-size: 35px;
   display: flex;
   gap: 25px;
   font-size: 14px;
-  color: #6b7280;
+  color: #646a76;
   margin-bottom: 15px;
   align-items: center;
 }
@@ -171,7 +171,7 @@ font-size: 35px;
     display: flex;
     gap: 12px;
     font-size: 14px;
-    color: #6b7280;
+    color: #646a76;
     margin-bottom: 15px;
     align-items: center;
 }

@@ -1,4 +1,4 @@
-// src/pages/BlogDetail.jsx (or wherever it lives)
+// src/pages/BlogDetail.jsx
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import {
@@ -6,17 +6,18 @@ import {
   FiCalendar,
   FiMessageCircle,
   FiArrowRight,
+  FiStar,
 } from "react-icons/fi";
 import api from "../../Api/Api";
 import "./BlogDetails.css";
 import Navbar from "../../Components/Navbar/Navbar";
 import PrimaryButton from "../../Components/Buttons/PrimaryButton";
 import Footer from "../../Components/Footer/Footer";
+import toast, { Toaster } from "react-hot-toast";
 
-// Import your custom Loader
-import Loader from "../../Components/Loader/Loader";  // adjust path if needed
+// Import your custom animated Loader (same path as other pages)
+import Loader from "../../Components/Loader/Loader";
 
-/* -------- DATE FORMATTER -------- */
 const formatDate = (dateString) => {
   if (!dateString) return "Unknown Date";
   return new Date(dateString).toLocaleDateString("en-US", {
@@ -37,13 +38,22 @@ const BlogDetail = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Comment form states
+  const [commentForm, setCommentForm] = useState({
+    name: "",
+    email: "",
+    rating: 0,
+    message: "",
+  });
+  const [commentLoading, setCommentLoading] = useState(false);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
         setError(null);
 
-        // 1. Fetch current blog + embedded data
+        // 1. Fetch current blog + related data
         const blogRes = await api.get(`/api/blogs/${slug}/`);
         const data = blogRes.data;
 
@@ -60,7 +70,7 @@ const BlogDetail = () => {
         setRecentPosts(data.latest_blogs || []);
         setTags(data.tags ? data.tags.split(",").map(t => t.trim()) : []);
 
-        // 2. Fetch departments for sidebar (top 5)
+        // 2. Fetch departments for sidebar
         const deptsRes = await api.get("/api/departments/");
         const sorted = deptsRes.data.sort(
           (a, b) => parseFloat(a.priority) - parseFloat(b.priority)
@@ -76,6 +86,72 @@ const BlogDetail = () => {
 
     fetchData();
   }, [slug]);
+
+  const handleCommentChange = (e) => {
+    const { name, value } = e.target;
+    setCommentForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleRatingClick = (rating) => {
+    setCommentForm((prev) => ({ ...prev, rating }));
+  };
+
+  const handleCommentSubmit = async (e) => {
+    e.preventDefault();
+
+    if (commentForm.rating === 0) {
+      toast.error("Please select a rating (1–5 stars)");
+      return;
+    }
+
+    setCommentLoading(true);
+
+    try {
+      const payload = {
+        name: commentForm.name.trim(),
+        email: commentForm.email.trim(),
+        rating: commentForm.rating,
+        message: commentForm.message.trim(),
+      };
+
+      await api.post(`/api/blogs/${slug}/comment/`, payload);
+
+      toast.success("Comment posted successfully", {
+        duration: 5000,
+        position: "top-center",
+      });
+
+      // Reset form
+      setCommentForm({
+        name: "",
+        email: "",
+        rating: 0,
+        message: "",
+      });
+
+      setBlog((prev) => ({
+        ...prev,
+        comment_count: prev.comment_count + 1,
+      }));
+    } catch (err) {
+      console.error("Failed to post comment:", err);
+      const errorMsg =
+        err.response?.data?.detail ||
+        err.response?.data?.non_field_errors?.[0] ||
+        "Failed to post comment. Please try again.";
+      toast.error(errorMsg, {
+        duration: 6000,
+        position: "top-center",
+      });
+    } finally {
+      setCommentLoading(false);
+    }
+  };
+
+  const getInitial = (name) => {
+    if (!name || typeof name !== "string" || name.trim() === "") return "?";
+    return name.trim().charAt(0).toUpperCase();
+  };
 
   if (loading) {
     return (
@@ -163,18 +239,8 @@ const BlogDetail = () => {
 
               {comments.map((comment) => (
                 <div key={comment.id} className="comment">
-                  <div className="default-avatar">
-                    <FiUser
-                      style={{
-                        width: "30px",
-                        height: "30px",
-                        backgroundColor: "#f4f6fb",
-                        padding: "5px",
-                        border: "1px solid #1e295a",
-                        borderRadius: "50%",
-                      }}
-                      size={25}
-                    />
+                  <div className="comment-avatar-initial">
+                    {getInitial(comment.name)}
                   </div>
 
                   <div>
@@ -188,21 +254,71 @@ const BlogDetail = () => {
               ))}
             </div>
 
-            {/* Comment Form */}
+            {/* Comment Form – with rating */}
             <div className="comment-form">
-              <h3 style={{ marginBottom: "10px" }}>Leave A Comment</h3>
-              <p>Your email address will not be published.</p>
+              <h3 style={{ marginBottom: "18px" }}>Leave A Comment</h3>
+              <form onSubmit={handleCommentSubmit}>
+                <div className="form-grid">
+                  <div className="form-group">
+                    <label>Name</label>
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Your Name"
+                      value={commentForm.name}
+                      onChange={handleCommentChange}
+                      required
+                    />
+                  </div>
 
-              <div className="form-grid">
-                <input type="text" placeholder="Name" />
-                <input type="email" placeholder="Email Address" />
-              </div>
+                  <div className="form-group">
+                    <label>Email Address</label>
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Email Address"
+                      value={commentForm.email}
+                      onChange={handleCommentChange}
+                      required
+                    />
+                  </div>
+                </div>
 
-              <textarea placeholder="Comment"></textarea>
+                {/* Rating Stars */}
+                <div className="form-group" style={{ marginBottom: "20px" }}>
+                  <label>Rating</label>
+                  <div className="rating-stars">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <FiStar
+                        key={star}
+                        size={28}
+                        className={`star ${commentForm.rating >= star ? "filled" : ""}`}
+                        onClick={() => handleRatingClick(star)}
+                        style={{ cursor: "pointer", marginRight: "8px" }}
+                      />
+                    ))}
+                  </div>
+                </div>
 
-              <div className="primary-btn">
-                <PrimaryButton text="Post Comment" />
-              </div>
+                <div className="form-group full-width">
+                  <label>Comment</label>
+                  <textarea
+                    name="message"
+                    rows="5"
+                    placeholder="Write your comment here..."
+                    value={commentForm.message}
+                    onChange={handleCommentChange}
+                    required
+                  ></textarea>
+                </div>
+
+                <div className="primary-btn">
+                  <PrimaryButton
+                    text={commentLoading ? "Posting..." : "Post Comment"}
+                    disabled={commentLoading}
+                  />
+                </div>
+              </form>
             </div>
           </div>
 
@@ -227,7 +343,9 @@ const BlogDetail = () => {
             <div className="sidebar-card">
               <h4>Recent Posts</h4>
               {recentPosts.map((post) => (
-                <div key={post.id} className="recent-post">
+                <div key={post.id} className="recent-post"
+                onClick={() => navigate(`/blogs/${post.slug}`)}
+                >
                   <img src={post.image} alt={post.heading} />
                   <div>
                     <p
@@ -264,6 +382,34 @@ const BlogDetail = () => {
       </div>
 
       <Footer />
+
+      {/* Toast Container */}
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+        toastOptions={{
+          duration: 5000,
+          style: {
+            fontSize: "16px",
+            padding: "16px",
+            borderRadius: "10px",
+          },
+          success: {
+            style: {
+              background: "#d1fae5",
+              color: "#065f46",
+              border: "1px solid #34d399",
+            },
+          },
+          error: {
+            style: {
+              background: "#fee2e2",
+              color: "#991b1b",
+              border: "1px solid #f87171",
+            },
+          },
+        }}
+      />
     </div>
   );
 };

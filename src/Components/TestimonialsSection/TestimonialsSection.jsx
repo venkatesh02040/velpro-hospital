@@ -4,18 +4,15 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-import { FaStar, FaUserCircle, FaComments } from "react-icons/fa";
+import { FaStar, FaComments } from "react-icons/fa";
 import api from "../../Api/Api";
 import "./TestimonialsSection.css";
-
-// Import your custom Loader component
-import Loader from "../../Components/Loader/Loader";  // adjust path if needed
+import Loader from "../../Components/Loader/Loader"; // adjust path if needed
 
 const TestimonialsSection = () => {
   const sliderRef = useRef(null);
   const [testimonials, setTestimonials] = useState([]);
   const [loading, setLoading] = useState(true);
-
   const [slidesToShow, setSlidesToShow] = useState(3);
 
   // Responsive adjustment
@@ -53,7 +50,6 @@ const TestimonialsSection = () => {
         setLoading(true);
         const response = await api.get("/api/testimonials/");
 
-        // Sort by priority (lower number = higher priority)
         const sorted = response.data.sort(
           (a, b) => parseFloat(a.priority || 999) - parseFloat(b.priority || 999)
         );
@@ -97,6 +93,13 @@ const TestimonialsSection = () => {
     } else {
       return "Just now";
     }
+  };
+
+  // New helpers for avatar initial
+  // New helpers for avatar initial
+  const getInitial = (name) => {
+    if (!name || typeof name !== "string" || name.trim() === "") return "?";
+    return name.trim().charAt(0).toUpperCase();
   };
 
   const settings = {
@@ -155,7 +158,7 @@ const TestimonialsSection = () => {
             </div>
           </div>
 
-          <div 
+          <div
             style={{
               minHeight: "400px",
               display: "flex",
@@ -172,7 +175,7 @@ const TestimonialsSection = () => {
   }
 
   if (testimonials.length === 0) {
-    return null; // or show empty state message if preferred
+    return null;
   }
 
   return (
@@ -186,7 +189,6 @@ const TestimonialsSection = () => {
             <h2 className="testi-title">Our happy clients say</h2>
           </div>
 
-          {/* Custom arrows */}
           <div className="testi-arrows">
             <button
               className="testi-arrow-btn"
@@ -217,7 +219,13 @@ const TestimonialsSection = () => {
                   </div>
 
                   <div className="testi-footer">
-                    <FaUserCircle className="testi-avatar" />
+                    <div
+                      className="testi-avatar-initial"
+                      style={{ backgroundColor: "#1e295a" }}
+                    >
+                      {getInitial(t.name)}
+                    </div>
+
                     <div className="testi-user-info">
                       <h4 className="testi-name">{t.name}</h4>
                       <span className="testi-status">{getTimeAgo(t.created_at)}</span>

@@ -80,18 +80,14 @@
   background: white;
   border-radius: 16px;
   overflow: hidden;
-  transition: all 0.35s ease;
+  border: 1px solid #e2e8f0;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
   height: 100%;
   display: flex;
   flex-direction: column;
   position: relative;
   cursor: pointer;
 }
-
-/* .service-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.14);
-} */
 
 .service-image-container {
   height: 220px;
@@ -109,61 +105,60 @@
   transform: scale(1.08);
 }
 
-/* Icon */
+/* Icon - centered */
 .service-icon-wrapper {
-    width: 80px;
-    height: 80px;
-    background: white;
-    border-radius: 50%;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    border: 2px solid #f8f9ff;
-    z-index: 2;
-    transition: transform 0.3s ease;
-    position: absolute;
-    top: 160px;
-    padding: 8px;
-}
-
-.service-card:hover .service-icon-wrapper {
-  transform: scale(1.1);
+  width: 80px;
+  height: 80px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 4px solid #f8f9ff;
+  z-index: 2;
+  transition: transform 0.3s ease;
+  position: absolute;
+  top: 160px;
 }
 
 .service-icon {
-width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
 }
 
-/* Content */
 .service-content {
-    padding: 30px 24px 20px;
-    text-align: left !important;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    /* align-items: center; */
+  padding: 46px 24px 24px;
+  text-align: left;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .service-title {
   font-size: 1.35rem;
   font-weight: 700;
-  color: #1e293b;
+  color: #1e295a;
   margin: 0 0 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .service-description {
-    font-size: 1rem;
-    color: #475569;
-    line-height: 1.65;
-    margin: 0 0 6px;
-    flex: 1;
+  font-size: 0.95rem;
+  color: #475569;
+  line-height: 1.65;
+  margin: 0 0 24px;
+  flex: 1;
 }
 
-/* Link */
+/* ───────────────────────────────────────────────
+   Know More Link - Full Card Hover Animation
+──────────────────────────────────────────────── */
+
 .learn-more-link {
   position: relative;
   display: inline-flex;
@@ -173,33 +168,40 @@ width: 100%;
   font-weight: 600;
   text-decoration: none;
   padding: 8px 0;
+  margin-top: auto; 
 }
 
+/* Underline starts from LEFT, grows to right */
 .learn-more-link::after {
   content: '';
   position: absolute;
   width: 0;
-  height: 2px;
+  height: 2.5px;
   bottom: -4px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;                    /* key change: start from left */
   background: #1e295a;
-  transition: width 0.4s ease;
+  transition: width 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
   border-radius: 2px;
 }
 
-.learn-more-link:hover {
-  color: #1e295a;
+/* When hovering ANYWHERE on the card → line grows full width */
+.service-card:hover .learn-more-link::after {
+  width: 100%;
 }
 
-.learn-more-link:hover::after {
-  width: 100%;
+/* Optional subtle text feedback */
+.service-card:hover .learn-more-link {
+  color: #0f172a;
 }
 
 /* Responsive */
 @media (max-width: 1024px) {
   .departments-main-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .service-content {
+    padding: 35px 20px 20px;
   }
 }
 
@@ -212,5 +214,11 @@ width: 100%;
   }
   .banner-content h1 {
     font-size: 42px;
+  }
+  .service-content {
+    padding: 35px 20px 20px;
+  }
+  .service-icon-wrapper {
+    top: 140px;
   }
 }
