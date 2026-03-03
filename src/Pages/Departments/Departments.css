@@ -57,7 +57,7 @@
 
 .section-header h3 {
   font-size: 38px;
-  color: #111827;
+  color: #646a76;
   margin-bottom: 16px;
 }
 
@@ -218,7 +218,5 @@
   .service-content {
     padding: 35px 20px 20px;
   }
-  .service-icon-wrapper {
-    top: 140px;
-  }
+
 }
