@@ -1,5 +1,5 @@
 /* ================= BANNER (same as Doctors.jsx) ================= */
-.doctors-banner {
+.appointments-banner {
     background: url("/appointments.jpg") no-repeat center/cover;
     height: 300px;
     display: flex;
@@ -8,20 +8,20 @@
     position: relative;
 }
 
-.doctors-banner::after {
+.appointments-banner::after {
     content: "";
     position: absolute;
     inset: 0;
     background: rgba(29, 41, 89, 0.65);
 }
 
-.doctors-banner-content {
+.appointments-banner-content {
     position: relative;
     color: white;
     z-index: 2;
 }
 
-.doctors-banner-content h1 {
+.appointments-banner-content h1 {
     font-size: 48px;
     margin-bottom: 10px;
     font-weight: 800;
@@ -53,26 +53,26 @@
     margin: 0 auto;
 }
 
-/* ================= SEARCH BAR ================= */
-.search-wrapper {
+/* ================= a-search BAR ================= */
+.a-search-wrapper {
     max-width: 700px;
     margin: 0 auto 60px;
     text-align: center;
 }
 
-.search-form {
+.a-search-form {
     display: flex;
     gap: 12px;
     padding: 12px;
     border-radius: 999px;
 }
 
-.search-input-wrapper {
+.a-search-input-wrapper {
     flex: 1;
     position: relative;
 }
 
-.search-icon {
+.a-search-icon {
     position: absolute;
     left: 20px;
     top: 50%;
@@ -81,7 +81,7 @@
     font-size: 1.3rem;
 }
 
-.search-form input {
+.a-search-form input {
     width: 100%;
     padding: 16px 16px 16px 56px;
     border: 1px solid rgb(218, 232, 255);
@@ -90,7 +90,7 @@
     outline: none;
 }
 
-.search-btn {
+.a-search-btn {
     background: #1e295a;
     color: white;
     border: none;
@@ -101,12 +101,12 @@
     transition: all 0.3s;
 }
 
-.search-btn:disabled {
+.a-search-btn:disabled {
     background: #94a3b8;
     cursor: not-allowed;
 }
 
-/* Helper text before search */
+/* Helper text before a-search */
 .helper-text {
     margin-top: 16px;
     color: #64748b;
@@ -239,7 +239,7 @@
 }
 
 /* Disable button when no email */
-.search-btn:disabled {
+.a-search-btn:disabled {
     background: #94a3b8;
     cursor: not-allowed;
 }
@@ -256,12 +256,12 @@
         padding: 60px 5%;
     }
 
-    .search-form {
+    .a-search-form {
         flex-direction: column;
         gap: 16px;
     }
 
-    .search-btn {
+    .a-search-btn {
         width: 100%;
         padding: 16px;
     }
@@ -274,11 +274,11 @@
 }
 
 @media (max-width: 480px) {
-    .doctors-banner {
+    .appointments-banner {
         height: 260px;
     }
 
-    .doctors-banner-content h1 {
+    .appointments-banner-content h1 {
         font-size: 36px;
     }
 
@@ -286,7 +286,7 @@
         grid-template-columns: 1fr;
     }
 
-    .search-form input {
+    .a-search-form input {
         padding: 16px 16px 16px 46px;
     }
 }

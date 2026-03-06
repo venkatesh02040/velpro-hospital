@@ -81,8 +81,8 @@ const Appointments = () => {
       <Navbar />
 
       {/* Banner – same as Doctors.jsx */}
-      <section className="doctors-banner">
-        <div className="doctors-banner-content">
+      <section className="appointments-banner">
+        <div className="appointments-banner-content">
           <h1>Appointments</h1>
           <div className="breadcrumb">
             <Link to="/">Home</Link> <span>/</span> <span>Appointments</span>
@@ -93,10 +93,10 @@ const Appointments = () => {
       <section className="appointments-section">
         <div className="appointments-container">
           {/* Search Bar */}
-          <div className="search-wrapper">
-            <form onSubmit={handleSearch} className="search-form">
-              <div className="search-input-wrapper">
-                <FiSearch className="search-icon" />
+          <div className="a-search-wrapper">
+            <form onSubmit={handleSearch} className="a-search-form">
+              <div className="a-search-input-wrapper">
+                <FiSearch className="a-search-icon" />
                 <input
                   type="email"
                   placeholder="Enter your email to view your appointments..."
@@ -115,7 +115,7 @@ const Appointments = () => {
                   </button>
                 )}
               </div>
-              <button type="submit" className="search-btn" disabled={loading || !hasEmail}>
+              <button type="submit" className="a-search-btn" disabled={loading || !hasEmail}>
                 {loading ? "Searching..." : "Search"}
               </button>
             </form>
