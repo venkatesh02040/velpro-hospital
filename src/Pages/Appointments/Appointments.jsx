@@ -1,7 +1,7 @@
 // src/pages/Appointments.jsx
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FiSearch, FiX, FiCalendar, FiUser, FiClock } from "react-icons/fi";
+import { FiSearch, FiX, FiCalendar, FiUser, FiClock, FiUsers } from "react-icons/fi";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
 import api from "../../Api/Api";
@@ -169,7 +169,7 @@ const Appointments = () => {
                         <FiUser /> Dr. {appt.doctor_name}
                       </p>
                       <p className="department">
-                        <FiClock /> {appt.department}
+                        <FiUsers /> {appt.department}
                       </p>
                       <p className="date">
                         <FiCalendar /> {appt.appointment_date}
