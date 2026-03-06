@@ -1,6 +1,6 @@
 // src/pages/BlogDetail.jsx
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import {
   FiUser,
   FiCalendar,
@@ -28,6 +28,7 @@ const formatDate = (dateString) => {
 };
 
 const BlogDetail = () => {
+  const navigate = useNavigate();
   const { slug } = useParams();
 
   const [blog, setBlog] = useState(null);
@@ -346,6 +347,7 @@ const BlogDetail = () => {
                 <div key={post.id} className="recent-post"
                 onClick={() => navigate(`/blogs/${post.slug}`)}
                 >
+                  {console.log(post)}
                   <img src={post.image} alt={post.heading} />
                   <div>
                     <p

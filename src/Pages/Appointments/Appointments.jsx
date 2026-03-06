@@ -159,9 +159,9 @@ const Appointments = () => {
                   <div key={appt.appointment_id} className="appointment-card">
                     <div className="card-header">
                       <h3>{appt.patient_name}</h3>
-                      <span className="status-badge" style={{ background: statusStyle.bg, color: statusStyle.color }}>
+                      {/* <span className="status-badge" style={{ background: statusStyle.bg, color: statusStyle.color }}>
                         {statusStyle.label}
-                      </span>
+                      </span> */}
                     </div>
 
                     <div className="card-body">
