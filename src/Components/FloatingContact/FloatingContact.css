@@ -1,0 +1,53 @@
+.floating-container {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    z-index: 999;
+}
+
+.floating-btn {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.main {
+    background: #1e295a;
+}
+
+.main.rotate {
+    transform: rotate(45deg);
+}
+
+.call {
+    border: 1px solid rgb(218, 232, 255);
+    background: #eff6ff;
+    color: #1e295a;
+}
+
+.whatsapp {
+    border: 1px solid rgb(218, 232, 255);
+    background: #25D366;
+}
+
+.appointment {
+    border: 1px solid rgb(218, 232, 255);
+    background: #eff6ff;
+    color: #1e295a;
+}
+
+.floating-btn:hover {
+    transform: scale(1.1);
+}

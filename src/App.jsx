@@ -1,8 +1,10 @@
 // src/App.jsx
 import { Routes, Route } from 'react-router-dom';
-import ScrollToTop from './ScrollToTop';   // 👈 add this
+import ScrollToTop from './ScrollToTop';
 import './App.css';
 import { Toaster } from "react-hot-toast";
+
+import FloatingContact from "./Components/FloatingContact/FloatingContact"; // 👈 add this
 
 import Home from './Pages/Home/Home';
 import Blog from './Pages/Blogs/Blogs';
@@ -26,6 +28,7 @@ function App() {
     <>
       <Toaster position="top-right" />
       <ScrollToTop />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -44,6 +47,10 @@ function App() {
         <Route path="/success/:id" element={<BookingSuccess />} />
         <Route path="/careers/:slug" element={<CareerDetail />} />
       </Routes>
+
+      {/* 👇 Floating Widget */}
+      <FloatingContact />
+
     </>
   );
 }

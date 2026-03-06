@@ -243,7 +243,7 @@ const Navbar = () => {
 
         <div className="mobile-cta">
           <Link to="/doctors" onClick={closeMenu}>
-            <PrimaryButton text="Book An Appointment" />
+            <PrimaryButton text="Book Appointment" />
           </Link>
         </div>
       </ul>
