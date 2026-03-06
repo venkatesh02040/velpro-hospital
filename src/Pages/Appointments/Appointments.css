@@ -1,0 +1,292 @@
+/* ================= BANNER (same as Doctors.jsx) ================= */
+.doctors-banner {
+    background: url("/appointments.jpg") no-repeat center/cover;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    padding-left: 8%;
+    position: relative;
+}
+
+.doctors-banner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(29, 41, 89, 0.65);
+}
+
+.doctors-banner-content {
+    position: relative;
+    color: white;
+    z-index: 2;
+}
+
+.doctors-banner-content h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+    font-weight: 800;
+}
+
+.breadcrumb {
+    font-size: 16px;
+}
+
+.breadcrumb a {
+    color: white;
+    text-decoration: none;
+}
+
+.breadcrumb span {
+    margin: 0 8px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* ================= SECTION ================= */
+.appointments-section {
+    padding: 80px 6%;
+    background: #f8fafc;
+    min-height: 70vh;
+}
+
+.appointments-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ================= SEARCH BAR ================= */
+.search-wrapper {
+    max-width: 700px;
+    margin: 0 auto 60px;
+    text-align: center;
+}
+
+.search-form {
+    display: flex;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 999px;
+}
+
+.search-input-wrapper {
+    flex: 1;
+    position: relative;
+}
+
+.search-icon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #64748b;
+    font-size: 1.3rem;
+}
+
+.search-form input {
+    width: 100%;
+    padding: 16px 16px 16px 56px;
+    border: 1px solid rgb(218, 232, 255);
+    border-radius: 999px;
+    font-size: 16px;
+    outline: none;
+}
+
+.search-btn {
+    background: #1e295a;
+    color: white;
+    border: none;
+    padding: 0 40px;
+    border-radius: 999px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.search-btn:disabled {
+    background: #94a3b8;
+    cursor: not-allowed;
+}
+
+/* Helper text before search */
+.helper-text {
+    margin-top: 16px;
+    color: #64748b;
+    font-size: 1.05rem;
+    font-weight: 500;
+}
+
+/* ================= LOADING / ERROR / NO RESULTS ================= */
+.loading,
+.error-message,
+.no-results {
+    text-align: center;
+    padding: 0px 20px;
+    font-size: 1.3rem;
+    color: #475569;
+}
+
+.spinner {
+    width: 56px;
+    height: 56px;
+    border: 6px solid #e2e8f0;
+    border-top: 6px solid #1e295a;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 24px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.retry-btn {
+    margin-top: 20px;
+    background: #1e295a;
+    color: white;
+    border: none;
+    padding: 12px 32px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+/* No results CTA */
+.no-results h3 {
+    font-size: 2rem;
+    margin-bottom: 16px;
+    color: #1e295a;
+}
+
+.book-now-link {
+    display: inline-block;
+    margin-top: 24px;
+}
+
+/* ================= APPOINTMENT CARDS ================= */
+.appointments-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 28px;
+}
+
+.appointment-card {
+    background: white;
+    border: 1px solid rgb(218, 232, 255);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.card-header {
+    padding: 6px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.status-badge {
+    padding: 8px 20px;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: white;
+    white-space: nowrap;
+}
+
+.card-body {
+    padding: 0px 28px;
+}
+
+.card-body p {
+    margin: 16px 0;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: #334155;
+}
+
+.card-body svg {
+    min-width: 22px;
+    color: #64748b;
+}
+
+/* Clear button inside input */
+.clear-btn {
+    position: absolute;
+    right: 16px;
+    top: 56%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #64748b;
+    font-size: 1.3rem;
+    cursor: pointer;
+    padding: 4px;
+}
+
+/* Disable button when no email */
+.search-btn:disabled {
+    background: #94a3b8;
+    cursor: not-allowed;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1024px) {
+    .appointments-grid {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .appointments-section {
+        padding: 60px 5%;
+    }
+
+    .search-form {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .search-btn {
+        width: 100%;
+        padding: 16px;
+    }
+
+    .card-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .doctors-banner {
+        height: 260px;
+    }
+
+    .doctors-banner-content h1 {
+        font-size: 36px;
+    }
+
+    .appointments-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .search-form input {
+        padding: 16px 16px 16px 46px;
+    }
+}

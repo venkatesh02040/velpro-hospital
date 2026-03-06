@@ -22,6 +22,7 @@ import DoctorDetail from './Pages/DoctorDetail/DoctorDetail';
 import Careers from './Pages/Careers/Careers';
 import CareerDetail from './Pages/CareerDetail/CareerDetail';
 import BookingSuccess from './Pages/Success/BookingSuccess';
+import Appointments from './Pages/Appointments/Appointments';
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
         <Route path="/careers" element={<Careers />} />
         <Route path="/success/:id" element={<BookingSuccess />} />
         <Route path="/careers/:slug" element={<CareerDetail />} />
+        <Route path="/appointments" element={<Appointments />} />
       </Routes>
 
       {/* 👇 Floating Widget */}
